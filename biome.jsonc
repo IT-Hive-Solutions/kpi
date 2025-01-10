@@ -53,6 +53,17 @@
     "enabled": false  // TODO: depends on standardized `#jsapp/*` internal TS alias imports for import distance calculation.
   },
   "linter": {
-    "enabled": false // TBD
+    "enabled": true,
+    "include": ["jsapp/**"],
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "warn" // Recommended to error. TODO: review and fix.
+      },
+      "a11y": {
+        "noLabelWithoutControl": "warn", // Recommended to error. TODO: review and fix.
+        "noBlankTarget": "off" // Not a problem for modern browsers; see 2021 update, see https://mathiasbynens.github.io/rel-noopener/#recommendations.
+      }
+    }
   }
 }
