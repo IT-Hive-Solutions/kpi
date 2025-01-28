@@ -1,9 +1,14 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "files": { // Note: Biome ignores ".es6" extensions. TODO: rename to ".mjs".
+    "include": ["jsapp/**"],
+    "ignore": ["jsapp/compiled/**", "jsapp/node_modules/**", "*.css"],
+  },
   "vcs": {
     "enabled": true,
     "clientKind": "git",
-    "useIgnoreFile": true
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
   },
   // "formatter": {
   //   "enabled": true,
@@ -54,15 +59,84 @@
   },
   "linter": {
     "enabled": true,
-    "include": ["jsapp/**"],
     "rules": {
       "recommended": true,
+      "correctness": {
+        "noEmptyPattern": "off", // Recommended rule. TODO: review and enable.
+        "noInnerDeclarations": "off", // Recommended rule. TODO: review and enable.
+        "noUnreachable": "off", // Recommended rule. TODO: review and enable.
+        "noUnsafeOptionalChaining": "off", // Recommended rule. TODO: review and enable.
+        "useExhaustiveDependencies": "off", // Recommended rule. TODO: review and enable.
+        "useJsxKeyInIterable": "off", // Recommended rule. TODO: review and enable.
+      },
       "suspicious": {
-        "noExplicitAny": "warn" // Recommended to error. TODO: review and fix.
+        "noArrayIndexKey": "off", // Recommended rule. TODO: review and enable.
+        "noAssignInExpressions": "off", // Recommended rule. TODO: review and enable.
+        "noConfusingVoidType": "off", // Recommended rule. TODO: review and enable.
+        "noControlCharactersInRegex": "off", // Recommended rule. TODO: review and enable.
+        "noDoubleEquals": "off", // Recommended rule. TODO: review and enable.
+        "noEmptyInterface": "off", // Recommended rule. TODO: review and enable.
+        "noExplicitAny": "off", // Recommended rule. TODO: review and enable.
+        "noImplicitAnyLet": "off", // Recommended rule. TODO: review and enable.
+        "noMisleadingCharacterClass": "off", // Recommended rule. TODO: review and enable.
+        "noPrototypeBuiltins": "off", // Recommended rule. TODO: review and enable.
+        "noRedundantUseStrict": "off", // Recommended rule. TODO: review and enable.
+        "noShadowRestrictedNames": "off", // Recommended rule. TODO: review and enable.
+        "useIsArray": "off", // Recommended rule. TODO: review and enable.
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off", // Recommended rule. TODO: review and enable.
+      },
+      "complexity": {
+        "noBannedTypes": "off", // Recommended rule. TODO: review and enable.
+        "noExtraBooleanCast": "off", // Recommended rule. TODO: review and enable.
+        "noForEach": "off", // Recommended rule. TODO: review and enable.
+        "noUselessConstructor": "off", // Recommended rule. TODO: review and enable.
+        "noUselessFragments": "off", // Recommended rule. TODO: review and enable.
+        "noUselessSwitchCase": "off", // Recommended rule. TODO: review and enable.
+        "noUselessTernary": "off", // Recommended rule. TODO: review and enable.
+        "noUselessThisAlias": "off", // Recommended rule. TODO: review and enable.
+        "useArrowFunction": "off", // Recommended rule. TODO: review and enable.
+        "useLiteralKeys": "off", // Recommended rule. TODO: review and enable.
+        "useOptionalChain": "off", // Recommended rule. TODO: review and enable.
+      },
+      "performance": {
+        "noDelete": "off", // Recommended rule. TODO: review and enable.
       },
       "a11y": {
-        "noLabelWithoutControl": "warn", // Recommended to error. TODO: review and fix.
-        "noBlankTarget": "off" // Not a problem for modern browsers; see 2021 update, see https://mathiasbynens.github.io/rel-noopener/#recommendations.
+        "noBlankTarget": "off", // Not a problem for modern browsers; see 2021 update, see https://mathiasbynens.github.io/rel-noopener/#recommendations.
+        "noLabelWithoutControl": "off", // Recommended rule. TODO: review and enable.
+        "noNoninteractiveTabindex": "off", // Recommended rule. TODO: review and enable.
+        "noPositiveTabindex": "off", // Recommended rule. TODO: review and enable.
+        "useAltText": "off", // Recommended rule. TODO: review and enable.
+        "useAriaPropsForRole": "off", // Recommended rule. TODO: review and enable.
+        "useButtonType": "off", // Recommended rule. TODO: review and enable.
+        "useFocusableInteractive": "off", // Recommended rule. TODO: review and enable.
+        "useIframeTitle": "off", // Recommended rule. TODO: review and enable.
+        "useKeyWithClickEvents": "off", // Recommended rule. TODO: review and enable.
+        "useKeyWithMouseEvents": "off", // Recommended rule. TODO: review and enable.
+        "useMediaCaption": "off", // Recommended rule. TODO: review and enable.
+        "useSemanticElements": "off", // Recommended rule. TODO: review and enable.
+        "useValidAnchor": "off", // Recommended rule. TODO: review and enable.
+      },
+      "style": {
+        "noArguments": "off", // Recommended rule. TODO: review and enable.
+        "noCommaOperator": "off", // Recommended rule. TODO: review and enable.
+        "noInferrableTypes": "off", // Recommended rule. TODO: review and enable.
+        "noNonNullAssertion": "off", // Recommended rule. TODO: review and enable.
+        "noParameterAssign": "off", // Recommended rule. TODO: review and enable.
+        "noUnusedTemplateLiteral": "off", // Recommended rule. TODO: review and enable.
+        "noUselessElse": "off", // Recommended rule. TODO: review and enable.
+        "noVar": "off", // Recommended rule. TODO: review and enable.
+        "useConst": "off", // Recommended rule. TODO: review and enable.
+        "useDefaultParameterLast": "off", // Recommended rule. TODO: review and enable.
+        "useEnumInitializers": "off", // Recommended rule. TODO: review and enable.
+        "useImportType": "off", // Recommended rule. TODO: review and enable.
+        "useNodejsImportProtocol": "off", // Recommended rule. TODO: review and enable.
+        "useNumberNamespace": "off", // Recommended rule. TODO: review and enable.
+        "useShorthandFunctionType": "off", // Recommended rule. TODO: review and enable.
+        "useSingleVarDeclarator": "off", // Recommended rule. TODO: review and enable.
+        "useTemplate": "off", // Recommended rule. TODO: review and enable.
       }
     }
   }
