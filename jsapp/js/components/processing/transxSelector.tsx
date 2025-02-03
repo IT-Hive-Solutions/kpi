@@ -73,7 +73,9 @@ export default class TransxSelector extends React.Component<
           // already exist in the list.
           if (
             this.props.languageCodes?.includes(languageCode) &&
-            this.state.options?.find((option) => option.value === languageCode) === undefined
+            this.state.options?.find(
+              (option) => option.value === languageCode
+            ) === undefined
           ) {
             newOptions.push({
               value: languageCode,

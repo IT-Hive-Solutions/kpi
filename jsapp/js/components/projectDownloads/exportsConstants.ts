@@ -15,21 +15,46 @@ export interface ExportTypeDefinition {
   isLegacy: boolean;
 }
 
-export const EXPORT_TYPES: {[key in ExportTypeName]: ExportTypeDefinition} = Object.freeze({
-  csv_legacy: {value: ExportTypeName.csv_legacy, label: t('CSV (legacy)'), isLegacy: true},
-  csv: {value: ExportTypeName.csv, label: t('CSV'), isLegacy: false},
-  geojson: {value: ExportTypeName.geojson, label: t('GeoJSON'), isLegacy: false},
-  kml_legacy: {value: ExportTypeName.kml_legacy, label: t('GPS coordinates (KML)'), isLegacy: true},
-  spss_labels: {value: ExportTypeName.spss_labels, label: t('SPSS Labels'), isLegacy: false},
-  xls_legacy: {value: ExportTypeName.xls_legacy, label: t('XLS (legacy)'), isLegacy: true},
-  xls: {value: ExportTypeName.xls, label: t('XLS'), isLegacy: false},
-  zip_legacy: {value: ExportTypeName.zip_legacy, label: t('Media Attachments (ZIP)'), isLegacy: true},
-});
+export const EXPORT_TYPES: {[key in ExportTypeName]: ExportTypeDefinition} =
+  Object.freeze({
+    csv_legacy: {
+      value: ExportTypeName.csv_legacy,
+      label: t('CSV (legacy)'),
+      isLegacy: true,
+    },
+    csv: {value: ExportTypeName.csv, label: t('CSV'), isLegacy: false},
+    geojson: {
+      value: ExportTypeName.geojson,
+      label: t('GeoJSON'),
+      isLegacy: false,
+    },
+    kml_legacy: {
+      value: ExportTypeName.kml_legacy,
+      label: t('GPS coordinates (KML)'),
+      isLegacy: true,
+    },
+    spss_labels: {
+      value: ExportTypeName.spss_labels,
+      label: t('SPSS Labels'),
+      isLegacy: false,
+    },
+    xls_legacy: {
+      value: ExportTypeName.xls_legacy,
+      label: t('XLS (legacy)'),
+      isLegacy: true,
+    },
+    xls: {value: ExportTypeName.xls, label: t('XLS'), isLegacy: false},
+    zip_legacy: {
+      value: ExportTypeName.zip_legacy,
+      label: t('Media Attachments (ZIP)'),
+      isLegacy: true,
+    },
+  });
 
 export type ExportFormatName = '_default' | '_xml';
 
 export const EXPORT_FORMATS: {
-  [key in ExportFormatName]: {value: ExportFormatName; label: string}
+  [key in ExportFormatName]: {value: ExportFormatName; label: string};
 } = Object.freeze({
   // Unchecked wisdom from old component:
   // > The value of `formpack.constants.UNTRANSLATED` is `null` which is the same as `_default`
@@ -52,7 +77,7 @@ export interface ExportMultiOption {
 }
 
 export const EXPORT_MULTIPLE_OPTIONS: {
-  [key in ExportMultiOptionName]: ExportMultiOption
+  [key in ExportMultiOptionName]: ExportMultiOption;
 } = Object.freeze({
   details: {
     value: 'details',

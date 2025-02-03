@@ -13,11 +13,7 @@ const actionIconVariants: Array<ActionIconProps['variant']> = [
   'transparent',
 ];
 
-const actionIconSizes: Array<ActionIconProps['size']> = [
-  'sm',
-  'md',
-  'lg',
-];
+const actionIconSizes: Array<ActionIconProps['size']> = ['sm', 'md', 'lg'];
 
 export default {
   title: 'common/Action Icon',

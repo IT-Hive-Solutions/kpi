@@ -12,11 +12,13 @@ export interface ExportFormatOption {
  * Returns one of export format options, either the asset's default language
  * or `_default` (or more precisely: the first option)
  */
-export function getContextualDefaultExportFormat(asset: AssetResponse): ExportFormatOption {
+export function getContextualDefaultExportFormat(
+  asset: AssetResponse
+): ExportFormatOption {
   const exportFormatOptions = getExportFormatOptions(asset);
   const defaultAssetLanguage = asset.summary?.default_translation;
-  const defaultAssetLanguageOption = exportFormatOptions.find((option) =>
-    defaultAssetLanguage === option.value
+  const defaultAssetLanguageOption = exportFormatOptions.find(
+    (option) => defaultAssetLanguage === option.value
   );
   return defaultAssetLanguageOption || exportFormatOptions[0];
 }
@@ -24,7 +26,9 @@ export function getContextualDefaultExportFormat(asset: AssetResponse): ExportFo
 /**
  * Returns a list of options available as formats for given asset.
  */
-export function getExportFormatOptions(asset: AssetResponse): ExportFormatOption[] {
+export function getExportFormatOptions(
+  asset: AssetResponse
+): ExportFormatOption[] {
   const options: ExportFormatOption[] = [];
 
   // Step 1: add all defined languages as options (both named and unnamed)

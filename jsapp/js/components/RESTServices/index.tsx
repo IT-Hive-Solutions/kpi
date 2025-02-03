@@ -16,12 +16,15 @@ export default class RESTServices extends React.Component<RESTServicesProps> {
     return (
       <DocumentTitle title={`${docTitle} | KoboToolbox`}>
         <React.Fragment>
-          {this.props.hookUid &&
-            <RESTServiceLogs assetUid={this.props.asset.uid} hookUid={this.props.hookUid} />
-          }
-          {!this.props.hookUid &&
+          {this.props.hookUid && (
+            <RESTServiceLogs
+              assetUid={this.props.asset.uid}
+              hookUid={this.props.hookUid}
+            />
+          )}
+          {!this.props.hookUid && (
             <RESTServicesList assetUid={this.props.asset.uid} />
-          }
+          )}
         </React.Fragment>
       </DocumentTitle>
     );

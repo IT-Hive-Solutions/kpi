@@ -15,11 +15,10 @@ koboDropdownActions.hideAnyDropdown.listen(
 );
 
 /** Use this action to know when dropdown menu was opened or closed. */
-koboDropdownActions.menuVisibilityChange.listen((
-  name: string,
-  isVisible: boolean
-) => {
-  koboDropdownActions.menuVisibilityChange.done(name, isVisible);
-});
+koboDropdownActions.menuVisibilityChange.listen(
+  (name: string, isVisible: boolean) => {
+    koboDropdownActions.menuVisibilityChange.done(name, isVisible);
+  }
+);
 
 export default koboDropdownActions;

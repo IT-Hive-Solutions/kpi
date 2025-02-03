@@ -19,10 +19,7 @@ import type {
   CustomReportSettings,
   ReportsResponse,
 } from 'js/components/reports/reportsConstants';
-import type {
-  AssetResponse,
-  FailResponse,
-} from 'js/dataInterface';
+import type {AssetResponse, FailResponse} from 'js/dataInterface';
 
 interface CustomReportEditorProps {
   reportData: ReportsResponse[];
@@ -55,8 +52,10 @@ export default class CustomReportEditor extends React.Component<
 
   componentDidMount() {
     this.unlisteners.push(
-      actions.reports.setCustom.completed.listen(this.onSetCustomCompleted.bind(this)),
-      actions.reports.setCustom.failed.listen(this.onSetCustomFailed.bind(this)),
+      actions.reports.setCustom.completed.listen(
+        this.onSetCustomCompleted.bind(this)
+      ),
+      actions.reports.setCustom.failed.listen(this.onSetCustomFailed.bind(this))
     );
   }
 
@@ -91,7 +90,10 @@ export default class CustomReportEditor extends React.Component<
   }
 
   /** Pass `null` to delete report */
-  updateAssetCustomReports(crid: string, newReport: CustomReportSettings | null) {
+  updateAssetCustomReports(
+    crid: string,
+    newReport: CustomReportSettings | null
+  ) {
     const assetCustomReports = clonedeep(this.props.asset.report_custom || {});
     if (newReport === null) {
       delete assetCustomReports[crid];
@@ -130,8 +132,13 @@ export default class CustomReportEditor extends React.Component<
                 return (
                   <div className='graph-settings__question' key={index}>
                     <Checkbox
-                      checked={this.state.customReport.questions.includes(item.name)}
-                      onChange={this.customReportQuestionChange.bind(this, item.name)}
+                      checked={this.state.customReport.questions.includes(
+                        item.name
+                      )}
+                      onChange={this.customReportQuestionChange.bind(
+                        this,
+                        item.name
+                      )}
                       label={label}
                     />
                   </div>

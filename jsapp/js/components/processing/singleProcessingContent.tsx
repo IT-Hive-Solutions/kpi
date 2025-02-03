@@ -68,11 +68,12 @@ export default class SingleProcessingContent extends React.Component<{}> {
           <li
             className={classNames({
               [styles.tab]: true,
-              [styles.activeTab]: isProcessingRouteActive(PROCESSING_ROUTES.TRANSCRIPT),
+              [styles.activeTab]: isProcessingRouteActive(
+                PROCESSING_ROUTES.TRANSCRIPT
+              ),
             })}
-            onClick={this.safeExecute.bind(
-              this,
-              () => goToTabRoute(PROCESSING_ROUTES.TRANSCRIPT)
+            onClick={this.safeExecute.bind(this, () =>
+              goToTabRoute(PROCESSING_ROUTES.TRANSCRIPT)
             )}
           >
             {t('Transcript')}
@@ -81,11 +82,12 @@ export default class SingleProcessingContent extends React.Component<{}> {
           <li
             className={classNames({
               [styles.tab]: true,
-              [styles.activeTab]: isProcessingRouteActive(PROCESSING_ROUTES.TRANSLATIONS),
+              [styles.activeTab]: isProcessingRouteActive(
+                PROCESSING_ROUTES.TRANSLATIONS
+              ),
             })}
-            onClick={this.safeExecute.bind(
-              this,
-              () => goToTabRoute(PROCESSING_ROUTES.TRANSLATIONS)
+            onClick={this.safeExecute.bind(this, () =>
+              goToTabRoute(PROCESSING_ROUTES.TRANSLATIONS)
             )}
           >
             {t('Translations')}
@@ -94,11 +96,12 @@ export default class SingleProcessingContent extends React.Component<{}> {
           <li
             className={classNames({
               [styles.tab]: true,
-              [styles.activeTab]: isProcessingRouteActive(PROCESSING_ROUTES.ANALYSIS),
+              [styles.activeTab]: isProcessingRouteActive(
+                PROCESSING_ROUTES.ANALYSIS
+              ),
             })}
-            onClick={this.safeExecute.bind(
-              this,
-              () => goToTabRoute(PROCESSING_ROUTES.ANALYSIS)
+            onClick={this.safeExecute.bind(this, () =>
+              goToTabRoute(PROCESSING_ROUTES.ANALYSIS)
             )}
           >
             {t('Analysis')}

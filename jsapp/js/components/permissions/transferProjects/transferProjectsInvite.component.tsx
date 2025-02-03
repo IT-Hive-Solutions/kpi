@@ -56,7 +56,7 @@ export default function TransferProjectsInvite(
   };
 
   function decline() {
-    setDeclinePending(true)
+    setDeclinePending(true);
     declineInvite(props.inviteUid).then(() => {
       setIsDeclined(true);
       props.setInvite(
@@ -79,7 +79,7 @@ export default function TransferProjectsInvite(
         asset?.assetName,
         asset?.assetOwner
       );
-      setSearchParams()
+      setSearchParams();
     });
   }
 

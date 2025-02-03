@@ -64,7 +64,9 @@ export function getAssetOwnerDisplayName(username: string) {
   }
 }
 
-export function getOrganizationDisplayString(asset: AssetResponse | ProjectViewAsset) {
+export function getOrganizationDisplayString(
+  asset: AssetResponse | ProjectViewAsset
+) {
   if (asset.settings.organization) {
     return asset.settings.organization;
   } else {
@@ -99,7 +101,9 @@ export function getLanguageIndex(asset: AssetResponse, langString: string) {
   return foundIndex;
 }
 
-export function getLanguagesDisplayString(asset: AssetResponse | ProjectViewAsset) {
+export function getLanguagesDisplayString(
+  asset: AssetResponse | ProjectViewAsset
+) {
   if (
     asset &&
     'summary' in asset &&
@@ -107,11 +111,7 @@ export function getLanguagesDisplayString(asset: AssetResponse | ProjectViewAsse
     asset.summary.languages.length > 0
   ) {
     return asset?.summary?.languages?.join(', ');
-  } else if (
-    asset &&
-    'languages' in asset &&
-    asset.languages.length > 0
-  ) {
+  } else if (asset && 'languages' in asset && asset.languages.length > 0) {
     return asset.languages.join(', ');
   } else {
     return '-';
@@ -121,7 +121,9 @@ export function getLanguagesDisplayString(asset: AssetResponse | ProjectViewAsse
 /**
  * Returns `-` for assets without sector and localized label otherwise
  */
-export function getSectorDisplayString(asset: AssetResponse | ProjectViewAsset): string {
+export function getSectorDisplayString(
+  asset: AssetResponse | ProjectViewAsset
+): string {
   let output = '-';
 
   if (asset.settings.sector && 'value' in asset.settings.sector) {
@@ -141,7 +143,9 @@ export function getSectorDisplayString(asset: AssetResponse | ProjectViewAsset):
   return output;
 }
 
-export function getCountryDisplayString(asset: AssetResponse | ProjectViewAsset): string {
+export function getCountryDisplayString(
+  asset: AssetResponse | ProjectViewAsset
+): string {
   if (asset.settings.country) {
     /**
      * We don't want to use labels from asset's settings, as these are localized
@@ -182,7 +186,9 @@ interface DisplayNameObj {
  * containing final name and all useful data. Most of the times you should use
  * `getAssetDisplayName(…).final`.
  */
-export function getAssetDisplayName(asset?: AssetResponse | ProjectViewAsset): DisplayNameObj {
+export function getAssetDisplayName(
+  asset?: AssetResponse | ProjectViewAsset
+): DisplayNameObj {
   const emptyName = t('untitled');
 
   const output: DisplayNameObj = {
@@ -244,7 +250,7 @@ export function getQuestionOrChoiceDisplayName(
     return questionOrChoice.label;
   } else if (questionOrChoice.name) {
     return questionOrChoice.name;
-  // the "string in obj" is needed because choice type doesn't have $autoname
+    // the "string in obj" is needed because choice type doesn't have $autoname
   } else if ('$autoname' in questionOrChoice && questionOrChoice.$autoname) {
     return questionOrChoice.$autoname;
   } else {
@@ -268,7 +274,9 @@ export function isLibraryAsset(assetType: AssetTypeName) {
 export function isAssetPublic(permissions?: PermissionResponse[]) {
   let isDiscoverableByAnonymous = false;
   permissions?.forEach((perm) => {
-    const foundPerm = permConfig.getPermissionByCodename(PERMISSIONS_CODENAMES.discover_asset);
+    const foundPerm = permConfig.getPermissionByCodename(
+      PERMISSIONS_CODENAMES.discover_asset
+    );
     if (
       perm.user === ANON_USERNAME_URL &&
       foundPerm !== undefined &&
@@ -307,7 +315,10 @@ export function getAssetIcon(asset: AssetResponse): IconName {
         return 'project-draft';
       }
     case ASSET_TYPES.collection.id:
-      if ('access_types' in asset && asset?.access_types?.includes(ACCESS_TYPES.subscribed)) {
+      if (
+        'access_types' in asset &&
+        asset?.access_types?.includes(ACCESS_TYPES.subscribed)
+      ) {
         return 'folder-subscribed';
       } else if (isAssetPublic(asset.permissions)) {
         return 'folder-public';
@@ -322,7 +333,7 @@ export function getAssetIcon(asset: AssetResponse): IconName {
 }
 
 export type SurveyFlatPaths = {
-  [P in string]: string
+  [P in string]: string;
 };
 
 export function getRowName(row: SurveyChoice | SurveyRow) {
@@ -350,13 +361,16 @@ export function getSurveyFlatPaths(
       if (includeGroups) {
         output[rowName] = openedGroups.join('/');
       }
-    } else if (Object.prototype.hasOwnProperty.call(GROUP_TYPES_END, row.type)) {
+    } else if (
+      Object.prototype.hasOwnProperty.call(GROUP_TYPES_END, row.type)
+    ) {
       openedGroups.pop();
     } else if (
       Object.prototype.hasOwnProperty.call(QUESTION_TYPES, row.type) ||
       row.type === SCORE_ROW_TYPE ||
       row.type === RANK_LEVEL_TYPE ||
-      (includeMeta && Object.prototype.hasOwnProperty.call(META_QUESTION_TYPES, row.type))
+      (includeMeta &&
+        Object.prototype.hasOwnProperty.call(META_QUESTION_TYPES, row.type))
     ) {
       let groupsPath = '';
       if (openedGroups.length >= 1) {
@@ -389,30 +403,28 @@ export function isRowSpecialLabelHolder(
   mainRow: SurveyChoice | SurveyRow,
   holderRow: SurveyChoice | SurveyRow
 ): boolean {
-  if (!mainRow || !holderRow || !Object.prototype.hasOwnProperty.call(holderRow, 'label')) {
+  if (
+    !mainRow ||
+    !holderRow ||
+    !Object.prototype.hasOwnProperty.call(holderRow, 'label')
+  ) {
     return false;
   } else {
     const mainRowName = getRowName(mainRow);
     const holderRowName = getRowName(holderRow);
     return (
-      (
-        // this handles ranking questions
-        'type' in holderRow &&
+      // this handles ranking questions
+      ('type' in holderRow &&
         holderRowName === `${mainRowName}_label` &&
-        holderRow.type === QUESTION_TYPES.note.id
-      ) ||
-      (
-        // this handles matrix questions (partially)
-        'type' in holderRow &&
+        holderRow.type === QUESTION_TYPES.note.id) ||
+      // this handles matrix questions (partially)
+      ('type' in holderRow &&
         holderRowName === `${mainRowName}_note` &&
-        holderRow.type === QUESTION_TYPES.note.id
-      ) ||
-      (
-        // this handles rating questions
-        'type' in holderRow &&
+        holderRow.type === QUESTION_TYPES.note.id) ||
+      // this handles rating questions
+      ('type' in holderRow &&
         holderRowName === `${mainRowName}_header` &&
-        holderRow.type === QUESTION_TYPES.select_one.id // rating
-      )
+        holderRow.type === QUESTION_TYPES.select_one.id) // rating
     );
   }
 }
@@ -453,9 +465,15 @@ export function getTranslatedRowLabel(
     }
   });
 
-  if (typeof foundRow === 'object' && Object.prototype.hasOwnProperty.call(foundRow, 'label')) {
+  if (
+    typeof foundRow === 'object' &&
+    Object.prototype.hasOwnProperty.call(foundRow, 'label')
+  ) {
     return getRowLabelAtIndex(foundRow, translationIndex);
-  } else if (typeof foundRow === 'object' && typeof foundRowIndex === 'number') {
+  } else if (
+    typeof foundRow === 'object' &&
+    typeof foundRowIndex === 'number'
+  ) {
     // that mysterious row always comes as a next row
     const possibleRow = data[foundRowIndex + 1];
     if (isRowSpecialLabelHolder(foundRow, possibleRow)) {
@@ -492,14 +510,20 @@ export function getRowTypeIcon(rowType: AnyRowTypeName | undefined) {
     return QUESTION_TYPES.score.icon;
   } else if (rowType === RANK_LEVEL_TYPE) {
     return QUESTION_TYPES.rank.icon;
-  } else if (rowType && Object.prototype.hasOwnProperty.call(QUESTION_TYPES, rowType)) {
+  } else if (
+    rowType &&
+    Object.prototype.hasOwnProperty.call(QUESTION_TYPES, rowType)
+  ) {
     // We need to cast with `as` operator to avoid typescript complaining that
     // we can't use AnyRowTypeName as index for QuestionTypes.
     const rowTypeAsQuestionType = rowType as QuestionTypeName;
     return QUESTION_TYPES[rowTypeAsQuestionType].icon;
   }
 
-  if (rowType && Object.prototype.hasOwnProperty.call(META_QUESTION_TYPES, rowType)) {
+  if (
+    rowType &&
+    Object.prototype.hasOwnProperty.call(META_QUESTION_TYPES, rowType)
+  ) {
     return 'qt-meta-default';
   }
 
@@ -514,13 +538,10 @@ export function renderQuestionTypeIcon(
     // TODO: use Icon component here, but please check out all usages first.
     // Also make sure the icon size is right.
     // It should be done while working on https://github.com/kobotoolbox/kpi/issues/3571
-    return React.createElement(
-      'i',
-      {
-        className: `k-icon k-icon-${rowTypeIcon}`,
-        title: rowType,
-      }
-    );
+    return React.createElement('i', {
+      className: `k-icon k-icon-${rowTypeIcon}`,
+      title: rowType,
+    });
   } else {
     return null;
   }
@@ -534,7 +555,7 @@ export function renderQuestionTypeIcon(
  */
 export function injectSupplementalRowsIntoListOfRows(
   asset: AssetResponse,
-  rows: Set<string> | Array<string>,
+  rows: Set<string> | Array<string>
 ) {
   if (asset.content?.survey === undefined) {
     throw new Error('Asset has no content');
@@ -621,7 +642,8 @@ export function getFlatQuestionsList(
 
     if (
       Object.prototype.hasOwnProperty.call(QUESTION_TYPES, row.type) ||
-      (includeMeta && Object.prototype.hasOwnProperty.call(META_QUESTION_TYPES, row.type))
+      (includeMeta &&
+        Object.prototype.hasOwnProperty.call(META_QUESTION_TYPES, row.type))
     ) {
       const rowName = getRowName(row);
       output.push({
@@ -655,7 +677,11 @@ export function isAssetPublicReady(asset: AssetResponse): string[] {
 
   if (asset.asset_type === ASSET_TYPES.collection.id) {
     if (!asset.name || !asset.settings.organization || !asset.settings.sector) {
-      errors.push(t('Name, organization and sector are required to make collection public.'));
+      errors.push(
+        t(
+          'Name, organization and sector are required to make collection public.'
+        )
+      );
     }
     if (asset.children.count === 0) {
       errors.push(t('Empty collection is not allowed to be made public.'));
@@ -680,13 +706,14 @@ export function buildAssetUrl(assetUid: string) {
 }
 
 /*
-* Inspired by https://gist.github.com/john-doherty/b9195065884cdbfd2017a4756e6409cc
-* Remove everything forbidden by XML 1.0 specifications, plus the unicode replacement character U+FFFD
-* @param {string} str
-*/
+ * Inspired by https://gist.github.com/john-doherty/b9195065884cdbfd2017a4756e6409cc
+ * Remove everything forbidden by XML 1.0 specifications, plus the unicode replacement character U+FFFD
+ * @param {string} str
+ */
 export function removeInvalidChars(str: string) {
-  const regex = /((?:[\0-\x08\x0B\f\x0E-\x1F\uFFFD\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]))/g;
-  return str = String(str || '').replace(regex, '');
+  const regex =
+    /((?:[\0-\x08\x0B\f\x0E-\x1F\uFFFD\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]))/g;
+  return (str = String(str || '').replace(regex, ''));
 }
 
 export function getAssetAdvancedFeatures(assetUid: string) {
@@ -723,17 +750,20 @@ export function getAssetProcessingRows(assetUid: string) {
   const foundAsset = assetStore.getAsset(assetUid);
   if (foundAsset?.advanced_submission_schema?.properties) {
     const rows: string[] = [];
-    Object.keys(foundAsset.advanced_submission_schema.properties).forEach((propertyName) => {
-      if (foundAsset.advanced_submission_schema?.properties !== undefined) {
-        const propertyObj = foundAsset.advanced_submission_schema.properties[propertyName];
-        // NOTE: we assume that the properties will hold only a special string
-        // "submission" property and one object property for each
-        // processing-enabled row.
-        if (propertyObj.type === 'object') {
-          rows.push(propertyName);
+    Object.keys(foundAsset.advanced_submission_schema.properties).forEach(
+      (propertyName) => {
+        if (foundAsset.advanced_submission_schema?.properties !== undefined) {
+          const propertyObj =
+            foundAsset.advanced_submission_schema.properties[propertyName];
+          // NOTE: we assume that the properties will hold only a special string
+          // "submission" property and one object property for each
+          // processing-enabled row.
+          if (propertyObj.type === 'object') {
+            rows.push(propertyName);
+          }
         }
       }
-    });
+    );
     return rows;
   }
   return undefined;

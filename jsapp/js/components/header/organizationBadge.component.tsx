@@ -15,7 +15,11 @@ export default function OrganizationBadge(props: OrganizationBadgeProps) {
   if (orgQuery.data?.is_mmo) {
     return (
       <div className={styles.root}>
-        <Badge color={props.color} size='m' label={orgQuery.data.name.toUpperCase()} />
+        <Badge
+          color={props.color}
+          size='m'
+          label={orgQuery.data.name.toUpperCase()}
+        />
       </div>
     );
   } else {

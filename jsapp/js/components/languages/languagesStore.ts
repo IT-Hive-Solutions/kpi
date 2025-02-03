@@ -38,7 +38,9 @@ interface DetailedLanguageRegion {
 }
 
 interface DetailedLanguageServices {
-  [serviceCode: TransxServiceCode]: {[languageCode: LanguageCode]: LanguageCode};
+  [serviceCode: TransxServiceCode]: {
+    [languageCode: LanguageCode]: LanguageCode;
+  };
 }
 
 export interface DetailedLanguage extends LanguageBase {
@@ -115,10 +117,9 @@ class LanguagesStore {
   public getLanguageName(languageCode: LanguageCode): Promise<string> {
     return new Promise((resolve, reject) => {
       // First we try to get the name from memoized data.
-      const languageName = (
+      const languageName =
         this.detailedLanguages.get(languageCode)?.name ||
-        this.languages.get(languageCode)?.name
-      );
+        this.languages.get(languageCode)?.name;
       if (languageName) {
         resolve(languageName);
       } else {
@@ -133,4 +134,3 @@ class LanguagesStore {
 }
 
 export default new LanguagesStore();
-

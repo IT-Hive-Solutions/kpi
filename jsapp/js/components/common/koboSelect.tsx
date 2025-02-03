@@ -17,7 +17,11 @@ import type {KoboDropdownPlacement} from 'js/components/common/koboDropdown';
 bem.KoboSelect = makeBem(null, 'k-select');
 bem.KoboSelect__label = makeBem(bem.KoboSelect, 'label', 'label');
 bem.KoboSelect__trigger = makeBem(bem.KoboSelect, 'trigger');
-bem.KoboSelect__triggerSelectedOption = makeBem(bem.KoboSelect, 'trigger-selected-option', 'span');
+bem.KoboSelect__triggerSelectedOption = makeBem(
+  bem.KoboSelect,
+  'trigger-selected-option',
+  'span'
+);
 bem.KoboSelect__searchBox = makeBem(bem.KoboSelect, 'search-box', 'input');
 bem.KoboSelect__clear = makeBem(bem.KoboSelect, 'clear');
 bem.KoboSelect__menu = makeBem(bem.KoboSelect, 'menu', 'menu');
@@ -107,12 +111,16 @@ class KoboSelect extends React.Component<KoboSelectProps, KoboSelectState> {
 
   componentDidMount() {
     this.unlisteners.push(
-      koboDropdownActions.menuVisibilityChange.done.listen(this.onMenuVisibilityChange.bind(this))
+      koboDropdownActions.menuVisibilityChange.done.listen(
+        this.onMenuVisibilityChange.bind(this)
+      )
     );
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   get placeholderLabel() {
@@ -159,7 +167,10 @@ class KoboSelect extends React.Component<KoboSelectProps, KoboSelectState> {
    */
   getFilteredOptionsList() {
     if (this.state.filterPhrase !== '') {
-      const fuse = new Fuse(this.props.options, {...FUSE_OPTIONS, keys: ['id', 'label']});
+      const fuse = new Fuse(this.props.options, {
+        ...FUSE_OPTIONS,
+        keys: ['id', 'label'],
+      });
       const fuseSearch = fuse.search(this.state.filterPhrase);
       return fuseSearch.map((result) => result.item);
     }
@@ -184,46 +195,45 @@ class KoboSelect extends React.Component<KoboSelectProps, KoboSelectState> {
   }
 
   renderTrigger() {
-    const foundSelectedOption = this.props.options.find((option) => (
-      this.props.selectedOption !== null &&
-      option.value === this.props.selectedOption
-    ));
+    const foundSelectedOption = this.props.options.find(
+      (option) =>
+        this.props.selectedOption !== null &&
+        option.value === this.props.selectedOption
+    );
 
     // When one of the options is selected, we display it inside the trigger.
     if (foundSelectedOption) {
       return (
         <bem.KoboSelect__trigger>
           <bem.KoboSelect__triggerSelectedOption dir='auto'>
-            {foundSelectedOption.icon &&
+            {foundSelectedOption.icon && (
               <Icon
                 name={foundSelectedOption.icon}
                 size={ButtonToIconMap.get(this.props.size)}
               />
-            }
+            )}
 
             <label>{foundSelectedOption.label}</label>
           </bem.KoboSelect__triggerSelectedOption>
 
-          {this.isSearchboxVisible() &&
-            this.renderSearchBox()
-          }
+          {this.isSearchboxVisible() && this.renderSearchBox()}
 
-          {this.props.isClearable &&
+          {this.props.isClearable && (
             <bem.KoboSelect__clear onClick={this.onClear.bind(this)}>
               <Icon
                 name='close'
                 size={ButtonToCloseIconMap.get(this.props.size)}
               />
             </bem.KoboSelect__clear>
-          }
+          )}
 
-          {this.props.isPending &&
+          {this.props.isPending && (
             <Icon
               name='spinner'
               size={ButtonToIconMap.get(this.props.size)}
               className='k-spin'
             />
-          }
+          )}
 
           <Icon
             name={this.state.isMenuVisible ? 'caret-up' : 'caret-down'}
@@ -242,13 +252,13 @@ class KoboSelect extends React.Component<KoboSelectProps, KoboSelectState> {
 
         {this.isSearchboxVisible() && this.renderSearchBox()}
 
-        {this.props.isPending &&
+        {this.props.isPending && (
           <Icon
             name='spinner'
             size={ButtonToIconMap.get(this.props.size)}
             className='k-spin'
           />
-        }
+        )}
 
         <Icon
           name={this.state.isMenuVisible ? 'caret-up' : 'caret-down'}
@@ -259,25 +269,33 @@ class KoboSelect extends React.Component<KoboSelectProps, KoboSelectState> {
   }
 
   renderSearchBox() {
-    const foundSelectedOption = this.props.options.find((option) => (
-      this.props.selectedOption !== null &&
-      option.value === this.props.selectedOption
-    ));
+    const foundSelectedOption = this.props.options.find(
+      (option) =>
+        this.props.selectedOption !== null &&
+        option.value === this.props.selectedOption
+    );
 
     return (
       <React.Fragment>
-        {foundSelectedOption?.icon &&
-          <Icon name={foundSelectedOption.icon} size={ButtonToIconMap.get(this.props.size)}/>
-        }
-        {!foundSelectedOption?.icon &&
-          <Icon name='search' size={ButtonToIconMap.get(this.props.size)}/>
-        }
+        {foundSelectedOption?.icon && (
+          <Icon
+            name={foundSelectedOption.icon}
+            size={ButtonToIconMap.get(this.props.size)}
+          />
+        )}
+        {!foundSelectedOption?.icon && (
+          <Icon name='search' size={ButtonToIconMap.get(this.props.size)} />
+        )}
         <bem.KoboSelect__searchBox
           name={SEARCHBOX_NAME}
           value={this.state.filterPhrase}
           onChange={this.onSearchBoxChange.bind(this)}
           onClick={this.onSearchBoxClick.bind(this)}
-          placeholder={foundSelectedOption ? foundSelectedOption.label : this.placeholderLabel}
+          placeholder={
+            foundSelectedOption
+              ? foundSelectedOption.label
+              : this.placeholderLabel
+          }
         />
       </React.Fragment>
     );
@@ -294,36 +312,30 @@ class KoboSelect extends React.Component<KoboSelectProps, KoboSelectState> {
             onClick={this.onOptionClick.bind(this, option.value)}
             title={option.label}
             m={{
-              'selected': (
+              'selected':
                 this.props.selectedOption !== null &&
-                this.props.selectedOption === option.value
-              ),
+                this.props.selectedOption === option.value,
             }}
             dir='auto'
           >
-            {option.icon && <Icon name={option.icon}/>}
+            {option.icon && <Icon name={option.icon} />}
             <label>{option.label}</label>
           </bem.KoboSelect__option>
         ))}
 
-        {(
-          typeof this.state.filterPhrase === 'string' &&
+        {typeof this.state.filterPhrase === 'string' &&
           this.state.filterPhrase.length >= 1 &&
-          filteredOptions.length === 0
-        ) &&
-          <bem.KoboSelect__menuMessage>
-            {t('No options found')}
-          </bem.KoboSelect__menuMessage>
-        }
+          filteredOptions.length === 0 && (
+            <bem.KoboSelect__menuMessage>
+              {t('No options found')}
+            </bem.KoboSelect__menuMessage>
+          )}
       </bem.KoboSelect__menu>
     );
   }
 
   render() {
-    const modifiers = [
-      `size-${this.props.size}`,
-      `type-${this.props.type}`,
-    ];
+    const modifiers = [`size-${this.props.size}`, `type-${this.props.type}`];
 
     if (this.props.isPending) {
       modifiers.push('is-pending');
@@ -343,12 +355,14 @@ class KoboSelect extends React.Component<KoboSelectProps, KoboSelectState> {
 
     return (
       <bem.KoboSelect m={modifiers} className={this.props.className}>
-        {this.props.label &&
+        {this.props.label && (
           <bem.KoboSelect__label htmlFor={this.props.name}>
             {this.props.label}{' '}
-            {this.props.isRequired && <span className={'k-select__required-mark'}>*</span>}
+            {this.props.isRequired && (
+              <span className={'k-select__required-mark'}>*</span>
+            )}
           </bem.KoboSelect__label>
-        }
+        )}
 
         <KoboDropdown
           name={this.props.name}
@@ -361,11 +375,9 @@ class KoboSelect extends React.Component<KoboSelectProps, KoboSelectState> {
           data-cy={this.props['data-cy']}
         />
 
-        {this.props.error &&
-          <bem.KoboSelect__error>
-            {this.props.error}
-          </bem.KoboSelect__error>
-        }
+        {this.props.error && (
+          <bem.KoboSelect__error>{this.props.error}</bem.KoboSelect__error>
+        )}
       </bem.KoboSelect>
     );
   }

@@ -44,7 +44,7 @@ export default class RegionSelector extends React.Component<
   RegionSelectorProps,
   RegionSelectorState
 > {
-  constructor(props: RegionSelectorProps){
+  constructor(props: RegionSelectorProps) {
     super(props);
     this.state = {
       options: [],
@@ -97,8 +97,8 @@ export default class RegionSelector extends React.Component<
     if (serviceRegions) {
       for (const ourLanguageCode in serviceRegions) {
         const serviceLanguageCode = serviceRegions[ourLanguageCode];
-        const label = language.regions.find((region) =>
-          region.code === ourLanguageCode
+        const label = language.regions.find(
+          (region) => region.code === ourLanguageCode
         )?.name;
 
         if (serviceLanguageCode && label) {
@@ -131,13 +131,13 @@ export default class RegionSelector extends React.Component<
 
   render() {
     if (this.state.language === undefined) {
-      return (<bem.RegionSelector__loading>…</bem.RegionSelector__loading>);
+      return <bem.RegionSelector__loading>…</bem.RegionSelector__loading>;
     }
 
     return (
       <bem.RegionSelector>
         <bem.RegionSelector__rootLanguage>
-          <Icon name='language-alt'/>
+          <Icon name='language-alt' />
 
           <label title={this.state.language.name}>
             {this.state.language.name}
@@ -152,7 +152,7 @@ export default class RegionSelector extends React.Component<
           />
         </bem.RegionSelector__rootLanguage>
 
-        {this.state.options.length !== 0 &&
+        {this.state.options.length !== 0 && (
           <KoboSelect
             name='regionselector'
             type='gray'
@@ -162,7 +162,7 @@ export default class RegionSelector extends React.Component<
             onChange={this.onOptionChange.bind(this)}
             isDisabled={this.props.isDisabled}
           />
-        }
+        )}
       </bem.RegionSelector>
     );
   }

@@ -38,7 +38,8 @@ const meta: Meta<typeof Modal> = {
       type: 'boolean',
     },
     size: {
-      description: 'Modal size - influences the width of the modal, height depends on the content',
+      description:
+        'Modal size - influences the width of the modal, height depends on the content',
       type: 'string',
       control: {
         type: 'select',

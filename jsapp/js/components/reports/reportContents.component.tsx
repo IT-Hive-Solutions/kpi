@@ -85,44 +85,50 @@ export default class ReportContents extends React.Component<ReportContentsProps>
 
       if (
         asset?.content?.choices &&
-        (
-          rowType === QUESTION_TYPES.select_one.id ||
-          rowType === QUESTION_TYPES.select_multiple.id
-        )
+        (rowType === QUESTION_TYPES.select_one.id ||
+          rowType === QUESTION_TYPES.select_multiple.id)
       ) {
-        const question = asset.content?.survey?.find((z) =>
-          z.name === rowName || z.$autoname === rowName
+        const question = asset.content?.survey?.find(
+          (z) => z.name === rowName || z.$autoname === rowName
         );
         const resps = reportData[i].data.responses;
         let choice;
         if (resps) {
           reportData[i].data.responseLabels = [];
           for (let j = resps.length - 1; j >= 0; j--) {
-            choice = asset.content.choices.find((o) =>
-              question &&
-              o.list_name === question.select_from_list_name &&
-              (o.name === resps[j])
+            choice = asset.content.choices.find(
+              (o) =>
+                question &&
+                o.list_name === question.select_from_list_name &&
+                o.name === resps[j]
             );
             if (choice?.label?.[translationIndex]) {
-              reportData[i].data.responseLabels?.unshift(choice.label[translationIndex]);
+              reportData[i].data.responseLabels?.unshift(
+                choice.label[translationIndex]
+              );
             } else {
               reportData[i].data.responseLabels?.unshift(resps[j]);
             }
           }
         } else {
           const vals = reportData[i].data.values;
-          if (vals?.[0]?.[1] && 'responses' in vals?.[0]?.[1] && vals?.[0]?.[1]?.responses) {
+          if (
+            vals?.[0]?.[1] &&
+            'responses' in vals?.[0]?.[1] &&
+            vals?.[0]?.[1]?.responses
+          ) {
             const respValues = vals[0][1].responses;
 
             const newLabels: string[] = [];
-            const qGB = asset.content?.survey?.find((z) =>
-              z.name === groupBy || z.$autoname === groupBy
+            const qGB = asset.content?.survey?.find(
+              (z) => z.name === groupBy || z.$autoname === groupBy
             );
             respValues.forEach((r, ind) => {
-              choice = asset.content?.choices?.find((o) =>
-                qGB &&
-                o.list_name === qGB.select_from_list_name &&
-                (o.label?.includes(r))
+              choice = asset.content?.choices?.find(
+                (o) =>
+                  qGB &&
+                  o.list_name === qGB.select_from_list_name &&
+                  o.label?.includes(r)
               );
               if (choice?.label?.[translationIndex]) {
                 newLabels[ind] = choice.label[translationIndex];
@@ -133,10 +139,12 @@ export default class ReportContents extends React.Component<ReportContentsProps>
             reportData[i].data.responseLabels = newLabels;
 
             for (let vD = vals.length - 1; vD >= 0; vD--) {
-              choice = asset.content.choices.find((o) =>
-                question &&
-                o.list_name === question.select_from_list_name &&
-                (o.name === String(vals[vD][0]) || o.$autoname === String(vals[vD][0]))
+              choice = asset.content.choices.find(
+                (o) =>
+                  question &&
+                  o.list_name === question.select_from_list_name &&
+                  (o.name === String(vals[vD][0]) ||
+                    o.$autoname === String(vals[vD][0]))
               );
 
               if (choice?.label?.[translationIndex]) {
@@ -152,29 +160,29 @@ export default class ReportContents extends React.Component<ReportContentsProps>
 
     return (
       <div>
-        {
-          reportData.map((rowContent, i) => {
-            if (!rowContent.data.provided) {
-              return null;
-            }
+        {reportData.map((rowContent, i) => {
+          if (!rowContent.data.provided) {
+            return null;
+          }
 
-            const label = getReportRowTranslatedLabel(
-              rowContent,
-              this.props.asset.content?.survey,
-              translationIndex
-            );
+          const label = getReportRowTranslatedLabel(
+            rowContent,
+            this.props.asset.content?.survey,
+            translationIndex
+          );
 
-            return (
-              <bem.ReportView__item key={i}>
-                <ReportViewItem
-                  {...rowContent}
-                  label={label}
-                  triggerQuestionSettings={this.props.triggerQuestionSettings.bind(this)}
-                />
-              </bem.ReportView__item>
-            );
-          })
-        }
+          return (
+            <bem.ReportView__item key={i}>
+              <ReportViewItem
+                {...rowContent}
+                label={label}
+                triggerQuestionSettings={this.props.triggerQuestionSettings.bind(
+                  this
+                )}
+              />
+            </bem.ReportView__item>
+          );
+        })}
       </div>
     );
   }

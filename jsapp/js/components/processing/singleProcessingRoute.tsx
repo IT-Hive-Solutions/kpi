@@ -14,7 +14,9 @@ import type {WithRouterProps} from 'jsapp/js/router/legacy';
 import styles from './singleProcessingRoute.module.scss';
 import CenteredMessage from 'js/components/common/centeredMessage.component';
 
-const NO_DATA_MESSAGE = t('There is no data for this question for the current submission');
+const NO_DATA_MESSAGE = t(
+  'There is no data for this question for the current submission'
+);
 
 interface SingleProcessingRouteProps extends WithRouterProps {
   uid: string;
@@ -110,9 +112,7 @@ export default class SingleProcessingRoute extends React.Component<
     }
 
     if (!this.isProcessingEnabled()) {
-      return (
-        <CenteredMessage message={NO_DATA_MESSAGE} />
-      );
+      return <CenteredMessage message={NO_DATA_MESSAGE} />;
     }
 
     if (this.isProcessingEnabled()) {

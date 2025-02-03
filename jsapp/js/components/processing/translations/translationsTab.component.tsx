@@ -91,7 +91,7 @@ export default class TranslationsTab extends React.Component<
     }
 
     // Step 2: Config - for selecting the translation language and mode.
-    // We display it when there is ongoing draft, but it doesn't have a language 
+    // We display it when there is ongoing draft, but it doesn't have a language
     // or a value, and the region code is not selected.
     if (
       draft !== undefined &&
@@ -103,7 +103,7 @@ export default class TranslationsTab extends React.Component<
 
     // Step 2.1: Config Automatic - for selecting region and other automatic
     // options.
-    // We display it when there is ongoing draft, but it doesn't have a language 
+    // We display it when there is ongoing draft, but it doesn't have a language
     // or a value, and the region code is selected.
     if (
       draft !== undefined &&
@@ -124,7 +124,7 @@ export default class TranslationsTab extends React.Component<
     }
 
     // Step 4: Viewer - display existing (on backend) and selected translation.
-    // We display it when there is selected translation, and there are 
+    // We display it when there is selected translation, and there are
     // translations in the store, and there is no ongoing draft.
     if (
       (singleProcessingStore.getTranslation(this.state.selectedTranslation) !==

@@ -8,7 +8,10 @@ import Modal from 'js/components/common/modal';
 import ReportTypeEditor from './reportTypeEditor.component';
 import ReportColorsEditor from './reportColorsEditor.component';
 import Button from 'js/components/common/button';
-import ReportsModalTabs, {ReportsModalTabNames, DEFAULT_REPORTS_MODAL_TAB} from 'js/components/reports/reportsModalTabs.component';
+import ReportsModalTabs, {
+  ReportsModalTabNames,
+  DEFAULT_REPORTS_MODAL_TAB,
+} from 'js/components/reports/reportsModalTabs.component';
 
 // Utilities
 import bem from 'js/bem';
@@ -59,10 +62,14 @@ export default class ReportStyleSettings extends React.Component<
 
   componentDidMount() {
     this.unlisteners.push(
-      actions.reports.setStyle.completed.listen(this.onSetStyleCompleted.bind(this)),
+      actions.reports.setStyle.completed.listen(
+        this.onSetStyleCompleted.bind(this)
+      ),
       actions.reports.setStyle.failed.listen(this.onSetStyleFailed.bind(this)),
-      actions.reports.setCustom.completed.listen(this.onSetCustomCompleted.bind(this)),
-      actions.reports.setCustom.failed.listen(this.onSetCustomFailed.bind(this)),
+      actions.reports.setCustom.completed.listen(
+        this.onSetCustomCompleted.bind(this)
+      ),
+      actions.reports.setCustom.failed.listen(this.onSetCustomFailed.bind(this))
     );
   }
 
@@ -125,10 +132,17 @@ export default class ReportStyleSettings extends React.Component<
     }
 
     if (currentCustomReport) {
-      const reportCustom = clonedeep(this.props.parentState.asset?.report_custom || {});
+      const reportCustom = clonedeep(
+        this.props.parentState.asset?.report_custom || {}
+      );
       if (reportCustom) {
-        reportCustom[currentCustomReport.crid].reportStyle = this.state.reportStyle;
-        actions.reports.setCustom(assetUid, reportCustom, currentCustomReport.crid);
+        reportCustom[currentCustomReport.crid].reportStyle =
+          this.state.reportStyle;
+        actions.reports.setCustom(
+          assetUid,
+          reportCustom,
+          currentCustomReport.crid
+        );
         this.setState({isPending: true});
       }
     } else {
@@ -143,7 +157,8 @@ export default class ReportStyleSettings extends React.Component<
 
   render() {
     const rows = this.props.parentState.rowsByIdentifier || {};
-    const translations = this.props.parentState.asset?.content?.translations || [];
+    const translations =
+      this.props.parentState.asset?.content?.translations || [];
     const reportStyle = this.state.reportStyle;
 
     const groupByOptions = [];
@@ -181,7 +196,7 @@ export default class ReportStyleSettings extends React.Component<
 
     const tabs: ReportsModalTabNames[] = [
       ReportsModalTabNames['chart-type'],
-      ReportsModalTabNames.colors
+      ReportsModalTabNames.colors,
     ];
 
     if (groupByOptions.length > 1) {
@@ -211,7 +226,8 @@ export default class ReportStyleSettings extends React.Component<
 
         <Modal.Body>
           <div className='tabs-content'>
-            {this.state.activeModalTab === ReportsModalTabNames['chart-type'] && (
+            {this.state.activeModalTab ===
+              ReportsModalTabNames['chart-type'] && (
               <div id='graph-type'>
                 <ReportTypeEditor
                   style={reportStyle}
@@ -229,7 +245,11 @@ export default class ReportStyleSettings extends React.Component<
             )}
             {this.state.activeModalTab === ReportsModalTabNames['group-by'] &&
               groupByOptions.length > 1 && (
-                <div className='graph-tab__groupby' id='graph-labels' dir='auto'>
+                <div
+                  className='graph-tab__groupby'
+                  id='graph-labels'
+                  dir='auto'
+                >
                   <Radio
                     name='reports-groupby'
                     options={groupByOptions}

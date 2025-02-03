@@ -95,7 +95,7 @@ class SessionStore {
       }),
       action('logOutFailed', () => {
         console.error('logout failed for some reason. what should happen now?');
-      }),
+      })
     );
   }
 

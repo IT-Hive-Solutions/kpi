@@ -4,7 +4,7 @@ import Select, {
   components,
   OptionProps,
   SingleValueProps,
-  DropdownIndicatorProps
+  DropdownIndicatorProps,
 } from 'react-select';
 import {
   VALIDATION_STATUS_OPTIONS,
@@ -27,7 +27,9 @@ interface ValidationStatusDropdownProps {
   isForHeaderFilter?: boolean;
 }
 
-export default function ValidationStatusDropdown(props: ValidationStatusDropdownProps) {
+export default function ValidationStatusDropdown(
+  props: ValidationStatusDropdownProps
+) {
   // for rendering options as colorful badges
   function CustomOption(innerProps: OptionProps<ValidationStatusOption>) {
     const badgeModifiers = [String(innerProps.getValue())];
@@ -45,7 +47,10 @@ export default function ValidationStatusDropdown(props: ValidationStatusDropdown
   }
 
   // for rendering the selected value as colorful badge
-  function CustomSingleValue({ children, ...innerProps }: SingleValueProps<ValidationStatusOption>) {
+  function CustomSingleValue({
+    children,
+    ...innerProps
+  }: SingleValueProps<ValidationStatusOption>) {
     let value;
     const valueArray = innerProps.getValue();
     if (valueArray && valueArray[0]) {
@@ -62,11 +67,13 @@ export default function ValidationStatusDropdown(props: ValidationStatusDropdown
   }
 
   // for rendering the selected value as colorful badge
-  function CustomDropdownIndicator(innerProps: DropdownIndicatorProps<ValidationStatusOption>) {
+  function CustomDropdownIndicator(
+    innerProps: DropdownIndicatorProps<ValidationStatusOption>
+  ) {
     return (
-    <components.DropdownIndicator {...innerProps}>
-      <i className='k-icon k-icon-caret-down'/>
-    </components.DropdownIndicator>
+      <components.DropdownIndicator {...innerProps}>
+        <i className='k-icon k-icon-caret-down' />
+      </components.DropdownIndicator>
     );
   }
 
@@ -76,10 +83,7 @@ export default function ValidationStatusDropdown(props: ValidationStatusDropdown
     optionsArray = VALIDATION_STATUS_OPTIONS_WITH_SHOW_ALL;
   }
 
-  const selectClassNames = [
-    'kobo-select',
-    'kobo-select--validation',
-  ];
+  const selectClassNames = ['kobo-select', 'kobo-select--validation'];
 
   if (props.isForHeaderFilter) {
     selectClassNames.push('kobo-select--for-nonwhite-background');

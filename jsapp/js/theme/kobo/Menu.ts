@@ -20,8 +20,8 @@ export const MenuThemeKobo = Menu.extend({
         borderColor: theme.colors.gray[6],
       },
       item: {
-        fontSize: theme.fontSizes.md
-      }
+        fontSize: theme.fontSizes.md,
+      },
     };
   },
 });

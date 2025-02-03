@@ -97,28 +97,31 @@ export default class PopoverMenu extends React.Component<
     }
 
     if (this.state.popoverVisible || isBlur) {
-        this.setState({
-          popoverHiding: true,
-        });
-        // if we setState and immediately hide popover then links will not register as clicked
-        window.setTimeout(() => {
-          if (!this._mounted) {
-            return false;
-          }
+      this.setState({
+        popoverHiding: true,
+      });
+      // if we setState and immediately hide popover then links will not register as clicked
+      window.setTimeout(() => {
+        if (!this._mounted) {
+          return false;
+        }
 
-          this.setState({
-            popoverVisible: false,
-            popoverHiding: false,
-          });
-          return true;
-        }, 200);
+        this.setState({
+          popoverVisible: false,
+          popoverHiding: false,
+        });
+        return true;
+      }, 200);
     } else {
       this.setState({
         popoverVisible: true,
       });
     }
 
-    if (typeof this.props.popoverSetVisible === 'function' && !this.state.popoverVisible) {
+    if (
+      typeof this.props.popoverSetVisible === 'function' &&
+      !this.state.popoverVisible
+    ) {
       this.props.popoverSetVisible();
     }
   }
@@ -154,7 +157,6 @@ export default class PopoverMenu extends React.Component<
           {this.props.children}
         </bem.PopoverMenu__content>
       </bem.PopoverMenu>
-
     );
   }
 }

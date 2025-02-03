@@ -90,7 +90,7 @@ export function multiConfirm(
               },
             };
           },
-          prepare: function() {
+          prepare: function () {
             if (message && this.setContent) {
               this.setContent(escapeHtml(message));
             }
@@ -163,11 +163,13 @@ export function destroyConfirm(
   okCallback: () => void,
   title: string = t('Delete?'),
   okLabel: string = t('Delete'),
-  message: string = t('This action is not reversible'),
+  message: string = t('This action is not reversible')
 ) {
   const dialog = alertify.dialog('confirm');
 
-  dialog.elements.dialog.classList.add('custom-alertify-dialog--dangerous-destroy');
+  dialog.elements.dialog.classList.add(
+    'custom-alertify-dialog--dangerous-destroy'
+  );
 
   dialog.setting('title', title);
   dialog.setting('message', message);

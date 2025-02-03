@@ -3,7 +3,11 @@
 
 import {generatePath, matchPath, useNavigate} from 'react-router-dom';
 import {router} from 'js/router/legacy';
-import {ROUTES, PROCESSING_ROUTES, PROCESSING_ROUTE_GENERIC} from 'js/router/routerConstants';
+import {
+  ROUTES,
+  PROCESSING_ROUTES,
+  PROCESSING_ROUTE_GENERIC,
+} from 'js/router/routerConstants';
 import {getCurrentPath} from 'js/router/routerUtils';
 
 /**
@@ -57,16 +61,20 @@ export function getProcessingRouteParts(path: string): ProcessingRouteParts {
 
   // Step 4. Assign all the found values to output
   output.assetUid = matchProfile.params.uid as string;
-  output.xpath = decodeURLParamWithSlash(matchProfile.params.xpath || '') as string;
+  output.xpath = decodeURLParamWithSlash(
+    matchProfile.params.xpath || ''
+  ) as string;
   output.submissionEditId = matchProfile.params.submissionEditId as string;
   if (
     'tabName' in matchProfile.params &&
-    Object.values(ProcessingTab).includes(matchProfile.params.tabName as ProcessingTab)
+    Object.values(ProcessingTab).includes(
+      matchProfile.params.tabName as ProcessingTab
+    )
   ) {
     output.tabName = matchProfile.params.tabName as ProcessingTab;
   }
   return output;
-};
+}
 
 /**
  * Restore previously encoded value with encodeURLParamWithSlash to its
@@ -120,8 +128,8 @@ export function isAnyProcessingRoute(path?: string): boolean {
   const processingRouteParts = getProcessingRouteParts(path);
   return Boolean(
     processingRouteParts.assetUid &&
-    processingRouteParts.submissionEditId &&
-    processingRouteParts.xpath
+      processingRouteParts.submissionEditId &&
+      processingRouteParts.xpath
   );
 }
 

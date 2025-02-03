@@ -27,16 +27,15 @@ export const RequireOrgPermissions = ({
 }: Props) => {
   const navigate = useNavigate();
   const orgQuery = useOrganizationQuery();
-  const hasValidRole = validRoles ? validRoles.includes(
-    orgQuery.data?.request_user_role ?? OrganizationUserRole.member
-  ) : true;
+  const hasValidRole = validRoles
+    ? validRoles.includes(
+        orgQuery.data?.request_user_role ?? OrganizationUserRole.member
+      )
+    : true;
   const hasValidOrg = mmoOnly ? orgQuery.data?.is_mmo : true;
 
   useEffect(() => {
-    if (
-      orgQuery.data &&
-      (!hasValidRole || !hasValidOrg)
-    ) {
+    if (orgQuery.data && (!hasValidRole || !hasValidOrg)) {
       navigate(redirectRoute);
     }
   }, [redirectRoute, orgQuery.data, navigate]);

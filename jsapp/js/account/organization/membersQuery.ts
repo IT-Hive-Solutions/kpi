@@ -66,7 +66,10 @@ export function usePatchOrganizationMember(username: string) {
       // query (`useOrganizationMembersQuery`) wouldn't be enabled without it.
       // Plus all the organization-related UI (that would use this hook) is
       // accessible only to logged in users.
-      fetchPatch<OrganizationMember>(getMemberEndpoint(orgId!, username), data as Json),
+      fetchPatch<OrganizationMember>(
+        getMemberEndpoint(orgId!, username),
+        data as Json
+      ),
     onSettled: () => {
       // We invalidate query, so it will refetch (instead of refetching it
       // directly, see: https://github.com/TanStack/query/discussions/2468)
@@ -95,8 +98,7 @@ export function useRemoveOrganizationMember() {
       // query (`useOrganizationMembersQuery`) wouldn't be enabled without it.
       // Plus all the organization-related UI (that would use this hook) is
       // accessible only to logged in users.
-       fetchDelete(getMemberEndpoint(orgId!, username))
-    ,
+      fetchDelete(getMemberEndpoint(orgId!, username)),
     onSuccess: (_data, username) => {
       if (username === session.currentLoggedAccount?.username) {
         // If user is removing themselves, we need to clear the session

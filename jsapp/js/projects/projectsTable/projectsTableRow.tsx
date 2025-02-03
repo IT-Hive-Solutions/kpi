@@ -46,7 +46,7 @@ export default function ProjectsTableRow(props: ProjectsTableRowProps) {
         return (
           <Link
             to={ROUTES.FORM_SUMMARY.replace(':uid', props.asset.uid)}
-            data-cy="asset"
+            data-cy='asset'
           >
             <AssetName asset={props.asset} />
           </Link>
@@ -54,7 +54,9 @@ export default function ProjectsTableRow(props: ProjectsTableRowProps) {
       case 'description':
         return props.asset.settings.description;
       case 'status':
-        return <AssetStatusBadge deploymentStatus={props.asset.deployment_status} />;
+        return (
+          <AssetStatusBadge deploymentStatus={props.asset.deployment_status} />
+        );
       case 'ownerUsername':
         return props.asset.owner_label ===
           sessionStore.currentAccount.username ? (
@@ -77,10 +79,7 @@ export default function ProjectsTableRow(props: ProjectsTableRowProps) {
       case 'dateModified':
         return formatTime(props.asset.date_modified);
       case 'dateDeployed':
-        if (
-          'date_deployed' in props.asset &&
-          props.asset.date_deployed
-        ) {
+        if ('date_deployed' in props.asset && props.asset.date_deployed) {
           return formatTime(props.asset.date_deployed);
         }
         return null;
@@ -97,7 +96,11 @@ export default function ProjectsTableRow(props: ProjectsTableRowProps) {
             />
           ));
         } else if (typeof props.asset.settings.country === 'string') {
-          <Badge color='light-storm' size='m' label={props.asset.settings.country} />;
+          <Badge
+            color='light-storm'
+            size='m'
+            label={props.asset.settings.country}
+          />;
         }
         return null;
       case 'languages':
@@ -139,12 +142,11 @@ export default function ProjectsTableRow(props: ProjectsTableRowProps) {
         }
 
         // All the columns that could have user content
-        const isUserContent = (
+        const isUserContent =
           field.name === 'name' ||
           field.name === 'description' ||
           field.name === 'ownerFullName' ||
-          field.name === 'ownerOrganization'
-        );
+          field.name === 'ownerOrganization';
 
         return (
           <div
@@ -154,8 +156,11 @@ export default function ProjectsTableRow(props: ProjectsTableRowProps) {
                 field.name
               ),
             })}
-            onClick={() => {if (field.name !== PROJECT_FIELDS.name.name) {toggleCheckbox();}}
-            }
+            onClick={() => {
+              if (field.name !== PROJECT_FIELDS.name.name) {
+                toggleCheckbox();
+              }
+            }}
             // This attribute is being used for styling and for ColumnResizer
             data-field={field.name}
             key={field.name}

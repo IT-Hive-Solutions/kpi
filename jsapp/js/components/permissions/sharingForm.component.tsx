@@ -268,7 +268,10 @@ export default class SharingForm extends React.Component<
                 permissions={perm.permissions}
                 isUserOwner={perm.user.isOwner}
                 isPendingOwner={this.isPendingOwner(perm.user.name)}
-                username={this.getOwnerOrOrgLabel(perm.user.name, perm.user.isOwner)}
+                username={this.getOwnerOrOrgLabel(
+                  perm.user.name,
+                  perm.user.isOwner
+                )}
               />
             );
           })}

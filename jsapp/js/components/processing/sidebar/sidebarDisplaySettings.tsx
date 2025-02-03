@@ -38,7 +38,6 @@ export default function SidebarDisplaySettings() {
   );
 
   function getInitialFields() {
-
     const allQuestions = store.getAllSidebarQuestions();
     const hiddenFields = store.getHiddenSidebarQuestions();
 
@@ -129,9 +128,10 @@ export default function SidebarDisplaySettings() {
   }
 
   function applyFieldsSelection() {
-    const hiddenList = getCheckboxes()
-      .filter((question) => !question.checked)
-      .map((question) => question.name) || [];
+    const hiddenList =
+      getCheckboxes()
+        .filter((question) => !question.checked)
+        .map((question) => question.name) || [];
 
     store.setHiddenSidebarQuestions(hiddenList);
   }
@@ -169,7 +169,9 @@ export default function SidebarDisplaySettings() {
             setSelectedFields(getInitialFields());
             setIsModalOpen(false);
           }}
-        >{t('Customize display settings')}</KoboModalHeader>
+        >
+          {t('Customize display settings')}
+        </KoboModalHeader>
 
         <KoboModalContent>
           <p className={styles.description}>

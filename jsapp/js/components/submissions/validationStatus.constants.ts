@@ -19,7 +19,9 @@ export enum ValidationStatusAdditionalName {
 /**
  * These are all names of all options for `ValidationStatusDropdown`.
  */
-export type ValidationStatusOptionName = ValidationStatusName | ValidationStatusAdditionalName;
+export type ValidationStatusOptionName =
+  | ValidationStatusName
+  | ValidationStatusAdditionalName;
 
 export interface ValidationStatusOption {
   value: ValidationStatusOptionName;
@@ -62,5 +64,5 @@ export const VALIDATION_STATUS_OPTIONS: ValidationStatusOption[] = [
  */
 export const VALIDATION_STATUS_OPTIONS_WITH_SHOW_ALL = [
   VALIDATION_STATUS_SHOW_ALL_OPTION,
-  ...VALIDATION_STATUS_OPTIONS
+  ...VALIDATION_STATUS_OPTIONS,
 ];

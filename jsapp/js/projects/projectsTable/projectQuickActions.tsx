@@ -44,7 +44,7 @@ const ProjectQuickActions = ({asset}: ProjectQuickActionsProps) => {
   // a lot of options available.
   const isChangingPossible = userCan('change_asset', asset);
   const isManagingPossible = userCan('manage_asset', asset);
-  const isProjectViewAsset = !("permissions" in asset);
+  const isProjectViewAsset = !('permissions' in asset);
 
   return (
     <div className={styles.root}>
@@ -134,6 +134,6 @@ const ProjectQuickActions = ({asset}: ProjectQuickActionsProps) => {
       />
     </div>
   );
-}
+};
 
-export default ProjectQuickActions
+export default ProjectQuickActions;

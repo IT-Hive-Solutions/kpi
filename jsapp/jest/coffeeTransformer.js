@@ -1,5 +1,6 @@
 const coffeescript = require('coffeescript');
-const createCacheKeyFunction = require('@jest/create-cache-key-function').default;
+const createCacheKeyFunction =
+  require('@jest/create-cache-key-function').default;
 /**
  * @typedef {import('@jest/transform').SyncTransformer}   SyncTransformer
  * @typedef {import('@jest/transform').TransformedSource} TransformedSource
@@ -20,7 +21,7 @@ module.exports = {
    * @returns {TransformedSource}
    */
   process(sourceText, filename) {
-    const {js, sourceMap, v3SourceMap } = coffeescript.compile(
+    const {js, sourceMap, v3SourceMap} = coffeescript.compile(
       sourceText,
       // ☕ CoffeeScript 1.12.7 compiler options
       {
@@ -38,7 +39,8 @@ module.exports = {
     };
   },
 
-  getCacheKey: createCacheKeyFunction(
-    [__filename, require.resolve('coffeescript')],
-  ),
+  getCacheKey: createCacheKeyFunction([
+    __filename,
+    require.resolve('coffeescript'),
+  ]),
 };

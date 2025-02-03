@@ -1,8 +1,5 @@
 // Libraries
-import React, {
-  useState,
-  useEffect,
-} from 'react';
+import React, {useState, useEffect} from 'react';
 import cx from 'classnames';
 
 // Partial components
@@ -53,12 +50,16 @@ export default function ApiTokenDisplay() {
   return (
     <section className={securityStyles.securitySection}>
       <div className={securityStyles.securitySectionTitle}>
-        <h2 className={securityStyles.securitySectionTitleText}>{t('API Key')}</h2>
+        <h2 className={securityStyles.securitySectionTitleText}>
+          {t('API Key')}
+        </h2>
       </div>
 
       <div className={cx(securityStyles.securitySectionBody, styles.body)}>
         <TextBox
-          type={isVisible && !isFetching && token !== null ? 'text' : 'password'}
+          type={
+            isVisible && !isFetching && token !== null ? 'text' : 'password'
+          }
           value={token !== null ? token : HIDDEN_TOKEN_VALUE}
           readOnly
           className={styles.token}

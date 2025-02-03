@@ -18,7 +18,9 @@ interface CheckboxProps {
    * and clicking the checkbox shouldn't cause that parent click - we can use
    * `evt.stopPropagation()` and be happy.
    */
-  onClick?: (evt: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>) => void;
+  onClick?: (
+    evt: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>
+  ) => void;
   label?: React.ReactNode;
   /** Only needed if checkbox is in submittable form. */
   name?: string;
@@ -41,7 +43,9 @@ class Checkbox extends React.Component<CheckboxProps, {}> {
     }
   }
 
-  onClick(evt: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>) {
+  onClick(
+    evt: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>
+  ) {
     if (this.props.onClick) {
       this.props.onClick(evt);
     }
@@ -57,9 +61,9 @@ class Checkbox extends React.Component<CheckboxProps, {}> {
     return (
       <bem.Checkbox m={wrapperModifiers}>
         {/*
-          * The wrapper element is `<label>` to make everything inside of it
-          * clickable, so we don't need `id`s.
-          */}
+         * The wrapper element is `<label>` to make everything inside of it
+         * clickable, so we don't need `id`s.
+         */}
         <bem.Checkbox__wrapper>
           <bem.Checkbox__input
             type='checkbox'

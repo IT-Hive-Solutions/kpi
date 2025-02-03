@@ -1,9 +1,6 @@
 import React from 'react';
 import bem from 'js/bem';
-import {
-  getFlatQuestionsList,
-  renderQuestionTypeIcon,
-} from 'js/assetUtils';
+import {getFlatQuestionsList, renderQuestionTypeIcon} from 'js/assetUtils';
 import {ANY_ROW_TYPE_NAMES} from 'js/constants';
 import type {FlatQuestion} from 'js/assetUtils';
 import type {AssetResponse} from 'js/dataInterface';
@@ -45,9 +42,9 @@ export default class AssetContentSummary extends React.Component<
         </bem.FormView__cell>
 
         <bem.FormView__cell m={['column-1', 'asset-content-summary-name']}>
-          {question.parents.length > 0 &&
+          {question.parents.length > 0 && (
             <small>{question.parents.join(' / ') + ' /'}</small>
-          }
+          )}
 
           <div>
             {question.isRequired && <strong>*&nbsp;</strong>}
@@ -85,7 +82,10 @@ export default class AssetContentSummary extends React.Component<
     if (items.length === 0) {
       return (
         <bem.FormView__cell m={['box', 'padding-small']}>
-          {t('This ##asset_type## is empty.').replace('##asset_type##', this.props.asset.asset_type)}
+          {t('This ##asset_type## is empty.').replace(
+            '##asset_type##',
+            this.props.asset.asset_type
+          )}
         </bem.FormView__cell>
       );
     }
@@ -96,7 +96,7 @@ export default class AssetContentSummary extends React.Component<
           {items.map(this.renderQuestion.bind(this))}
         </bem.FormView__cell>
 
-        {isExpandable &&
+        {isExpandable && (
           <bem.FormView__cell>
             <Button
               type='text'
@@ -106,7 +106,7 @@ export default class AssetContentSummary extends React.Component<
               startIcon={this.state.isExpanded ? 'angle-up' : 'angle-down'}
             />
           </bem.FormView__cell>
-        }
+        )}
       </React.Fragment>
     );
   }

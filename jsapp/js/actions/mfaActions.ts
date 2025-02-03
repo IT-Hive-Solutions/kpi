@@ -2,21 +2,23 @@ import Reflux from 'reflux';
 import {notify} from 'alertifyjs';
 import {ROOT_URL} from 'js/constants';
 import {hasActiveSubscription} from 'js/account/stripe.utils';
-import {when} from "mobx";
-import envStore from "js/envStore";
+import {when} from 'mobx';
+import envStore from 'js/envStore';
 
 export type MfaErrorResponse = JQueryXHR & {
   non_field_errors?: string;
 };
 
-export type MfaUserMethodsResponse = [{
-  name: 'app';
-  is_primary: boolean;
-  is_active: boolean;
-  date_created: string;
-  date_modified: string;
-  date_disabled: string;
-}];
+export type MfaUserMethodsResponse = [
+  {
+    name: 'app';
+    is_primary: boolean;
+    is_active: boolean;
+    date_created: string;
+    date_modified: string;
+    date_disabled: string;
+  },
+];
 
 export interface MfaActivatedResponse {
   details: string;
@@ -93,13 +95,23 @@ mfaActions.getMfaAvailability.listen(() => {
     } else {
       hasActiveSubscription()
         .then((response) => {
-          const isMfaAvailable = hasMfaList ? (response || perUserAvailability) : response;
-          mfaActions.getMfaAvailability.completed({isMfaAvailable, isPlansMessageVisible: !isMfaAvailable});
+          const isMfaAvailable = hasMfaList
+            ? response || perUserAvailability
+            : response;
+          mfaActions.getMfaAvailability.completed({
+            isMfaAvailable,
+            isPlansMessageVisible: !isMfaAvailable,
+          });
         })
         .catch(() => {
-          let errorText = t('An error occurred while checking subscription status');
+          let errorText = t(
+            'An error occurred while checking subscription status'
+          );
           notify(errorText, 'error');
-          mfaActions.getMfaAvailability.failed({isMfaAvailable: false, isPlansMessageVisible: false});
+          mfaActions.getMfaAvailability.failed({
+            isMfaAvailable: false,
+            isPlansMessageVisible: false,
+          });
         });
     }
   });

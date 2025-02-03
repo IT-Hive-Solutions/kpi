@@ -40,7 +40,7 @@ export default class AnonymousExports extends React.Component<
   AnonymousExportsProps,
   AnonymousExportsState
 > {
-  constructor(props: AnonymousExportsProps){
+  constructor(props: AnonymousExportsProps) {
     super(props);
     this.state = {
       selectedExportType: exportsStore.getExportType(),
@@ -55,13 +55,19 @@ export default class AnonymousExports extends React.Component<
   componentDidMount() {
     this.unlisteners.push(
       exportsStore.listen(this.onExportsStoreChange.bind(this), this),
-      actions.exports.createExport.completed.listen(this.onCreateExportCompleted.bind(this)),
-      actions.exports.getExport.completed.listen(this.onGetExportCompleted.bind(this)),
+      actions.exports.createExport.completed.listen(
+        this.onCreateExportCompleted.bind(this)
+      ),
+      actions.exports.getExport.completed.listen(
+        this.onGetExportCompleted.bind(this)
+      )
     );
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   onExportsStoreChange() {
@@ -79,14 +85,17 @@ export default class AnonymousExports extends React.Component<
     this.checkExportFetcher(exportData.uid, exportData.status);
 
     if (exportData.status === ExportStatusName.complete) {
-      this.setState({
-        isPending: false,
-        exportUrl: exportData.result,
-      }, () => {
-        if (this.state.exportUrl !== null) {
-          downloadUrl(this.state.exportUrl);
+      this.setState(
+        {
+          isPending: false,
+          exportUrl: exportData.result,
+        },
+        () => {
+          if (this.state.exportUrl !== null) {
+            downloadUrl(this.state.exportUrl);
+          }
         }
-      });
+      );
     }
   }
 
@@ -97,21 +106,20 @@ export default class AnonymousExports extends React.Component<
     } else {
       this.setState({isPending: true});
 
-      const defaultExportFormat = getContextualDefaultExportFormat(this.props.asset);
+      const defaultExportFormat = getContextualDefaultExportFormat(
+        this.props.asset
+      );
 
       // NOTE: this wouldn't work for legacy formats, but luckily we don't allow
       // choosing legacy types in this component
-      actions.exports.createExport(
-        this.props.asset.uid,
-        {
-          type: this.state.selectedExportType.value,
-          fields_from_all_versions: DEFAULT_EXPORT_SETTINGS.INCLUDE_ALL_VERSIONS,
-          group_sep: DEFAULT_EXPORT_SETTINGS.GROUP_SEPARATOR,
-          hierarchy_in_labels: DEFAULT_EXPORT_SETTINGS.INCLUDE_GROUPS,
-          lang: defaultExportFormat.value,
-          multiple_select: DEFAULT_EXPORT_SETTINGS.EXPORT_MULTIPLE.value,
-        }
-      );
+      actions.exports.createExport(this.props.asset.uid, {
+        type: this.state.selectedExportType.value,
+        fields_from_all_versions: DEFAULT_EXPORT_SETTINGS.INCLUDE_ALL_VERSIONS,
+        group_sep: DEFAULT_EXPORT_SETTINGS.GROUP_SEPARATOR,
+        hierarchy_in_labels: DEFAULT_EXPORT_SETTINGS.INCLUDE_GROUPS,
+        lang: defaultExportFormat.value,
+        multiple_select: DEFAULT_EXPORT_SETTINGS.EXPORT_MULTIPLE.value,
+      });
     }
   }
 
@@ -149,10 +157,7 @@ export default class AnonymousExports extends React.Component<
       <bem.FormView__cell m={['box', 'padding']}>
         <bem.ProjectDownloads__anonymousRow>
           <bem.ProjectDownloads__exportsSelector>
-            <ExportTypeSelector
-              disabled={this.state.isPending}
-              noLegacy
-            />
+            <ExportTypeSelector disabled={this.state.isPending} noLegacy />
           </bem.ProjectDownloads__exportsSelector>
 
           <Button

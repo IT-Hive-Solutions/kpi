@@ -17,9 +17,7 @@ export default class MainHeaderBase extends React.Component<MainHeaderBaseProps>
   render() {
     return (
       <bem.MainHeader className='mdl-layout__header'>
-        <div className='mdl-layout__header-row'>
-          {this.props.children}
-        </div>
+        <div className='mdl-layout__header-row'>{this.props.children}</div>
       </bem.MainHeader>
     );
   }

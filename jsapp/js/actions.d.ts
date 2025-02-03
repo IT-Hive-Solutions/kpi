@@ -38,8 +38,16 @@ interface GetSubmissionsDefinition extends Function {
 }
 
 interface GetSubmissionsCompletedDefinition extends Function {
-  (response: PaginatedResponse<SubmissionResponse>, options: GetSubmissionsOptions): void;
-  listen: (callback: (response: PaginatedResponse<SubmissionResponse>, options: GetSubmissionsOptions) => void) => Function;
+  (
+    response: PaginatedResponse<SubmissionResponse>,
+    options: GetSubmissionsOptions
+  ): void;
+  listen: (
+    callback: (
+      response: PaginatedResponse<SubmissionResponse>,
+      options: GetSubmissionsOptions
+    ) => void
+  ) => Function;
 }
 
 interface GetProcessingSubmissionsDefinition extends Function {
@@ -50,7 +58,9 @@ interface GetProcessingSubmissionsDefinition extends Function {
 
 interface GetProcessingSubmissionsCompletedDefinition extends Function {
   (response: GetProcessingSubmissionsResponse): void;
-  listen: (callback: (response: GetProcessingSubmissionsResponse) => void) => Function;
+  listen: (
+    callback: (response: GetProcessingSubmissionsResponse) => void
+  ) => Function;
 }
 
 interface LoadAssetDefinition extends Function {
@@ -107,7 +117,12 @@ interface GetExportSettingsDefinition extends Function {
 }
 interface GetExportSettingsCompletedDefinition extends Function {
   (response: PaginatedResponse<ExportSetting>, passData: {}): void;
-  listen: (callback: (response: PaginatedResponse<ExportSetting>, passData?: {preselectLastSettings?: boolean}) => void) => Function;
+  listen: (
+    callback: (
+      response: PaginatedResponse<ExportSetting>,
+      passData?: {preselectLastSettings?: boolean}
+    ) => void
+  ) => Function;
 }
 
 interface TableUpdateSettingsDefinition extends Function {
@@ -128,7 +143,9 @@ interface UpdateSubmissionValidationStatusDefinition extends Function {
 
 interface AnySubmissionValidationStatusCompletedDefinition extends Function {
   (result: ValidationStatusResponse, sid: string): void;
-  listen: (callback: (result: ValidationStatusResponse, sid: string) => void) => Function;
+  listen: (
+    callback: (result: ValidationStatusResponse, sid: string) => void
+  ) => Function;
 }
 
 interface RemoveSubmissionValidationStatusDefinition extends Function {
@@ -144,8 +161,18 @@ interface DuplicateSubmissionDefinition extends Function {
 }
 
 interface DuplicateSubmissionCompletedDefinition extends Function {
-  (assetUid: string, submissionUid: string, duplicatedSubmission: SubmissionResponse): void;
-  listen: (callback: (assetUid: string, submissionUid: string, duplicatedSubmission: SubmissionResponse) => void) => Function;
+  (
+    assetUid: string,
+    submissionUid: string,
+    duplicatedSubmission: SubmissionResponse
+  ): void;
+  listen: (
+    callback: (
+      assetUid: string,
+      submissionUid: string,
+      duplicatedSubmission: SubmissionResponse
+    ) => void
+  ) => Function;
 }
 
 interface GetUserDefinition extends Function {
@@ -167,12 +194,16 @@ interface SetAssetPublicDefinition extends Function {
 
 interface SetAssetPublicCompletedDefinition extends Function {
   (assetUid: string, shouldSetAnonPerms: boolean): void;
-  listen: (callback: (assetUid: string, shouldSetAnonPerms: boolean) => void) => Function;
+  listen: (
+    callback: (assetUid: string, shouldSetAnonPerms: boolean) => void
+  ) => Function;
 }
 
 interface ReportsSetStyleDefinition extends Function {
   (assetId: string, details: AssetResponseReportStyles): void;
-  listen: (callback: (assetId: string, details: AssetResponseReportStyles) => void) => Function;
+  listen: (
+    callback: (assetId: string, details: AssetResponseReportStyles) => void
+  ) => Function;
   completed: ReportsSetStyleCompletedDefinition;
   failed: GenericFailedDefinition;
 }
@@ -183,15 +214,27 @@ interface ReportsSetStyleCompletedDefinition extends Function {
 }
 
 interface ReportsSetCustomDefinition extends Function {
-  (assetId: string, details: {[crid: string]: CustomReport}, crid: string): void;
-  listen: (callback: (assetId: string, details: {[crid: string]: CustomReport}, crid: string) => void) => Function;
+  (
+    assetId: string,
+    details: {[crid: string]: CustomReport},
+    crid: string
+  ): void;
+  listen: (
+    callback: (
+      assetId: string,
+      details: {[crid: string]: CustomReport},
+      crid: string
+    ) => void
+  ) => Function;
   completed: ReportsSetCustomCompletedDefinition;
   failed: GenericFailedDefinition;
 }
 
 interface ReportsSetCustomCompletedDefinition extends Function {
   (response: AssetResponse): void;
-  listen: (callback: (response: AssetResponse, crid: string) => void) => Function;
+  listen: (
+    callback: (response: AssetResponse, crid: string) => void
+  ) => Function;
 }
 
 interface HooksGetLogsDefinition extends Function {
@@ -203,109 +246,113 @@ interface HooksGetLogsDefinition extends Function {
       onFail: () => void;
     }
   ): void;
-  listen: (callback: (
-    assetUid: string,
-    hookUid: string,
-    options: {
-      onComplete: (data: PaginatedResponse<HookResponse>) => void;
-      onFail: () => void;
-    }
-  ) => void) => Function;
+  listen: (
+    callback: (
+      assetUid: string,
+      hookUid: string,
+      options: {
+        onComplete: (data: PaginatedResponse<HookResponse>) => void;
+        onFail: () => void;
+      }
+    ) => void
+  ) => Function;
   completed: HooksGetLogsCompletedDefinition;
   failed: GenericFailedDefinition;
 }
 interface HooksGetLogsCompletedDefinition extends Function {
   (response: PaginatedResponse<HookResponse>): void;
-  listen: (callback: (response: PaginatedResponse<HookResponse>) => void) => Function;
+  listen: (
+    callback: (response: PaginatedResponse<HookResponse>) => void
+  ) => Function;
 }
 
 // NOTE: as you use more actions in your ts files, please extend this namespace,
 // for now we are defining only the ones we need.
 export namespace actions {
-    const navigation: {
-      routeUpdate: GenericCallbackDefinition;
+  const navigation: {
+    routeUpdate: GenericCallbackDefinition;
+  };
+  const auth: {
+    verifyLogin: {
+      loggedin: GenericCallbackDefinition;
     };
-    const auth: {
-      verifyLogin: {
-        loggedin: GenericCallbackDefinition;
-      };
-      changePassword: GenericDefinition;
-    };
-    const survey: object;
-    const search: object;
-    const resources: {
-      createImport: GenericDefinition;
-      loadAsset: LoadAssetDefinition;
-      deployAsset: GenericDefinition;
-      setDeploymentActive: GenericDefinition;
-      createSnapshot: GenericDefinition;
-      cloneAsset: GenericDefinition;
-      deleteAsset: DeleteAssetDefinition;
-      listTags: GenericDefinition;
-      createResource: GenericDefinition;
-      updateAsset: UpdateAssetDefinition;
-      updateSubmissionValidationStatus: UpdateSubmissionValidationStatusDefinition;
-      removeSubmissionValidationStatus: RemoveSubmissionValidationStatusDefinition;
-      deleteSubmission: GenericDefinition;
-      duplicateSubmission: DuplicateSubmissionDefinition;
-      refreshTableSubmissions: GenericDefinition;
-      getAssetFiles: GenericDefinition;
-    };
-    const hooks: {
-      add: GenericDefinition;
-      update: GenericDefinition;
-      delete: GenericDefinition;
-      getAll: GenericDefinition;
-      getLogs: HooksGetLogsDefinition;
-      retryLog: GenericDefinition;
-      retryLogs: GenericDefinition;
-    };
-    const misc: {
-      getUser: GetUserDefinition;
-    };
-    const reports: {
-      setStyle: ReportsSetStyleDefinition;
-      setCustom: ReportsSetCustomDefinition;
-    };
-    const table: {
-      updateSettings: TableUpdateSettingsDefinition;
-    };
-    const map: object;
-    const permissions: {
-      getConfig: GenericDefinition;
-      copyPermissionsFrom: GenericDefinition;
-      removeAssetPermission: GenericDefinition;
-      assignAssetPermission: GenericDefinition;
-      bulkSetAssetPermissions: GenericDefinition;
-      getAssetPermissions: GenericDefinition;
-      setAssetPublic: SetAssetPublicDefinition;
-    };
-    const help: {
-      getInAppMessages: GenericDefinition;
-      setMessageAcknowledged: GenericDefinition;
-      setMessageReadTime: GenericDefinition;
-    };
-    const library: any;
-    const submissions: {
-      getSubmission: GetSubmissionDefinition;
-      getSubmissionByUuid: GetSubmissionDefinition;
-      getSubmissions: GetSubmissionsDefinition;
-      getProcessingSubmissions: GetProcessingSubmissionsDefinition;
-      bulkDeleteStatus: GenericDefinition;
-      bulkPatchStatus: GenericDefinition;
-      bulkPatchValues: GenericDefinition;
-      bulkDelete: GenericDefinition;
-    };
-    const media: object;
-    const exports: {
-      getExport: GetExportDefinition;
-      getExports: GenericDefinition;
-      createExport: GenericDefinition;
-      deleteExport: GenericDefinition;
-      getExportSettings: GetExportSettingsDefinition;
-      updateExportSetting: GenericDefinition;
-      createExportSetting: GenericDefinition;
-      deleteExportSetting: GenericDefinition;
-    };
-    const dataShare: object;
+    changePassword: GenericDefinition;
+  };
+  const survey: object;
+  const search: object;
+  const resources: {
+    createImport: GenericDefinition;
+    loadAsset: LoadAssetDefinition;
+    deployAsset: GenericDefinition;
+    setDeploymentActive: GenericDefinition;
+    createSnapshot: GenericDefinition;
+    cloneAsset: GenericDefinition;
+    deleteAsset: DeleteAssetDefinition;
+    listTags: GenericDefinition;
+    createResource: GenericDefinition;
+    updateAsset: UpdateAssetDefinition;
+    updateSubmissionValidationStatus: UpdateSubmissionValidationStatusDefinition;
+    removeSubmissionValidationStatus: RemoveSubmissionValidationStatusDefinition;
+    deleteSubmission: GenericDefinition;
+    duplicateSubmission: DuplicateSubmissionDefinition;
+    refreshTableSubmissions: GenericDefinition;
+    getAssetFiles: GenericDefinition;
+  };
+  const hooks: {
+    add: GenericDefinition;
+    update: GenericDefinition;
+    delete: GenericDefinition;
+    getAll: GenericDefinition;
+    getLogs: HooksGetLogsDefinition;
+    retryLog: GenericDefinition;
+    retryLogs: GenericDefinition;
+  };
+  const misc: {
+    getUser: GetUserDefinition;
+  };
+  const reports: {
+    setStyle: ReportsSetStyleDefinition;
+    setCustom: ReportsSetCustomDefinition;
+  };
+  const table: {
+    updateSettings: TableUpdateSettingsDefinition;
+  };
+  const map: object;
+  const permissions: {
+    getConfig: GenericDefinition;
+    copyPermissionsFrom: GenericDefinition;
+    removeAssetPermission: GenericDefinition;
+    assignAssetPermission: GenericDefinition;
+    bulkSetAssetPermissions: GenericDefinition;
+    getAssetPermissions: GenericDefinition;
+    setAssetPublic: SetAssetPublicDefinition;
+  };
+  const help: {
+    getInAppMessages: GenericDefinition;
+    setMessageAcknowledged: GenericDefinition;
+    setMessageReadTime: GenericDefinition;
+  };
+  const library: any;
+  const submissions: {
+    getSubmission: GetSubmissionDefinition;
+    getSubmissionByUuid: GetSubmissionDefinition;
+    getSubmissions: GetSubmissionsDefinition;
+    getProcessingSubmissions: GetProcessingSubmissionsDefinition;
+    bulkDeleteStatus: GenericDefinition;
+    bulkPatchStatus: GenericDefinition;
+    bulkPatchValues: GenericDefinition;
+    bulkDelete: GenericDefinition;
+  };
+  const media: object;
+  const exports: {
+    getExport: GetExportDefinition;
+    getExports: GenericDefinition;
+    createExport: GenericDefinition;
+    deleteExport: GenericDefinition;
+    getExportSettings: GetExportSettingsDefinition;
+    updateExportSetting: GenericDefinition;
+    createExportSetting: GenericDefinition;
+    deleteExportSetting: GenericDefinition;
+  };
+  const dataShare: object;
 }

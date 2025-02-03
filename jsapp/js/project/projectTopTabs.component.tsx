@@ -32,8 +32,8 @@ export default function ProjectTopTabs() {
   }, []);
 
   const isDataTabEnabled =
-    (userCan('view_submissions', asset) ||
-      userCanPartially('view_submissions', asset));
+    userCan('view_submissions', asset) ||
+    userCanPartially('view_submissions', asset);
 
   const isSettingsTabEnabled =
     sessionStore.isLoggedIn &&

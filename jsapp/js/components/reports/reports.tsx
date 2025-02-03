@@ -35,11 +35,7 @@ import {
   type ReportsResponse,
 } from './reportsConstants';
 import type {WithRouterProps} from 'jsapp/js/router/legacy';
-import type {
-  AssetResponse,
-  SurveyRow,
-  FailResponse,
-} from 'js/dataInterface';
+import type {AssetResponse, SurveyRow, FailResponse} from 'js/dataInterface';
 
 // Styles
 import './reports.scss';
@@ -75,7 +71,10 @@ export interface ReportsState {
   activeModalTab: number;
 }
 
-export default class Reports extends React.Component<ReportsProps, ReportsState> {
+export default class Reports extends React.Component<
+  ReportsProps,
+  ReportsState
+> {
   private unlisteners: Function[] = [];
 
   constructor(props: ReportsProps) {
@@ -99,8 +98,12 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
     this.loadReportData();
 
     this.unlisteners.push(
-      actions.reports.setStyle.completed.listen(this.onSetStyleCompleted.bind(this)),
-      actions.reports.setCustom.completed.listen(this.onSetCustomCompleted.bind(this)),
+      actions.reports.setStyle.completed.listen(
+        this.onSetStyleCompleted.bind(this)
+      ),
+      actions.reports.setCustom.completed.listen(
+        this.onSetCustomCompleted.bind(this)
+      )
     );
   }
 
@@ -109,7 +112,9 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
   }
 
   componentDidUpdate(_prevProps: ReportsProps, prevState: ReportsState) {
-    if (!isEqual(this.state.currentCustomReport, prevState.currentCustomReport)) {
+    if (
+      !isEqual(this.state.currentCustomReport, prevState.currentCustomReport)
+    ) {
       this.refreshReportData();
     }
     if (this.state.groupBy !== prevState.groupBy) {
@@ -126,7 +131,9 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
       let groupBy = '';
       // The code below is overriding the `ReportStyles` we got from endpoint in
       // `AssetResponse`, we clone it here to avoid mutation.
-      const reportStyles: AssetResponseReportStyles = clonedeep(asset.report_styles);
+      const reportStyles: AssetResponseReportStyles = clonedeep(
+        asset.report_styles
+      );
       const reportCustom = asset.report_custom;
 
       if (this.state.currentCustomReport?.reportStyle?.groupDataBy) {
@@ -141,7 +148,8 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
         reportStyles.default = DEFAULT_MINIMAL_REPORT_STYLE;
       }
       if (reportStyles.default?.report_type === undefined) {
-        reportStyles.default.report_type = DEFAULT_MINIMAL_REPORT_STYLE.report_type;
+        reportStyles.default.report_type =
+          DEFAULT_MINIMAL_REPORT_STYLE.report_type;
       }
       if (reportStyles.default?.translationIndex === undefined) {
         reportStyles.default.translationIndex = 0;
@@ -165,7 +173,10 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
         dataInterface
           .getReportData({uid: uid, identifiers: [], group_by: groupBy})
           .done((data: ReportsPaginatedResponse) => {
-            const dataWithResponses = getDataWithResponses(rowsByIdentifier, data);
+            const dataWithResponses = getDataWithResponses(
+              rowsByIdentifier,
+              data
+            );
 
             this.setState({
               asset: asset,
@@ -229,7 +240,10 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
     dataInterface
       .getReportData({uid: uid, identifiers: [], group_by: groupBy})
       .done((data: ReportsPaginatedResponse) => {
-        const dataWithResponses = getDataWithResponses(rowsByIdentifier || {}, data);
+        const dataWithResponses = getDataWithResponses(
+          rowsByIdentifier || {},
+          data
+        );
         this.setState({
           reportData: dataWithResponses,
           error: undefined,
@@ -305,7 +319,7 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
       currentQuestionGraph: undefined,
       currentCustomReport: newCustomReports[crid],
       groupBy: newCustomReports[crid]?.reportStyle.groupDataBy,
-    })
+    });
   }
 
   onSelectedReportChange(crid: string) {
@@ -404,12 +418,12 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
       return {
         value: item.crid,
         label: item.name || t('Untitled report'),
-      }
+      };
     });
     reportsSelectorOptions.unshift({
       value: '',
       label: t('Default Report'),
-    })
+    });
 
     return (
       <bem.FormView__reportButtons>
@@ -507,22 +521,20 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
     if (this.state.error) {
       return (
         <CenteredMessage
-          message={(
+          message={
             <>
-            {t('This report cannot be loaded.')}
-            <br />
-            <code>
-              {this.state.error.statusText}
-              {': ' + this.state.error.responseText || t('An error occurred')}
-            </code>
+              {t('This report cannot be loaded.')}
+              <br />
+              <code>
+                {this.state.error.statusText}
+                {': ' + this.state.error.responseText || t('An error occurred')}
+              </code>
             </>
-          )}
+          }
         />
       );
     } else {
-      return (
-        <LoadingSpinner />
-      );
+      return <LoadingSpinner />;
     }
   }
 
@@ -553,9 +565,9 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
     if (reportData.length) {
       if (currentCustomReport?.questions.length) {
         const currentQuestions = currentCustomReport.questions;
-        reportData = fullReportData?.filter((q) => (
+        reportData = fullReportData?.filter((q) =>
           currentQuestions.includes(q.name)
-        ));
+        );
       }
 
       if (
@@ -590,7 +602,7 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
 
             {!hasAnyProvidedData && (
               <bem.ReportView__wrap>
-                <InlineMessage type='warning' message={noDataMessage}/>
+                <InlineMessage type='warning' message={noDataMessage} />
               </bem.ReportView__wrap>
             )}
 
@@ -611,32 +623,41 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
                           <p>
                             {t(
                               'For performance reasons, this report only includes the first ## questions.'
-                            ).replace('##', String(this.state.reportLimit || '-'))}
+                            ).replace(
+                              '##',
+                              String(this.state.reportLimit || '-')
+                            )}
                           </p>
 
                           <Button
                             type='secondary'
                             size='s'
                             onClick={this.resetReportLimit.bind(this)}
-                            label={t('Show all (##)').replace('##', String(this.state.reportData.length))}
+                            label={t('Show all (##)').replace(
+                              '##',
+                              String(this.state.reportData.length)
+                            )}
                           />
                         </div>
                       }
                     />
-                  )
-                }
+                  )}
 
                 <InlineMessage
                   type='warning'
                   icon='alert'
-                  message={t('This is an automated report based on raw data submitted to this project. Please conduct proper data cleaning prior to using the graphs and figures used on this page.')}
+                  message={t(
+                    'This is an automated report based on raw data submitted to this project. Please conduct proper data cleaning prior to using the graphs and figures used on this page.'
+                  )}
                 />
 
                 <ReportContents
                   parentState={this.state}
                   reportData={reportData}
                   asset={this.state.asset}
-                  triggerQuestionSettings={this.triggerQuestionSettings.bind(this)}
+                  triggerQuestionSettings={this.triggerQuestionSettings.bind(
+                    this
+                  )}
                 />
               </bem.ReportView__wrap>
             )}
@@ -657,13 +678,13 @@ export default class Reports extends React.Component<ReportsProps, ReportsState>
                 onClose={this.closeCustomReportModal.bind(this)}
                 title={t('Custom Report')}
               >
-                {this.state.currentCustomReport &&
+                {this.state.currentCustomReport && (
                   <CustomReportEditor
                     reportData={this.state.reportData}
                     customReport={this.state.currentCustomReport}
                     asset={this.state.asset}
                   />
-                }
+                )}
               </Modal>
             )}
 

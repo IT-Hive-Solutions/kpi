@@ -24,13 +24,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
       'A video? WTF',
       'Secret password as an audio file',
     ],
-    'columns': [
-      'name',
-      'type',
-      'label',
-      'required',
-      'parameters',
-    ],
+    'columns': ['name', 'type', 'label', 'required', 'parameters'],
     'lock_all': false,
     'lock_any': false,
     'languages': [],
@@ -59,7 +53,8 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
     'results': [
       {
         'uid': 'vsuXfYXtZpRaXdWcDQe8cS',
-        'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/versions/vsuXfYXtZpRaXdWcDQe8cS/',
+        'url':
+          'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/versions/vsuXfYXtZpRaXdWcDQe8cS/',
         'content_hash': '8362f2d2c4100490fae4f811bad5296188421855',
         'date_deployed': '2024-10-21T10:21:16.154074Z',
         'date_modified': '2024-10-21T10:21:16.154074Z',
@@ -69,23 +64,33 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
   'deployment__links': {
     'url': 'http://ee.kobo.local/YnqSWtB3',
     'single_url': 'http://ee.kobo.local/single/YnqSWtB3',
-    'single_once_url': 'http://ee.kobo.local/single/9778636aa5d24eb2f0806bab320e7bc6',
+    'single_once_url':
+      'http://ee.kobo.local/single/9778636aa5d24eb2f0806bab320e7bc6',
     'offline_url': 'http://ee.kobo.local/x/YnqSWtB3',
     'preview_url': 'http://ee.kobo.local/preview/YnqSWtB3',
     'iframe_url': 'http://ee.kobo.local/i/YnqSWtB3',
     'single_iframe_url': 'http://ee.kobo.local/single/i/YnqSWtB3',
-    'single_once_iframe_url': 'http://ee.kobo.local/single/i/9778636aa5d24eb2f0806bab320e7bc6',
+    'single_once_iframe_url':
+      'http://ee.kobo.local/single/i/9778636aa5d24eb2f0806bab320e7bc6',
   },
   'deployment__active': true,
   'deployment__data_download_links': {
-    'xls_legacy': 'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/xls/',
-    'csv_legacy': 'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/csv/',
-    'zip_legacy': 'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/zip/',
-    'kml_legacy': 'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/kml/',
-    'geojson': 'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/geojson/',
-    'spss_labels': 'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/spss/',
-    'xls': 'http://kc.kobo.local/kobo/reports/am5q2MmVckuLBXPKsbHjEt/export.xlsx',
-    'csv': 'http://kc.kobo.local/kobo/reports/am5q2MmVckuLBXPKsbHjEt/export.csv',
+    'xls_legacy':
+      'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/xls/',
+    'csv_legacy':
+      'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/csv/',
+    'zip_legacy':
+      'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/zip/',
+    'kml_legacy':
+      'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/kml/',
+    'geojson':
+      'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/geojson/',
+    'spss_labels':
+      'http://kc.kobo.local/kobo/exports/am5q2MmVckuLBXPKsbHjEt/spss/',
+    'xls':
+      'http://kc.kobo.local/kobo/reports/am5q2MmVckuLBXPKsbHjEt/export.xlsx',
+    'csv':
+      'http://kc.kobo.local/kobo/reports/am5q2MmVckuLBXPKsbHjEt/export.csv',
   },
   'deployment__submission_count': 1,
   'deployment_status': 'deployed',
@@ -154,20 +159,18 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
       ],
     },
     'transcript': {
-      'languages': [
-        'en',
-      ],
+      'languages': ['en'],
     },
     'translation': {
-      'languages': [
-        'fr',
-      ],
+      'languages': ['fr'],
     },
   },
   'advanced_submission_schema': {
     'type': 'object',
-    '$description': 'PATCH or POST a matching JSON structure to a submission and it will be stored and processed accordingly.',
-    'url': 'http://kf.kobo.local/advanced_submission_post/am5q2MmVckuLBXPKsbHjEt',
+    '$description':
+      'PATCH or POST a matching JSON structure to a submission and it will be stored and processed accordingly.',
+    'url':
+      'http://kf.kobo.local/advanced_submission_post/am5q2MmVckuLBXPKsbHjEt',
     'properties': {
       'submission': {
         'type': 'string',
@@ -247,9 +250,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
       },
     },
     'additionalProperties': false,
-    'required': [
-      'submission',
-    ],
+    'required': ['submission'],
     'definitions': {
       'qual_base': {
         'type': 'object',
@@ -263,11 +264,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
           },
           'val': {},
         },
-        'required': [
-          'uuid',
-          'type',
-          'val',
-        ],
+        'required': ['uuid', 'type', 'val'],
       },
       'qual_tags': {
         'type': 'object',
@@ -301,10 +298,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
             'const': 'qual_integer',
           },
           'val': {
-            'type': [
-              'integer',
-              'null',
-            ],
+            'type': ['integer', 'null'],
           },
         },
       },
@@ -390,9 +384,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
           },
         },
         'additionalProperties': false,
-        'required': [
-          'value',
-        ],
+        'required': ['value'],
       },
       'transcriptRevision': {
         'type': 'object',
@@ -412,20 +404,13 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
           },
         },
         'additionalProperties': false,
-        'required': [
-          'value',
-        ],
+        'required': ['value'],
       },
       '_googlets': {
         'type': 'object',
         'properties': {
           'status': {
-            'enum': [
-              'requested',
-              'in_progress',
-              'complete',
-              'error',
-            ],
+            'enum': ['requested', 'in_progress', 'complete', 'error'],
           },
           'responseJSON': {
             'type': 'object',
@@ -444,12 +429,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
         'type': 'object',
         'properties': {
           'status': {
-            'enum': [
-              'requested',
-              'in_progress',
-              'complete',
-              'error',
-            ],
+            'enum': ['requested', 'in_progress', 'complete', 'error'],
           },
           'responseJSON': {
             'type': 'object',
@@ -467,10 +447,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
       'xtranslation': {
         'type': 'object',
         'additionalProperties': false,
-        'required': [
-          'value',
-          'languageCode',
-        ],
+        'required': ['value', 'languageCode'],
         'properties': {
           'value': {
             'type': 'string',
@@ -524,9 +501,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
           },
         },
         'additionalProperties': false,
-        'required': [
-          'value',
-        ],
+        'required': ['value'],
       },
     },
   },
@@ -552,10 +527,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
           'mode': 'manual',
           'engine': 'engines/transcript_manual',
         },
-        'path': [
-          'background-audio',
-          'transcript',
-        ],
+        'path': ['background-audio', 'transcript'],
       },
       {
         'dtpath': 'background-audio/translation_fr',
@@ -569,10 +541,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
           'mode': 'manual',
           'engine': 'engines/translation_manual',
         },
-        'path': [
-          'background-audio',
-          'translation',
-        ],
+        'path': ['background-audio', 'translation'],
       },
       {
         'label': 'Is this bg audio?',
@@ -583,10 +552,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
         'source': 'background-audio',
         'xpath': 'background-audio/e59a3552-c06c-43f2-92f1-8e3607052624',
         'settings': '??',
-        'path': [
-          'background-audio',
-          'e59a3552-c06c-43f2-92f1-8e3607052624',
-        ],
+        'path': ['background-audio', 'e59a3552-c06c-43f2-92f1-8e3607052624'],
         'choices': [
           {
             'uuid': '9064acd3-dd10-46ff-a0f8-0861b5e35fcb',
@@ -662,9 +628,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
         'name': 'Your_name_here',
         'type': ANY_ROW_TYPE_NAMES.text,
         '$kuid': '25l27nQ3a',
-        'label': [
-          'Your name here',
-        ],
+        'label': ['Your name here'],
         '$xpath': 'Your_name_here',
         'required': false,
         '$autoname': 'Your_name_here',
@@ -673,9 +637,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
         'name': 'Your_selfie_goes_here',
         'type': ANY_ROW_TYPE_NAMES.image,
         '$kuid': 'd0JxfaSC9',
-        'label': [
-          'Your selfie goes here',
-        ],
+        'label': ['Your selfie goes here'],
         '$xpath': 'Your_selfie_goes_here',
         'required': false,
         '$autoname': 'Your_selfie_goes_here',
@@ -684,9 +646,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
         'name': 'A_video_WTF',
         'type': ANY_ROW_TYPE_NAMES.video,
         '$kuid': 'alGpvxEVv',
-        'label': [
-          'A video? WTF',
-        ],
+        'label': ['A video? WTF'],
         '$xpath': 'A_video_WTF',
         'required': false,
         '$autoname': 'A_video_WTF',
@@ -695,9 +655,7 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
         'name': 'Secret_password_as_an_audio_file',
         'type': ANY_ROW_TYPE_NAMES.audio,
         '$kuid': '2sN8g5yJ2',
-        'label': [
-          'Secret password as an audio file',
-        ],
+        'label': ['Secret password as an audio file'],
         '$xpath': 'Secret_password_as_an_audio_file',
         'required': false,
         '$autoname': 'Secret_password_as_an_audio_file',
@@ -715,12 +673,8 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
       'version': '3 (2021-12-28 13:33:41)',
       'id_string': 'text_and_media_project',
     },
-    'translated': [
-      'label',
-    ],
-    'translations': [
-      null,
-    ],
+    'translated': ['label'],
+    'translations': [null],
   },
   'downloads': [
     {
@@ -742,8 +696,10 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
       'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/xform/',
     },
   ],
-  'xform_link': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/xform/',
-  'hooks_link': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/hooks/',
+  'xform_link':
+    'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/xform/',
+  'hooks_link':
+    'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/hooks/',
   'tag_string': '',
   'uid': 'am5q2MmVckuLBXPKsbHjEt',
   'kind': 'asset',
@@ -795,57 +751,72 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
   ],
   'permissions': [
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pUmPzC6pFgDdcB2cxLn9QD/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pUmPzC6pFgDdcB2cxLn9QD/',
       'user': 'http://kf.kobo.local/api/v2/users/AnonymousUser.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/add_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/add_submissions.json',
       'label': 'Add submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/p6nyXrHUs5BpNJLZPaunvJ/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/p6nyXrHUs5BpNJLZPaunvJ/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/add_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/add_submissions.json',
       'label': 'Add submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pz7RvRMsYHuJL9TRyQyoDP/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pz7RvRMsYHuJL9TRyQyoDP/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
       'permission': 'http://kf.kobo.local/api/v2/permissions/change_asset.json',
       'label': 'Edit form',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pM7p797FK3qQjCYADpxojX/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pM7p797FK3qQjCYADpxojX/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/change_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/change_submissions.json',
       'label': 'Edit submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/p8aL4ifctta3AxvRWeUwsz/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/p8aL4ifctta3AxvRWeUwsz/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/delete_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/delete_submissions.json',
       'label': 'Delete submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/paBd2H3gyWhZQBkGzGvfjE/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/paBd2H3gyWhZQBkGzGvfjE/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
       'permission': 'http://kf.kobo.local/api/v2/permissions/manage_asset.json',
       'label': 'Manage project',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pAdfYDhVHTWXNMv8CTZxFz/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pAdfYDhVHTWXNMv8CTZxFz/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/validate_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/validate_submissions.json',
       'label': 'Validate submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/p782nm85UEcMy56EvxiNMz/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/p782nm85UEcMy56EvxiNMz/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
       'permission': 'http://kf.kobo.local/api/v2/permissions/view_asset.json',
       'label': 'View form',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pPAFrcPkXTuQFWywccDzr7/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/permission-assignments/pPAFrcPkXTuQFWywccDzr7/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/view_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/view_submissions.json',
       'label': 'View submissions',
     },
   ],
@@ -878,7 +849,8 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
       'codename': 'add_submissions',
     },
   ],
-  'exports': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/exports/',
+  'exports':
+    'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/exports/',
   'export_settings': [],
   'data': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/data.json',
   'children': {
@@ -888,7 +860,8 @@ export const assetWithBgAudioAndNLP: AssetResponse = {
   'status': 'shared',
   'access_types': null,
   'data_sharing': {},
-  'paired_data': 'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/paired-data/',
+  'paired_data':
+    'http://kf.kobo.local/api/v2/assets/am5q2MmVckuLBXPKsbHjEt/paired-data/',
   'project_ownership': null,
 };
 
@@ -911,14 +884,8 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
   'files': [],
   'summary': {
     'geo': false,
-    'labels': [
-      'What did you hear?',
-    ],
-    'columns': [
-      'type',
-      'label',
-      'required',
-    ],
+    'labels': ['What did you hear?'],
+    'columns': ['type', 'label', 'required'],
     'lock_all': false,
     'lock_any': false,
     'languages': [],
@@ -932,9 +899,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
         'ok': {
           'name': 'What_did_you_hear',
           'index': 1,
-          'label': [
-            'What did you hear?',
-          ],
+          'label': ['What did you hear?'],
         },
       },
     },
@@ -955,7 +920,8 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
     'results': [
       {
         'uid': 'v4MNF9dNVo682gg2KZc5P7',
-        'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/versions/v4MNF9dNVo682gg2KZc5P7/',
+        'url':
+          'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/versions/v4MNF9dNVo682gg2KZc5P7/',
         'content_hash': '778df104b69459fe67b8431bb500433b82e2ee33',
         'date_deployed': '2024-10-24T21:52:53.478265Z',
         'date_modified': '2024-10-24T21:52:53.478265Z',
@@ -965,23 +931,33 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
   'deployment__links': {
     'url': 'http://ee.kobo.local/iQdYiTID',
     'single_url': 'http://ee.kobo.local/single/iQdYiTID',
-    'single_once_url': 'http://ee.kobo.local/single/7edea25f7e36766e7558a8a9d2e015f0',
+    'single_once_url':
+      'http://ee.kobo.local/single/7edea25f7e36766e7558a8a9d2e015f0',
     'offline_url': 'http://ee.kobo.local/x/iQdYiTID',
     'preview_url': 'http://ee.kobo.local/preview/iQdYiTID',
     'iframe_url': 'http://ee.kobo.local/i/iQdYiTID',
     'single_iframe_url': 'http://ee.kobo.local/single/i/iQdYiTID',
-    'single_once_iframe_url': 'http://ee.kobo.local/single/i/7edea25f7e36766e7558a8a9d2e015f0',
+    'single_once_iframe_url':
+      'http://ee.kobo.local/single/i/7edea25f7e36766e7558a8a9d2e015f0',
   },
   'deployment__active': true,
   'deployment__data_download_links': {
-    'xls_legacy': 'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/xls/',
-    'csv_legacy': 'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/csv/',
-    'zip_legacy': 'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/zip/',
-    'kml_legacy': 'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/kml/',
-    'geojson': 'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/geojson/',
-    'spss_labels': 'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/spss/',
-    'xls': 'http://kc.kobo.local/kobo/reports/aRai4qmXVG4eukrzpHXAQC/export.xlsx',
-    'csv': 'http://kc.kobo.local/kobo/reports/aRai4qmXVG4eukrzpHXAQC/export.csv',
+    'xls_legacy':
+      'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/xls/',
+    'csv_legacy':
+      'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/csv/',
+    'zip_legacy':
+      'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/zip/',
+    'kml_legacy':
+      'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/kml/',
+    'geojson':
+      'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/geojson/',
+    'spss_labels':
+      'http://kc.kobo.local/kobo/exports/aRai4qmXVG4eukrzpHXAQC/spss/',
+    'xls':
+      'http://kc.kobo.local/kobo/reports/aRai4qmXVG4eukrzpHXAQC/export.xlsx',
+    'csv':
+      'http://kc.kobo.local/kobo/reports/aRai4qmXVG4eukrzpHXAQC/export.csv',
   },
   'deployment__submission_count': 1,
   'deployment_status': 'deployed',
@@ -1013,20 +989,18 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
   'report_custom': {},
   'advanced_features': {
     'transcript': {
-      'languages': [
-        'pl',
-      ],
+      'languages': ['pl'],
     },
     'translation': {
-      'languages': [
-        'de',
-      ],
+      'languages': ['de'],
     },
   },
   'advanced_submission_schema': {
     'type': 'object',
-    '$description': 'PATCH or POST a matching JSON structure to a submission and it will be stored and processed accordingly.',
-    'url': 'http://kf.kobo.local/advanced_submission_post/aRai4qmXVG4eukrzpHXAQC',
+    '$description':
+      'PATCH or POST a matching JSON structure to a submission and it will be stored and processed accordingly.',
+    'url':
+      'http://kf.kobo.local/advanced_submission_post/aRai4qmXVG4eukrzpHXAQC',
     'properties': {
       'submission': {
         'type': 'string',
@@ -1052,9 +1026,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
       },
     },
     'additionalProperties': false,
-    'required': [
-      'submission',
-    ],
+    'required': ['submission'],
     'definitions': {
       'transcript': {
         'type': 'object',
@@ -1087,9 +1059,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
           },
         },
         'additionalProperties': false,
-        'required': [
-          'value',
-        ],
+        'required': ['value'],
       },
       'transcriptRevision': {
         'type': 'object',
@@ -1109,20 +1079,13 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
           },
         },
         'additionalProperties': false,
-        'required': [
-          'value',
-        ],
+        'required': ['value'],
       },
       '_googlets': {
         'type': 'object',
         'properties': {
           'status': {
-            'enum': [
-              'requested',
-              'in_progress',
-              'complete',
-              'error',
-            ],
+            'enum': ['requested', 'in_progress', 'complete', 'error'],
           },
           'responseJSON': {
             'type': 'object',
@@ -1141,12 +1104,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
         'type': 'object',
         'properties': {
           'status': {
-            'enum': [
-              'requested',
-              'in_progress',
-              'complete',
-              'error',
-            ],
+            'enum': ['requested', 'in_progress', 'complete', 'error'],
           },
           'responseJSON': {
             'type': 'object',
@@ -1164,10 +1122,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
       'xtranslation': {
         'type': 'object',
         'additionalProperties': false,
-        'required': [
-          'value',
-          'languageCode',
-        ],
+        'required': ['value', 'languageCode'],
         'properties': {
           'value': {
             'type': 'string',
@@ -1221,9 +1176,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
           },
         },
         'additionalProperties': false,
-        'required': [
-          'value',
-        ],
+        'required': ['value'],
       },
     },
   },
@@ -1238,13 +1191,16 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
     },
     'additional_fields': [
       {
-        'dtpath': 'outer_group/middle_group/inner_group/What_did_you_hear/transcript_pl',
+        'dtpath':
+          'outer_group/middle_group/inner_group/What_did_you_hear/transcript_pl',
         'type': 'transcript',
         'language': 'pl',
         'label': 'What_did_you_hear - transcript',
-        'name': 'outer_group/middle_group/inner_group/What_did_you_hear/transcript_pl',
+        'name':
+          'outer_group/middle_group/inner_group/What_did_you_hear/transcript_pl',
         'source': 'outer_group/middle_group/inner_group/What_did_you_hear',
-        'xpath': 'outer_group/middle_group/inner_group/What_did_you_hear/transcript/pl',
+        'xpath':
+          'outer_group/middle_group/inner_group/What_did_you_hear/transcript/pl',
         'settings': {
           'mode': 'manual',
           'engine': 'engines/transcript_manual',
@@ -1255,13 +1211,16 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
         ],
       },
       {
-        'dtpath': 'outer_group/middle_group/inner_group/What_did_you_hear/translation_de',
+        'dtpath':
+          'outer_group/middle_group/inner_group/What_did_you_hear/translation_de',
         'type': 'translation',
         'language': 'de',
         'label': 'What_did_you_hear - translation',
-        'name': 'outer_group/middle_group/inner_group/What_did_you_hear/translation_de',
+        'name':
+          'outer_group/middle_group/inner_group/What_did_you_hear/translation_de',
         'source': 'outer_group/middle_group/inner_group/What_did_you_hear',
-        'xpath': 'outer_group/middle_group/inner_group/What_did_you_hear/translation/de',
+        'xpath':
+          'outer_group/middle_group/inner_group/What_did_you_hear/translation/de',
         'settings': {
           'mode': 'manual',
           'engine': 'engines/translation_manual',
@@ -1282,9 +1241,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
         'name': 'outer_group',
         'type': ANY_ROW_TYPE_NAMES.begin_group,
         '$kuid': 'kx8rw55',
-        'label': [
-          'Outer group',
-        ],
+        'label': ['Outer group'],
         '$xpath': 'outer_group',
         '$autoname': 'outer_group',
       },
@@ -1292,9 +1249,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
         'name': 'middle_group',
         'type': ANY_ROW_TYPE_NAMES.begin_group,
         '$kuid': 'py8fl89',
-        'label': [
-          'Middle group',
-        ],
+        'label': ['Middle group'],
         '$xpath': 'outer_group/middle_group',
         '$autoname': 'middle_group',
       },
@@ -1302,18 +1257,14 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
         'name': 'inner_group',
         'type': ANY_ROW_TYPE_NAMES.begin_group,
         '$kuid': 'oh5pd61',
-        'label': [
-          'Inner group',
-        ],
+        'label': ['Inner group'],
         '$xpath': 'outer_group/middle_group/inner_group',
         '$autoname': 'inner_group',
       },
       {
         'type': ANY_ROW_TYPE_NAMES.audio,
         '$kuid': 'sm28q44',
-        'label': [
-          'What did you hear?',
-        ],
+        'label': ['What did you hear?'],
         '$xpath': 'outer_group/middle_group/inner_group/What_did_you_hear',
         'required': false,
         '$autoname': 'What_did_you_hear',
@@ -1332,12 +1283,8 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
       },
     ],
     'settings': {},
-    'translated': [
-      'label',
-    ],
-    'translations': [
-      null,
-    ],
+    'translated': ['label'],
+    'translations': [null],
   },
   'downloads': [
     {
@@ -1359,8 +1306,10 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
       'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/xform/',
     },
   ],
-  'xform_link': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/xform/',
-  'hooks_link': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/hooks/',
+  'xform_link':
+    'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/xform/',
+  'hooks_link':
+    'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/hooks/',
   'tag_string': '',
   'uid': 'aRai4qmXVG4eukrzpHXAQC',
   'kind': 'asset',
@@ -1412,51 +1361,64 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
   ],
   'permissions': [
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pCYMKNGknBkN5vMpsFeBrL/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pCYMKNGknBkN5vMpsFeBrL/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/add_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/add_submissions.json',
       'label': 'Add submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pWH6k8kQyjT4z3WAheWhTH/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pWH6k8kQyjT4z3WAheWhTH/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
       'permission': 'http://kf.kobo.local/api/v2/permissions/change_asset.json',
       'label': 'Edit form',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pF4feraPmjmGwbs4XGGjMd/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pF4feraPmjmGwbs4XGGjMd/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/change_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/change_submissions.json',
       'label': 'Edit submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pWXMaN6dAiwWv9kE5s2Mvn/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pWXMaN6dAiwWv9kE5s2Mvn/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/delete_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/delete_submissions.json',
       'label': 'Delete submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/peFnddaDPNehS3H95ZuVEe/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/peFnddaDPNehS3H95ZuVEe/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
       'permission': 'http://kf.kobo.local/api/v2/permissions/manage_asset.json',
       'label': 'Manage project',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pAqCW3fjVQLQNtBX4rxZjg/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/pAqCW3fjVQLQNtBX4rxZjg/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/validate_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/validate_submissions.json',
       'label': 'Validate submissions',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/puB4cwPhyJFprC5zXcdD8K/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/puB4cwPhyJFprC5zXcdD8K/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
       'permission': 'http://kf.kobo.local/api/v2/permissions/view_asset.json',
       'label': 'View form',
     },
     {
-      'url': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/poNyR5qmXJ7Wjq99qMuncR/',
+      'url':
+        'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/permission-assignments/poNyR5qmXJ7Wjq99qMuncR/',
       'user': 'http://kf.kobo.local/api/v2/users/kobo.json',
-      'permission': 'http://kf.kobo.local/api/v2/permissions/view_submissions.json',
+      'permission':
+        'http://kf.kobo.local/api/v2/permissions/view_submissions.json',
       'label': 'View submissions',
     },
   ],
@@ -1489,7 +1451,8 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
       'codename': 'change_submissions',
     },
   ],
-  'exports': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/exports/',
+  'exports':
+    'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/exports/',
   'export_settings': [],
   'data': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/data.json',
   'children': {
@@ -1499,6 +1462,7 @@ export const assetWithNestedGroupsAndNLP: AssetResponse = {
   'status': 'private',
   'access_types': null,
   'data_sharing': {},
-  'paired_data': 'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/paired-data/',
+  'paired_data':
+    'http://kf.kobo.local/api/v2/assets/aRai4qmXVG4eukrzpHXAQC/paired-data/',
   'project_ownership': null,
 };

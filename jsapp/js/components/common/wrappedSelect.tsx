@@ -30,9 +30,7 @@ class WrappedSelect extends React.Component<WrappedSelectProps> {
         data-cy={this.props['data-cy']}
       >
         <label>
-          <bem.KoboSelect__label>
-            {this.props.label}
-          </bem.KoboSelect__label>
+          <bem.KoboSelect__label>{this.props.label}</bem.KoboSelect__label>
           <Select
             className={classNames.join(' ')}
             classNamePrefix='kobo-select'
@@ -41,11 +39,9 @@ class WrappedSelect extends React.Component<WrappedSelectProps> {
             {...this.props}
           />
         </label>
-        {this.props.error &&
-          <bem.KoboSelect__error>
-          {this.props.error}
-          </bem.KoboSelect__error>
-        }
+        {this.props.error && (
+          <bem.KoboSelect__error>{this.props.error}</bem.KoboSelect__error>
+        )}
       </bem.KoboSelect__wrapper>
     );
   }

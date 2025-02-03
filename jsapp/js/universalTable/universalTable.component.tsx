@@ -1,6 +1,12 @@
 // Libraries
 import type React from 'react';
-import {useState, useRef, useCallback, type CSSProperties, useEffect} from 'react';
+import {
+  useState,
+  useRef,
+  useCallback,
+  type CSSProperties,
+  useEffect,
+} from 'react';
 import cx from 'classnames';
 import {
   flexRender,
@@ -138,8 +144,10 @@ export default function UniversalTable<DataItem>(
     return cx({
       [styles.isPinnedLeft]: isPinned === 'left',
       [styles.isPinnedRight]: isPinned === 'right',
-      [styles.isLastLeftPinnedColumn]: isPinned === 'left' && column.getIsLastColumn('left'),
-      [styles.isFirstRightPinnedColumn]: isPinned === 'right' && column.getIsFirstColumn('right'),
+      [styles.isLastLeftPinnedColumn]:
+        isPinned === 'left' && column.getIsLastColumn('left'),
+      [styles.isFirstRightPinnedColumn]:
+        isPinned === 'right' && column.getIsFirstColumn('right'),
     });
   }
 
@@ -186,16 +194,20 @@ export default function UniversalTable<DataItem>(
   options.state = {};
 
   options.state.columnPinning = {
-    left: props.columns.filter((col) => col.isPinned === 'left').map((col) => col.key),
-    right: props.columns.filter((col) => col.isPinned === 'right').map((col) => col.key),
+    left: props.columns
+      .filter((col) => col.isPinned === 'left')
+      .map((col) => col.key),
+    right: props.columns
+      .filter((col) => col.isPinned === 'right')
+      .map((col) => col.key),
   };
 
   const hasPagination = Boolean(
     props.pageIndex !== undefined &&
-    props.pageCount &&
-    props.pageSize &&
-    props.pageSizeOptions &&
-    props.onRequestPaginationChange
+      props.pageCount &&
+      props.pageSize &&
+      props.pageSizeOptions &&
+      props.onRequestPaginationChange
   );
 
   // Add pagination related options if needed
@@ -250,15 +262,17 @@ export default function UniversalTable<DataItem>(
   }, [props, table, width, height]);
 
   return (
-    <div className={cx(styles.universalTableRoot, {
-      [styles.hasHorizontalScrollbar]: hasHorizontalScrollbar,
-    })}>
+    <div
+      className={cx(styles.universalTableRoot, {
+        [styles.hasHorizontalScrollbar]: hasHorizontalScrollbar,
+      })}
+    >
       <div className={styles.tableContainer} ref={tableContainerRef}>
-        {props.isSpinnerVisible &&
+        {props.isSpinnerVisible && (
           <div className={styles.spinnerOverlay}>
             <LoadingSpinner message={false} />
           </div>
-        }
+        )}
 
         <table
           className={styles.table}
@@ -281,8 +295,7 @@ export default function UniversalTable<DataItem>(
                       flexRender(
                         header.column.columnDef.header,
                         header.getContext()
-                      )
-                    }
+                      )}
 
                     {/*
                       TODO: if we ever see performance issues while resizing,
@@ -304,18 +317,22 @@ export default function UniversalTable<DataItem>(
                         onResizerStart();
                         header.getResizeHandler()(event);
                       }}
-                      onMouseUp={() => {onResizerEnd();}}
-                      onTouchEnd={() => {onResizerEnd();}}
+                      onMouseUp={() => {
+                        onResizerEnd();
+                      }}
+                      onTouchEnd={() => {
+                        onResizerEnd();
+                      }}
                       className={cx(styles.resizer, {
                         [styles.isResizing]: header.column.getIsResizing(),
                       })}
                     >
-                      {header.column.getIsResizing() &&
+                      {header.column.getIsResizing() && (
                         <span
                           className={styles.resizerLine}
                           style={{height: `${tableHeight}px`}}
                         />
-                      }
+                      )}
                     </div>
                   </th>
                 ))}
@@ -334,10 +351,7 @@ export default function UniversalTable<DataItem>(
                     )}
                     style={{...getCommonColumnStyles(cell.column)}}
                   >
-                    {flexRender(
-                      cell.column.columnDef.cell,
-                      cell.getContext()
-                    )}
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
               </tr>
@@ -369,8 +383,14 @@ export default function UniversalTable<DataItem>(
               className={styles.paginationNumbering}
               dangerouslySetInnerHTML={{
                 __html: t('Page ##current_page## of ##total_pages##')
-                  .replace('##current_page##', `<strong>${currentPageString}</strong>`)
-                  .replace('##total_pages##', `<strong>${totalPagesString}</strong>`),
+                  .replace(
+                    '##current_page##',
+                    `<strong>${currentPageString}</strong>`
+                  )
+                  .replace(
+                    '##total_pages##',
+                    `<strong>${totalPagesString}</strong>`
+                  ),
               }}
             />
 
@@ -399,7 +419,10 @@ export default function UniversalTable<DataItem>(
             options={(props.pageSizeOptions || []).map((pageSize) => {
               return {
                 value: String(pageSize),
-                label: t('##number## rows').replace('##number##', String(pageSize)),
+                label: t('##number## rows').replace(
+                  '##number##',
+                  String(pageSize)
+                ),
               };
             })}
             selectedOption={String(table.getState().pagination.pageSize)}

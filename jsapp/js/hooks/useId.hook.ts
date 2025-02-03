@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import {useRef} from 'react';
 
 let baseId = 0;
 
@@ -10,7 +10,7 @@ export const useId = () => {
   // Don't try to increment beyond integer limit; just reset to zero
   // If we're using more than MAX_SAFE_INTEGER elements with unique IDs simultaneously,
   // it's safe to say that something went terribly wrong upstream of this component
-  if (baseId >= Number.MAX_SAFE_INTEGER - 1){
+  if (baseId >= Number.MAX_SAFE_INTEGER - 1) {
     baseId = 0;
   }
   baseId++;

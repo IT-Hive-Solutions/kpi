@@ -20,17 +20,28 @@ interface OverLimitModalProps {
   interval: 'month' | 'year';
 }
 
-const getLimitReachedMessage = (isMmo: boolean, shouldUseTeamLabel: boolean) => {
+const getLimitReachedMessage = (
+  isMmo: boolean,
+  shouldUseTeamLabel: boolean
+) => {
   if (isMmo && shouldUseTeamLabel) {
-    return t('Your team has reached the following limits included with your current plan:');
+    return t(
+      'Your team has reached the following limits included with your current plan:'
+    );
   } else if (isMmo) {
-    return t('Your organization has reached the following limits included with your current plan:');
+    return t(
+      'Your organization has reached the following limits included with your current plan:'
+    );
   }
-  return t('You have reached the following limits included with your current plan:');
+  return t(
+    'You have reached the following limits included with your current plan:'
+  );
 };
 
 // We need to use a custom component here to open links using target="_blank"
-const LinkRendererTargetBlank = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => (
+const LinkRendererTargetBlank = (
+  props: AnchorHTMLAttributes<HTMLAnchorElement>
+) => (
   <a href={props.href} target='_blank'>
     {props.children}
   </a>
@@ -64,12 +75,14 @@ function OverLimitModal(props: OverLimitModalProps) {
   const {is_mmo} = orgQuery.data;
   const shouldUseTeamLabel = !!envStore.data?.use_team_label;
 
-
   const greetingMessage = t('Dear ##ACCOUNT_NAME##,').replace(
     '##ACCOUNT_NAME##',
     accountName
   );
-  const limitReachedMessage = getLimitReachedMessage(is_mmo, shouldUseTeamLabel);
+  const limitReachedMessage = getLimitReachedMessage(
+    is_mmo,
+    shouldUseTeamLabel
+  );
 
   const upgradeMessage = t(
     'Please upgrade your plan as soon as possible or [contact us](##CONTACT_LINK##) to speak with our team.'
@@ -99,7 +112,9 @@ function OverLimitModal(props: OverLimitModalProps) {
               ))}
             </div>
             <div>
-              <Markdown components={{a: LinkRendererTargetBlank}}>{upgradeMessage}</Markdown>
+              <Markdown components={{a: LinkRendererTargetBlank}}>
+                {upgradeMessage}
+              </Markdown>
               <Markdown>{reviewUsageMessage}</Markdown>
             </div>
           </div>

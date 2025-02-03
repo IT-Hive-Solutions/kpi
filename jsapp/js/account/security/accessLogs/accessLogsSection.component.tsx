@@ -53,7 +53,10 @@ export default function AccessLogsSection() {
             label: t('Source'),
             cellFormatter: (log: AccessLog) => {
               if (log.metadata.auth_type === 'submission-group') {
-                return t('Data Submissions (##count##)').replace('##count##', String(log.count));
+                return t('Data Submissions (##count##)').replace(
+                  '##count##',
+                  String(log.count)
+                );
               } else {
                 return log.metadata.source;
               }

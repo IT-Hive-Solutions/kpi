@@ -19,7 +19,9 @@ export default function PasswordSection() {
   return (
     <section className={securityStyles.securitySection}>
       <div className={securityStyles.securitySectionTitle}>
-        <h2 className={securityStyles.securitySectionTitleText}>{t('Password')}</h2>
+        <h2 className={securityStyles.securitySectionTitleText}>
+          {t('Password')}
+        </h2>
       </div>
 
       <div className={securityStyles.securitySectionBody}>
@@ -28,11 +30,7 @@ export default function PasswordSection() {
 
       <div className={styles.options}>
         <a href={PATHS.RESET}>
-          <Button
-            label={t('forgot password')}
-            size='m'
-            type='text'
-          />
+          <Button label={t('forgot password')} size='m' type='text' />
         </a>
 
         <NavLink to={`${ACCOUNT_ROUTES.CHANGE_PASSWORD}`}>

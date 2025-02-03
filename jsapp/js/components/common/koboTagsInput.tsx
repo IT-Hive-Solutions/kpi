@@ -60,7 +60,9 @@ class KoboTagsInput extends React.Component<KoboTagsInputProps> {
 
     if (this.props.label) {
       // generate a unique id for the input
-      inputProps.id = String(encodeURI(this.props.label) + '_' + Date.now()).toLowerCase();
+      inputProps.id = String(
+        encodeURI(this.props.label) + '_' + Date.now()
+      ).toLowerCase();
     }
 
     let tagsArray: string[] = [];
@@ -70,11 +72,9 @@ class KoboTagsInput extends React.Component<KoboTagsInputProps> {
 
     return (
       <div>
-        {this.props.label &&
-          <label htmlFor={inputProps.id}>
-            {this.props.label}
-          </label>
-        }
+        {this.props.label && (
+          <label htmlFor={inputProps.id}>{this.props.label}</label>
+        )}
 
         <TagsInput
           value={tagsArray}

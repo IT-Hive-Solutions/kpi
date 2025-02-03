@@ -1,12 +1,18 @@
 import Reflux, {type StoreDefinition, type Store} from 'reflux';
-import {DEFAULT_EXPORT_SETTINGS, type ExportTypeDefinition} from './exportsConstants';
+import {
+  DEFAULT_EXPORT_SETTINGS,
+  type ExportTypeDefinition,
+} from './exportsConstants';
 import {router} from 'js/router/legacy';
 
 interface ExportsStoreDefinition extends StoreDefinition {
   data: {
     exportType: ExportTypeDefinition;
   };
-  setExportType: (newExportType: ExportTypeDefinition, needsUpdating?: boolean) => void;
+  setExportType: (
+    newExportType: ExportTypeDefinition,
+    needsUpdating?: boolean
+  ) => void;
   getExportType: () => ExportTypeDefinition;
 }
 
@@ -50,7 +56,7 @@ const exportsStoreDefinition: ExportsStoreDefinition = {
 
 /**
  * It handles the selected export type.
-*/
+ */
 const exportsStore = Reflux.createStore(exportsStoreDefinition);
 
 // TODO: refactor this Reflux store out of existence. Until then, we use this

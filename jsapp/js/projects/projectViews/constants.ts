@@ -172,10 +172,7 @@ export const PROJECT_FIELDS: ProjectFields = {
     label: t('Status'),
     apiFilteringName: '_deployment_status',
     apiOrderingName: '_deployment_status',
-    availableConditions: [
-      'is',
-      'isNot',
-    ],
+    availableConditions: ['is', 'isNot'],
   },
   ownerUsername: {
     name: 'ownerUsername',

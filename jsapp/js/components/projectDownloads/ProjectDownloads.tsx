@@ -44,12 +44,14 @@ export default class ProjectDownloads extends React.Component<
 
   componentDidMount() {
     this.unlisteners.push(
-      exportsStore.listen(this.onExportsStoreChange.bind(this), this),
+      exportsStore.listen(this.onExportsStoreChange.bind(this), this)
     );
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   onExportsStoreChange() {
@@ -58,14 +60,12 @@ export default class ProjectDownloads extends React.Component<
 
   renderLoggedInExports() {
     if (this.state.selectedExportType.isLegacy) {
-      return (
-        <LegacyExports asset={this.props.asset} />
-      );
+      return <LegacyExports asset={this.props.asset} />;
     } else {
       return (
         <React.Fragment>
-          <ProjectExportsCreator asset={this.props.asset}/>
-          <ProjectExportsList asset={this.props.asset}/>
+          <ProjectExportsCreator asset={this.props.asset} />
+          <ProjectExportsList asset={this.props.asset} />
         </React.Fragment>
       );
     }
@@ -81,13 +81,11 @@ export default class ProjectDownloads extends React.Component<
               {t('Downloads')}
             </bem.FormView__cell>
 
-            {sessionStore.isLoggedIn &&
-              this.renderLoggedInExports()
-            }
+            {sessionStore.isLoggedIn && this.renderLoggedInExports()}
 
-            {!sessionStore.isLoggedIn &&
-              <AnonymousExports asset={this.props.asset}/>
-            }
+            {!sessionStore.isLoggedIn && (
+              <AnonymousExports asset={this.props.asset} />
+            )}
           </bem.FormView__row>
         </bem.FormView>
       </DocumentTitle>

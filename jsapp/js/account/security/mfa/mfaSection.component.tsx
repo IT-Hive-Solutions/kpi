@@ -85,7 +85,10 @@ export default class SecurityRoute extends React.Component<{}, SecurityState> {
     }
   }
 
-  onGetMfaAvailability(response: {isMfaAvailable: boolean; isPlansMessageVisible: boolean}) {
+  onGetMfaAvailability(response: {
+    isMfaAvailable: boolean;
+    isPlansMessageVisible: boolean;
+  }) {
     // Determine whether MFA is allowed based on per-user availability and subscription status
     this.setState({
       isMfaAvailable: response.isMfaAvailable,
@@ -166,14 +169,19 @@ export default class SecurityRoute extends React.Component<{}, SecurityState> {
       return <LoadingSpinner />;
     }
 
-    if (!envStore.data.mfa_enabled || (!this.state.isMfaAvailable && !this.state.isPlansMessageVisible)) {
+    if (
+      !envStore.data.mfa_enabled ||
+      (!this.state.isMfaAvailable && !this.state.isPlansMessageVisible)
+    ) {
       return null;
     }
 
     return (
-      <section className={cx(securityStyles.securitySection, {
-        [styles.isUnauthorized]: !this.state.isMfaAvailable,
-      })}>
+      <section
+        className={cx(securityStyles.securitySection, {
+          [styles.isUnauthorized]: !this.state.isMfaAvailable,
+        })}
+      >
         <div className={securityStyles.securitySectionTitle}>
           <h2 className={securityStyles.securitySectionTitleText}>
             {t('Two-factor authentication')}
@@ -197,9 +205,7 @@ export default class SecurityRoute extends React.Component<{}, SecurityState> {
                   </h3>
 
                   {this.state.dateModified && (
-                    <div>
-                      {formatTime(this.state.dateModified)}
-                    </div>
+                    <div>{formatTime(this.state.dateModified)}</div>
                   )}
 
                   <Button
@@ -230,32 +236,40 @@ export default class SecurityRoute extends React.Component<{}, SecurityState> {
             )}
           </div>
 
-          {!this.state.isMfaActive && this.state.isMfaAvailable && this.state.dateDisabled && (
-            <InlineMessage
-              type='default'
-              message={t(
-                'Two-factor authentication was deactivated for your account on ##date##'
-              ).replace('##date##', formatDate(this.state.dateDisabled))}
-            />
-          )}
+          {!this.state.isMfaActive &&
+            this.state.isMfaAvailable &&
+            this.state.dateDisabled && (
+              <InlineMessage
+                type='default'
+                message={t(
+                  'Two-factor authentication was deactivated for your account on ##date##'
+                ).replace('##date##', formatDate(this.state.dateDisabled))}
+              />
+            )}
 
           {this.state.isPlansMessageVisible && (
             <InlineMessage
               type='default'
               message={
-              <>
-                {t('This feature is not available on your current plan. Please visit the ')}
-                <a href={'/#/account/plan'}>{t('Plans page')}</a>
-                {t(' to upgrade your account.')}
-              </>
-            }
+                <>
+                  {t(
+                    'This feature is not available on your current plan. Please visit the '
+                  )}
+                  <a href={'/#/account/plan'}>{t('Plans page')}</a>
+                  {t(' to upgrade your account.')}
+                </>
+              }
             />
           )}
         </div>
 
         <div className={styles.options}>
           <ToggleSwitch
-            label={(this.state.isMfaActive && this.state.isMfaAvailable) ? t('Enabled') : t('Disabled')}
+            label={
+              this.state.isMfaActive && this.state.isMfaAvailable
+                ? t('Enabled')
+                : t('Disabled')
+            }
             checked={this.state.isMfaActive && this.state.isMfaAvailable}
             onChange={this.onToggleChange.bind(this)}
           />

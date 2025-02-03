@@ -1,5 +1,8 @@
 import React, {ReactNode} from 'react';
-import { OneTimeAddOnsContext, useOneTimeAddOns } from './useOneTimeAddonList.hook';
+import {
+  OneTimeAddOnsContext,
+  useOneTimeAddOns,
+} from './useOneTimeAddonList.hook';
 import {UsageContext, useUsage} from 'js/account/usage/useUsage.hook';
 import {ProductsContext, useProducts} from 'js/account/useProducts.hook';
 import sessionStore from 'js/stores/session';
@@ -19,7 +22,7 @@ export const BillingContextProvider = (props: {children: ReactNode}) => {
     <UsageContext.Provider value={usage}>
       <ProductsContext.Provider value={products}>
         <OneTimeAddOnsContext.Provider value={oneTimeAddOns}>
-            {props.children}
+          {props.children}
         </OneTimeAddOnsContext.Provider>
       </ProductsContext.Provider>
     </UsageContext.Provider>

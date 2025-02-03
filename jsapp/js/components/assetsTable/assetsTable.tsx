@@ -3,10 +3,7 @@ import ReactDOM from 'react-dom';
 import PopoverMenu from 'js/popoverMenu';
 import LoadingSpinner from 'js/components/common/loadingSpinner';
 import bem, {makeBem} from 'js/bem';
-import {
-  hasVerticalScrollbar,
-  getScrollbarWidth,
-} from 'js/utils';
+import {hasVerticalScrollbar, getScrollbarWidth} from 'js/utils';
 import AssetsTableRow from './assetsTableRow';
 import {
   ASSETS_TABLE_CONTEXTS,
@@ -18,10 +15,7 @@ import type {
   AssetsTableColumn,
 } from './assetsTableConstants';
 import type {OrderDirection} from 'js/projects/projectViews/constants';
-import type {
-  AssetResponse,
-  MetadataResponse,
-} from 'js/dataInterface';
+import type {AssetResponse, MetadataResponse} from 'js/dataInterface';
 import './assetsTable.scss';
 import Button from 'js/components/common/button';
 
@@ -33,47 +27,57 @@ bem.AssetsTableRow = makeBem(null, 'assets-table-row');
 bem.AssetsTableRow__link = makeBem(bem.AssetsTableRow, 'link', 'a');
 bem.AssetsTableRow__buttons = makeBem(bem.AssetsTableRow, 'buttons');
 bem.AssetsTableRow__column = makeBem(bem.AssetsTableRow, 'column');
-bem.AssetsTableRow__headerLabel = makeBem(bem.AssetsTableRow, 'header-label', 'span');
+bem.AssetsTableRow__headerLabel = makeBem(
+  bem.AssetsTableRow,
+  'header-label',
+  'span'
+);
 bem.AssetsTableRow__tags = makeBem(bem.AssetsTableRow, 'tags', 'div');
 bem.AssetsTableRow__tag = makeBem(bem.AssetsTableRow, 'tag', 'span');
 bem.AssetsTablePagination = makeBem(null, 'assets-table-pagination');
 
-type OrderChangeCallback = (columnId: string, columnValue: OrderDirection) => void;
-type FilterChangeCallback = (columnId: string | null, columnValue: string | null) => void;
+type OrderChangeCallback = (
+  columnId: string,
+  columnValue: OrderDirection
+) => void;
+type FilterChangeCallback = (
+  columnId: string | null,
+  columnValue: string | null
+) => void;
 type SwitchPageCallback = (pageNumber: number) => void;
 
 interface AssetsTableProps {
- context: AssetsTableContextName;
- /** Displays a spinner */
- isLoading?: boolean;
- /** To display contextual empty message when zero assets. */
- emptyMessage?: React.ReactNode;
- /** List of assets to be displayed. */
- assets: AssetResponse[];
- /** Number of assets on all pages. */
- totalAssets: number | null;
- /** List of available filters values. */
- metadata?: MetadataResponse; // this type ??
- /** Seleceted order column id, one of ASSETS_TABLE_COLUMNS. */
- orderColumnId: string;
- /** Seleceted order column value. Defaults to "ascending" */
- orderValue: OrderDirection | null;
- /** Called when user selects a column for odering. */
- onOrderChange: OrderChangeCallback;
- /** Seleceted filter column, one of ASSETS_TABLE_COLUMNS. */
- filterColumnId: string | null;
- /** Seleceted filter column value. */
- filterValue: string | null;
- /** Called when user selects a column for filtering. */
- onFilterChange: FilterChangeCallback;
- /**
-  * For displaying pagination. If you omit any of these, pagination will simply
-  * not be rendered. Good to use when you actually don't need it.
-  */
- currentPage?: number;
- totalPages?: number;
- /** Called when user clicks page change. */
- onSwitchPage?: SwitchPageCallback;
+  context: AssetsTableContextName;
+  /** Displays a spinner */
+  isLoading?: boolean;
+  /** To display contextual empty message when zero assets. */
+  emptyMessage?: React.ReactNode;
+  /** List of assets to be displayed. */
+  assets: AssetResponse[];
+  /** Number of assets on all pages. */
+  totalAssets: number | null;
+  /** List of available filters values. */
+  metadata?: MetadataResponse; // this type ??
+  /** Seleceted order column id, one of ASSETS_TABLE_COLUMNS. */
+  orderColumnId: string;
+  /** Seleceted order column value. Defaults to "ascending" */
+  orderValue: OrderDirection | null;
+  /** Called when user selects a column for odering. */
+  onOrderChange: OrderChangeCallback;
+  /** Seleceted filter column, one of ASSETS_TABLE_COLUMNS. */
+  filterColumnId: string | null;
+  /** Seleceted filter column value. */
+  filterValue: string | null;
+  /** Called when user selects a column for filtering. */
+  onFilterChange: FilterChangeCallback;
+  /**
+   * For displaying pagination. If you omit any of these, pagination will simply
+   * not be rendered. Good to use when you actually don't need it.
+   */
+  currentPage?: number;
+  totalPages?: number;
+  /** Called when user clicks page change. */
+  onSwitchPage?: SwitchPageCallback;
 }
 
 interface AssetsTableState {
@@ -100,7 +104,7 @@ export default class AssetsTable extends React.Component<
   AssetsTableProps,
   AssetsTableState
 > {
-  constructor(props: AssetsTableProps){
+  constructor(props: AssetsTableProps) {
     super(props);
     this.state = {
       shouldHidePopover: false,
@@ -165,7 +169,11 @@ export default class AssetsTable extends React.Component<
       this.props.onOrderChange(this.props.orderColumnId, newVal);
     } else {
       // change column and revert order direction to default
-      this.props.onOrderChange(columnId, ASSETS_TABLE_COLUMNS[columnId].defaultValue || ORDER_DIRECTIONS.ascending);
+      this.props.onOrderChange(
+        columnId,
+        ASSETS_TABLE_COLUMNS[columnId].defaultValue ||
+          ORDER_DIRECTIONS.ascending
+      );
     }
   }
 
@@ -241,16 +249,25 @@ export default class AssetsTable extends React.Component<
       );
     }
 
-    let icon = (<i className='k-icon k-icon-filter-arrows'/>);
+    let icon = <i className='k-icon k-icon-filter-arrows' />;
     if (this.props.filterColumnId === columnDef.id) {
-      icon = (<i className='k-icon k-icon-close' onClick={this.onClearFilter.bind(this)}/>);
+      icon = (
+        <i
+          className='k-icon k-icon-close'
+          onClick={this.onClearFilter.bind(this)}
+        />
+      );
     }
 
     return (
       <bem.AssetsTableRow__column m={columnDef.id}>
         <PopoverMenu
           type='assets-table'
-          triggerLabel={<span>{columnDef.label} {icon}</span>}
+          triggerLabel={
+            <span>
+              {columnDef.label} {icon}
+            </span>
+          }
           clearPopover={this.state.shouldHidePopover}
           popoverSetVisible={this.onPopoverSetVisible.bind(this)}
         >
@@ -269,13 +286,17 @@ export default class AssetsTable extends React.Component<
 
             return (
               <bem.PopoverMenu__link
-                onClick={this.onChangeFilter.bind(this, columnDef.id, optionValue)}
+                onClick={this.onChangeFilter.bind(
+                  this,
+                  columnDef.id,
+                  optionValue
+                )}
                 key={`option-${index}`}
               >
                 {optionLabel}
-                {optionValue === this.props.filterValue &&
-                  <i className='k-icon k-icon-check'/>
-                }
+                {optionValue === this.props.filterValue && (
+                  <i className='k-icon k-icon-check' />
+                )}
               </bem.PopoverMenu__link>
             );
           })}
@@ -296,13 +317,13 @@ export default class AssetsTable extends React.Component<
     }
 
     // empty icon to take up space in column
-    let icon = (<i className='k-icon'/>);
+    let icon = <i className='k-icon' />;
     if (this.props.orderColumnId === columnDef.id) {
       if (this.props.orderValue === ORDER_DIRECTIONS.ascending) {
-        icon = (<i className='k-icon k-icon-angle-up'/>);
+        icon = <i className='k-icon k-icon-angle-up' />;
       }
       if (this.props.orderValue === ORDER_DIRECTIONS.descending) {
-        icon = (<i className='k-icon k-icon-angle-down'/>);
+        icon = <i className='k-icon k-icon-angle-down' />;
       }
     }
 
@@ -311,9 +332,11 @@ export default class AssetsTable extends React.Component<
         m={columnDef.id}
         onClick={this.onChangeOrder.bind(this, columnDef.id)}
       >
-        {!hideLabel &&
-          <bem.AssetsTableRow__headerLabel>{columnDef.label}</bem.AssetsTableRow__headerLabel>
-        }
+        {!hideLabel && (
+          <bem.AssetsTableRow__headerLabel>
+            {columnDef.label}
+          </bem.AssetsTableRow__headerLabel>
+        )}
         {!hideIcon && icon}
       </bem.AssetsTableRow__column>
     );
@@ -364,15 +387,18 @@ export default class AssetsTable extends React.Component<
   renderFooter() {
     return (
       <bem.AssetsTable__footer>
-        {this.props.totalAssets !== null &&
+        {this.props.totalAssets !== null && (
           <span>
-            {t('##count## items').replace('##count##', String(this.props.totalAssets))}
+            {t('##count## items').replace(
+              '##count##',
+              String(this.props.totalAssets)
+            )}
           </span>
-        }
+        )}
 
         {this.renderPagination()}
 
-        {this.props.totalAssets !== null &&
+        {this.props.totalAssets !== null && (
           <Button
             type='text'
             size='s'
@@ -380,7 +406,7 @@ export default class AssetsTable extends React.Component<
             label={t('Toggle fullscreen')}
             onClick={this.toggleFullscreen.bind(this)}
           />
-        }
+        )}
       </bem.AssetsTable__footer>
     );
   }
@@ -400,41 +426,39 @@ export default class AssetsTable extends React.Component<
             {this.renderHeader(ASSETS_TABLE_COLUMNS['items-count'])}
             {this.renderHeader(ASSETS_TABLE_COLUMNS.owner)}
             {this.props.context === ASSETS_TABLE_CONTEXTS.PUBLIC_COLLECTIONS &&
-              this.renderHeader(ASSETS_TABLE_COLUMNS['subscribers-count'])
-            }
+              this.renderHeader(ASSETS_TABLE_COLUMNS['subscribers-count'])}
             {this.renderHeader(ASSETS_TABLE_COLUMNS.languages)}
             {this.props.context === ASSETS_TABLE_CONTEXTS.PUBLIC_COLLECTIONS &&
-              this.renderHeader(ASSETS_TABLE_COLUMNS['primary-sector'])
-            }
+              this.renderHeader(ASSETS_TABLE_COLUMNS['primary-sector'])}
             {this.renderHeader(ASSETS_TABLE_COLUMNS['date-modified'])}
 
-            {this.state.scrollbarWidth !== 0 && this.state.scrollbarWidth !== null &&
-              <div
-                className='assets-table__scrollbar-padding'
-                style={{width: `${this.state.scrollbarWidth}px`}}
-              />
-            }
+            {this.state.scrollbarWidth !== 0 &&
+              this.state.scrollbarWidth !== null && (
+                <div
+                  className='assets-table__scrollbar-padding'
+                  style={{width: `${this.state.scrollbarWidth}px`}}
+                />
+              )}
           </bem.AssetsTableRow>
         </bem.AssetsTable__header>
 
         <bem.AssetsTable__body ref={this.bodyRef}>
-          {this.props.isLoading &&
-            <LoadingSpinner/>
-          }
+          {this.props.isLoading && <LoadingSpinner />}
 
-          {!this.props.isLoading && this.props.assets.length === 0 &&
+          {!this.props.isLoading && this.props.assets.length === 0 && (
             <bem.AssetsTableRow m='empty-message'>
               {this.props.emptyMessage || t('There are no assets to display.')}
             </bem.AssetsTableRow>
-          }
-
-          {!this.props.isLoading && this.props.assets.map((asset) =>
-            <AssetsTableRow
-              asset={asset}
-              key={asset.uid}
-              context={this.props.context}
-            />
           )}
+
+          {!this.props.isLoading &&
+            this.props.assets.map((asset) => (
+              <AssetsTableRow
+                asset={asset}
+                key={asset.uid}
+                context={this.props.context}
+              />
+            ))}
         </bem.AssetsTable__body>
 
         {this.renderFooter()}

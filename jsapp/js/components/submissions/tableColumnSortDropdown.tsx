@@ -83,7 +83,8 @@ export default function TableColumnSortDropdown(
       <button
         className={classNames({
           'sort-dropdown-menu-button': true,
-          'sort-dropdown-menu-button--active': props.sortValue === buttonSortValue
+          'sort-dropdown-menu-button--active':
+            props.sortValue === buttonSortValue,
         })}
         onClick={(evt) => {
           changeSort(buttonSortValue, evt);

@@ -1,10 +1,9 @@
-import {
-  useQuery,
-  useQueryClient,
-  useMutation,
-} from '@tanstack/react-query';
+import {useQuery, useQueryClient, useMutation} from '@tanstack/react-query';
 import {fetchPost, fetchGet, fetchPatchUrl, fetchDeleteUrl} from 'js/api';
-import {type OrganizationUserRole, useOrganizationQuery} from './organizationQuery';
+import {
+  type OrganizationUserRole,
+  useOrganizationQuery,
+} from './organizationQuery';
 import {QueryKeys} from 'js/query/queryKeys';
 import {endpoints} from 'jsapp/js/api.endpoints';
 import type {FailResponse} from 'jsapp/js/dataInterface';
@@ -76,11 +75,16 @@ export function useSendMemberInvite() {
   const orgId = orgQuery.data?.id;
   return useMutation({
     mutationFn: async (payload: SendMemberInviteParams & Json) => {
-      const apiPath = endpoints.ORG_MEMBER_INVITES_URL.replace(':organization_id', orgId!);
+      const apiPath = endpoints.ORG_MEMBER_INVITES_URL.replace(
+        ':organization_id',
+        orgId!
+      );
       fetchPost<OrganizationMember>(apiPath, payload);
     },
     onSettled: () => {
-      queryClient.invalidateQueries({queryKey: [QueryKeys.organizationMembers]});
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.organizationMembers],
+      });
     },
   });
 }
@@ -96,7 +100,9 @@ export function useRemoveMemberInvite() {
       fetchDeleteUrl<OrganizationMember>(inviteUrl);
     },
     onSettled: () => {
-      queryClient.invalidateQueries({queryKey: [QueryKeys.organizationMembers]});
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.organizationMembers],
+      });
     },
   });
 }
@@ -105,9 +111,10 @@ export function useRemoveMemberInvite() {
  * A hook that gives you a single organization member invite.
  */
 export const useOrgMemberInviteQuery = (orgId: string, inviteId: string) => {
-  const apiPath = endpoints.ORG_MEMBER_INVITE_DETAIL_URL
-    .replace(':organization_id', orgId!)
-    .replace(':invite_id', inviteId);
+  const apiPath = endpoints.ORG_MEMBER_INVITE_DETAIL_URL.replace(
+    ':organization_id',
+    orgId!
+  ).replace(':invite_id', inviteId);
   return useQuery<MemberInvite, FailResponse>({
     queryFn: () => fetchGet<MemberInvite>(apiPath),
     queryKey: [QueryKeys.organizationMemberInviteDetail, apiPath],
@@ -127,10 +134,12 @@ export function usePatchMemberInvite(inviteUrl: string) {
       fetchPatchUrl<OrganizationMember>(inviteUrl, newInviteData);
     },
     onSettled: () => {
-      queryClient.invalidateQueries({queryKey: [
-        QueryKeys.organizationMemberInviteDetail,
-        QueryKeys.organizationMembers,
-      ]});
+      queryClient.invalidateQueries({
+        queryKey: [
+          QueryKeys.organizationMemberInviteDetail,
+          QueryKeys.organizationMembers,
+        ],
+      });
     },
   });
 }

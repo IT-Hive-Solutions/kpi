@@ -63,14 +63,14 @@ export default function StepSingleViewer(props: StepSingleViewerProps) {
             type='secondary'
             size='s'
             startIcon='plus'
-            label={(<>
-              <span className={styles.newButtonLabel}>
-                {t('new translation')}
-              </span>
-              <span className={styles.newButtonLabelShort}>
-                {t('new')}
-              </span>
-            </>)}
+            label={
+              <>
+                <span className={styles.newButtonLabel}>
+                  {t('new translation')}
+                </span>
+                <span className={styles.newButtonLabelShort}>{t('new')}</span>
+              </>
+            }
             onClick={addTranslation}
             isDisabled={
               singleProcessingStore.data.isFetchingData ||

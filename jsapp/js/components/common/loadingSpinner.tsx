@@ -27,16 +27,19 @@ export default function LoadingSpinner(props: LoadingSpinnerProps) {
 
   return (
     <div
-      className={cx({
-        // HACK: we need a literal `loadingSpinner` here for some old code
-        // places that display `<LoadingSpinner>` directly inside
-        // `<bem.FormView>`, see `_kobo.form-view.scss` for details.
-        // DO NOT USE, if needed go for the custom `className` prop.
-        loadingSpinner: true,
-        [styles.loading]: true,
-        [styles.loadingTypeRegular]: spinnerType === 'regular',
-        [styles.loadingHasDefaultMessage]: props.message === undefined,
-      }, props.className)}
+      className={cx(
+        {
+          // HACK: we need a literal `loadingSpinner` here for some old code
+          // places that display `<LoadingSpinner>` directly inside
+          // `<bem.FormView>`, see `_kobo.form-view.scss` for details.
+          // DO NOT USE, if needed go for the custom `className` prop.
+          loadingSpinner: true,
+          [styles.loading]: true,
+          [styles.loadingTypeRegular]: spinnerType === 'regular',
+          [styles.loadingHasDefaultMessage]: props.message === undefined,
+        },
+        props.className
+      )}
       data-cy={props['data-cy']}
     >
       <div className={styles.loadingInner}>

@@ -18,7 +18,7 @@ import type {AssetResponse} from 'js/dataInterface';
 interface AssetRouteProps {
   params: {
     uid: string;
-  }
+  };
 }
 
 interface AssetRouteState {
@@ -41,19 +41,35 @@ export default class AssetRoute extends React.Component<
 
   componentDidMount() {
     this.unlisteners.push(
-      actions.library.moveToCollection.completed.listen(this.onAssetChanged.bind(this)),
-      actions.library.subscribeToCollection.completed.listen(this.onSubscribeToCollectionCompleted.bind(this)),
-      actions.library.unsubscribeFromCollection.completed.listen(this.onUnsubscribeFromCollectionCompleted.bind(this)),
-      actions.resources.loadAsset.completed.listen(this.onAssetChanged.bind(this)),
-      actions.resources.updateAsset.completed.listen(this.onAssetChanged.bind(this)),
-      actions.resources.cloneAsset.completed.listen(this.onAssetChanged.bind(this)),
-      actions.resources.createResource.completed.listen(this.onAssetChanged.bind(this)),
+      actions.library.moveToCollection.completed.listen(
+        this.onAssetChanged.bind(this)
+      ),
+      actions.library.subscribeToCollection.completed.listen(
+        this.onSubscribeToCollectionCompleted.bind(this)
+      ),
+      actions.library.unsubscribeFromCollection.completed.listen(
+        this.onUnsubscribeFromCollectionCompleted.bind(this)
+      ),
+      actions.resources.loadAsset.completed.listen(
+        this.onAssetChanged.bind(this)
+      ),
+      actions.resources.updateAsset.completed.listen(
+        this.onAssetChanged.bind(this)
+      ),
+      actions.resources.cloneAsset.completed.listen(
+        this.onAssetChanged.bind(this)
+      ),
+      actions.resources.createResource.completed.listen(
+        this.onAssetChanged.bind(this)
+      )
     );
     this.loadCurrentAsset();
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   componentWillReceiveProps(nextProps: AssetRouteProps) {
@@ -94,7 +110,9 @@ export default class AssetRoute extends React.Component<
         // Remove any 'subscribed' item from the array. There is a bug where
         // duplicated items are present in the array, so we need to make sure
         // all of them are removed.
-        newAsset.access_types = newAsset.access_types.filter((item) => item !== ACCESS_TYPES.subscribed);
+        newAsset.access_types = newAsset.access_types.filter(
+          (item) => item !== ACCESS_TYPES.subscribed
+        );
 
         // Cleanup if empty array is left
         if (newAsset.access_types.length === 0) {
@@ -114,37 +132,39 @@ export default class AssetRoute extends React.Component<
 
   render() {
     if (!this.state.asset) {
-      return (<LoadingSpinner/>);
+      return <LoadingSpinner />;
     }
 
     const assetName = assetUtils.getAssetDisplayName(this.state.asset);
-    const isUserSubscribed = this.state.asset.access_types && this.state.asset.access_types.includes(ACCESS_TYPES.subscribed);
+    const isUserSubscribed =
+      this.state.asset.access_types &&
+      this.state.asset.access_types.includes(ACCESS_TYPES.subscribed);
 
     return (
       <DocumentTitle title={`${assetName.final} | KoboToolbox`}>
         <bem.FormView m='library-asset'>
           <bem.FormView__row>
             <bem.FormView__cell m={['columns', 'columns-right', 'first']}>
-              {isUserSubscribed &&
+              {isUserSubscribed && (
                 <bem.FormView__cell m='subscribed-badge'>
                   <i className='k-icon k-icon-folder-subscribed' />
                   {t('Subscribed')}
                 </bem.FormView__cell>
-              }
+              )}
 
-              <AssetPublicButton asset={this.state.asset}/>
+              <AssetPublicButton asset={this.state.asset} />
 
-              <AssetActionButtons asset={this.state.asset}/>
+              <AssetActionButtons asset={this.state.asset} />
             </bem.FormView__cell>
 
             <bem.FormView__cell m='first'>
-              <AssetBreadcrumbs asset={this.state.asset}/>
+              <AssetBreadcrumbs asset={this.state.asset} />
             </bem.FormView__cell>
 
-            <AssetInfoBox asset={this.state.asset}/>
+            <AssetInfoBox asset={this.state.asset} />
           </bem.FormView__row>
 
-          {this.state.asset.asset_type !== ASSET_TYPES.collection.id &&
+          {this.state.asset.asset_type !== ASSET_TYPES.collection.id && (
             <bem.FormView__row>
               <bem.FormView__cell m={['columns', 'first']}>
                 <bem.FormView__cell m='label'>
@@ -152,17 +172,19 @@ export default class AssetRoute extends React.Component<
                 </bem.FormView__cell>
               </bem.FormView__cell>
 
-              <AssetContentSummary asset={this.state.asset}/>
+              <AssetContentSummary asset={this.state.asset} />
             </bem.FormView__row>
-          }
+          )}
 
-          {this.state.asset.asset_type === ASSET_TYPES.collection.id &&
+          {this.state.asset.asset_type === ASSET_TYPES.collection.id && (
             <bem.FormView__row>
-              <bem.FormView__cell m={['box', 'bordered', 'assets-table-wrapper']}>
-                <CollectionAssetsTable asset={this.state.asset}/>
+              <bem.FormView__cell
+                m={['box', 'bordered', 'assets-table-wrapper']}
+              >
+                <CollectionAssetsTable asset={this.state.asset} />
               </bem.FormView__cell>
             </bem.FormView__row>
-          }
+          )}
         </bem.FormView>
       </DocumentTitle>
     );

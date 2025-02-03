@@ -1,7 +1,11 @@
 import {when} from 'mobx';
 import React, {useContext, useEffect, useMemo, useState} from 'react';
 import {useLocation} from 'react-router-dom';
-import type {AccountLimitDetail, LimitAmount, OneTimeAddOn} from 'js/account/stripe.types';
+import type {
+  AccountLimitDetail,
+  LimitAmount,
+  OneTimeAddOn,
+} from 'js/account/stripe.types';
 import {Limits, USAGE_TYPE} from 'js/account/stripe.types';
 import {getAccountLimits} from 'js/account/stripe.api';
 import subscriptionStore from 'js/account/subscriptionStore';
@@ -59,11 +63,7 @@ export default function Usage() {
     return t('##start_date## to ##end_date##')
       .replace('##start_date##', startDate)
       .replace('##end_date##', endDate);
-  }, [
-    usage.currentPeriodStart,
-    usage.currentPeriodEnd,
-    usage.trackingPeriod,
-  ]);
+  }, [usage.currentPeriodStart, usage.currentPeriodEnd, usage.trackingPeriod]);
 
   // check if stripe is enabled - if so, get limit data
   useEffect(() => {
@@ -96,11 +96,15 @@ export default function Usage() {
             limits.recurringLimits.mt_characters_limit,
           nlpMinuteRemainingLimit:
             typeof limits.remainingLimits.asr_seconds_limit === 'number'
-              ? convertSecondsToMinutes(limits.remainingLimits.asr_seconds_limit)
+              ? convertSecondsToMinutes(
+                  limits.remainingLimits.asr_seconds_limit
+                )
               : limits.remainingLimits.asr_seconds_limit,
           nlpMinuteRecurringLimit:
             typeof limits.recurringLimits.asr_seconds_limit === 'number'
-              ? convertSecondsToMinutes(limits.recurringLimits.asr_seconds_limit)
+              ? convertSecondsToMinutes(
+                  limits.recurringLimits.asr_seconds_limit
+                )
               : limits.recurringLimits.asr_seconds_limit,
           submissionsRemainingLimit: limits.remainingLimits.submission_limit,
           submissionsRecurringLimit: limits.recurringLimits.submission_limit,
@@ -117,7 +121,7 @@ export default function Usage() {
     const availableAddons = oneTimeAddOnsContext.oneTimeAddOns.filter(
       (addon) => addon.is_available
     );
-    
+
     // Find the relevant addons, but first check and make sure add-on
     // limits aren't superceded by an "unlimited" usage limit.
     switch (type) {
@@ -172,7 +176,8 @@ export default function Usage() {
     usageStatus.pending ||
     usageStatus.error ||
     !limits.isLoaded ||
-    (limits.stripeEnabled && (!products.isLoaded || !oneTimeAddOnsContext.isLoaded))
+    (limits.stripeEnabled &&
+      (!products.isLoaded || !oneTimeAddOnsContext.isLoaded))
   ) {
     return <LoadingSpinner />;
   }

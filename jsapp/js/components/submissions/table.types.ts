@@ -1,8 +1,5 @@
 import type {Column} from 'react-table';
-import type {
-  SurveyRow,
-  SubmissionResponse,
-} from 'js/dataInterface';
+import type {SurveyRow, SubmissionResponse} from 'js/dataInterface';
 
 export type SubmissionPageName = 'next' | 'prev';
 
@@ -19,8 +16,8 @@ export interface DataTableSelectedRows {
    * This is a map of `submissionUid`s of selected rows, each pointing towards
    * "is selected" boolean.
    */
-  [sid: string]: boolean
-};
+  [sid: string]: boolean;
+}
 
 // These are the missing typings for the `react-table` needed in DataTable
 // component. Most of the things are left undiscovered, as I relied on

@@ -34,14 +34,12 @@ interface ReportsResponseDataValueNumerical {
   stdev?: number | '*';
 }
 
-export type ReportsResponseDataValue = ReportsResponseDataValueRegular | ReportsResponseDataValueNumerical;
+export type ReportsResponseDataValue =
+  | ReportsResponseDataValueRegular
+  | ReportsResponseDataValueNumerical;
 
 export type ReportsResponseDataValues = Array<
-  [
-    number,
-    ReportsResponseDataValue,
-    string | number | undefined,
-  ]
+  [number, ReportsResponseDataValue, string | number | undefined]
 >;
 
 export interface ReportsResponseData {

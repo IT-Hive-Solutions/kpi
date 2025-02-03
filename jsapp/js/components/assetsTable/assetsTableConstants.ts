@@ -18,7 +18,15 @@ export const ORDER_DIRECTIONS: {[id in OrderDirection]: OrderDirection} = {
   descending: 'descending',
 };
 
-export type AssetsTableColumnName = 'date-modified' | 'icon-status' | 'items-count' | 'languages' | 'name' | 'owner' | 'primary-sector' | 'subscribers-count';
+export type AssetsTableColumnName =
+  | 'date-modified'
+  | 'icon-status'
+  | 'items-count'
+  | 'languages'
+  | 'name'
+  | 'owner'
+  | 'primary-sector'
+  | 'subscribers-count';
 
 export interface AssetsTableColumn {
   label: string;
@@ -34,57 +42,58 @@ export interface AssetsTableColumn {
   filterByMetadataName?: string;
 }
 
-export const ASSETS_TABLE_COLUMNS: {[id: string]: AssetsTableColumn} = Object.freeze({
-  'icon-status': {
-    label: t('Type'),
-    id: 'icon-status',
-    orderBy: 'asset_type',
-    defaultValue: ORDER_DIRECTIONS.ascending,
-  },
-  'date-modified': {
-    label: t('Last Modified'),
-    id: 'date-modified',
-    orderBy: 'date_modified',
-    defaultValue: ORDER_DIRECTIONS.descending,
-  },
-  name: {
-    label: t('Name'),
-    id: 'name',
-    orderBy: 'name',
-    defaultValue: ORDER_DIRECTIONS.ascending,
-  },
-  'items-count': {
-    label: t('Items'),
-    id: 'items-count',
-    // NOTE: currently it is not possible to order by summary.row_count and children.count at the same time
-    // so we disable this column
-    orderBy: null,
-    defaultValue: null,
-  },
-  owner: {
-    label: t('Owner'),
-    id: 'owner',
-    orderBy: 'owner__username',
-    defaultValue: ORDER_DIRECTIONS.ascending,
-  },
-  'subscribers-count': {
-    label: t('Subscribers'),
-    id: 'subscribers-count',
-    orderBy: 'subscribers_count',
-    defaultValue: ORDER_DIRECTIONS.ascending,
-  },
-  languages: {
-    label: t('Languages'),
-    id: 'languages',
-    filterBy: 'summary__languages__icontains',
-    filterByPath: ['summary', 'languages'],
-    filterByMetadataName: 'languages',
-  },
-  'primary-sector': {
-    label: t('Primary Sector'),
-    id: 'primary-sector',
-    filterBy: 'settings__sector__value',
-    filterByPath: ['settings', 'sector'],
-    filterByMetadataName: 'sectors',
-  },
-});
+export const ASSETS_TABLE_COLUMNS: {[id: string]: AssetsTableColumn} =
+  Object.freeze({
+    'icon-status': {
+      label: t('Type'),
+      id: 'icon-status',
+      orderBy: 'asset_type',
+      defaultValue: ORDER_DIRECTIONS.ascending,
+    },
+    'date-modified': {
+      label: t('Last Modified'),
+      id: 'date-modified',
+      orderBy: 'date_modified',
+      defaultValue: ORDER_DIRECTIONS.descending,
+    },
+    name: {
+      label: t('Name'),
+      id: 'name',
+      orderBy: 'name',
+      defaultValue: ORDER_DIRECTIONS.ascending,
+    },
+    'items-count': {
+      label: t('Items'),
+      id: 'items-count',
+      // NOTE: currently it is not possible to order by summary.row_count and children.count at the same time
+      // so we disable this column
+      orderBy: null,
+      defaultValue: null,
+    },
+    owner: {
+      label: t('Owner'),
+      id: 'owner',
+      orderBy: 'owner__username',
+      defaultValue: ORDER_DIRECTIONS.ascending,
+    },
+    'subscribers-count': {
+      label: t('Subscribers'),
+      id: 'subscribers-count',
+      orderBy: 'subscribers_count',
+      defaultValue: ORDER_DIRECTIONS.ascending,
+    },
+    languages: {
+      label: t('Languages'),
+      id: 'languages',
+      filterBy: 'summary__languages__icontains',
+      filterByPath: ['summary', 'languages'],
+      filterByMetadataName: 'languages',
+    },
+    'primary-sector': {
+      label: t('Primary Sector'),
+      id: 'primary-sector',
+      filterBy: 'settings__sector__value',
+      filterByPath: ['settings', 'sector'],
+      filterByMetadataName: 'sectors',
+    },
+  });

@@ -13,7 +13,12 @@ import cx from 'classnames';
  * need to import them - just pass correct strings.
  */
 
-export type ButtonType = 'primary' | 'secondary' | 'danger' | 'secondary-danger' | 'text';
+export type ButtonType =
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'secondary-danger'
+  | 'text';
 
 /**
  * The size is the height of the button, but it also influences the paddings.
@@ -131,20 +136,23 @@ const Button = (props: ButtonProps) => {
 
   const renderButton = () => (
     <button
-      className={cx([
-        'k-button',
-        `k-button--type-${props.type}`,
-        `k-button--size-${props.size}`,
-        props.className,
-      ],{
-        ['k-button--pending']: props.isPending,
-        ['k-button--has-start-icon']: props.startIcon,
-        // Ensures only one icon is being displayed.
-        ['k-button--has-end-icon']: !props.startIcon && props.endIcon,
-        ['k-button--has-label']: Boolean(props.label),
-        ['k-button--full-width']: props.isFullWidth,
-        ['k-button--upper-case']: props.isUpperCase,
-      })}
+      className={cx(
+        [
+          'k-button',
+          `k-button--type-${props.type}`,
+          `k-button--size-${props.size}`,
+          props.className,
+        ],
+        {
+          ['k-button--pending']: props.isPending,
+          ['k-button--has-start-icon']: props.startIcon,
+          // Ensures only one icon is being displayed.
+          ['k-button--has-end-icon']: !props.startIcon && props.endIcon,
+          ['k-button--has-label']: Boolean(props.label),
+          ['k-button--full-width']: props.isFullWidth,
+          ['k-button--upper-case']: props.isUpperCase,
+        }
+      )}
       type={props.isSubmit ? 'submit' : 'button'}
       // The `disabled` attribute is needed so that the button is not keyboard
       // focusable, and `aria-disabled` is needed for accessibility.

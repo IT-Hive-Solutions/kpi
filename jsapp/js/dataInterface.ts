@@ -7,11 +7,7 @@
 
 import {ROOT_URL, COMMON_QUERIES} from './constants';
 import type {LanguageCode} from 'js/components/languages/languagesStore';
-import type {
-  AnyRowTypeName,
-  AssetTypeName,
-  AssetFileType,
-} from 'js/constants';
+import type {AnyRowTypeName, AssetTypeName, AssetFileType} from 'js/constants';
 import type {PermissionCodename} from 'js/components/permissions/permConstants';
 import type {Json} from './components/common/common.interfaces';
 import type {ProjectViewsSettings} from './projects/customViewStore';
@@ -37,7 +33,10 @@ import {
   type ExportTypeName,
 } from './components/projectDownloads/exportsConstants';
 import {type LangString} from './utils';
-import type {HookAuthLevelName, HookExportTypeName} from './components/RESTServices/RESTServicesForm';
+import type {
+  HookAuthLevelName,
+  HookExportTypeName,
+} from './components/RESTServices/RESTServicesForm';
 
 interface AssetsRequestData {
   q?: string;
@@ -579,10 +578,12 @@ export interface AnalysisFormJsonField {
   language: string;
   source: string;
   xpath: string;
-  settings: {
-    mode: string;
-    engine: string;
-  } | '??';
+  settings:
+    | {
+        mode: string;
+        engine: string;
+      }
+    | '??';
   path: string[];
   choices?: Array<{
     uuid: string;
@@ -1120,14 +1121,19 @@ export const dataInterface: DataInterface = {
    * external services
    */
 
-  getHooks(uid: string): JQuery.jqXHR<PaginatedResponse<ExternalServiceHookResponse>> {
+  getHooks(
+    uid: string
+  ): JQuery.jqXHR<PaginatedResponse<ExternalServiceHookResponse>> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${uid}/hooks/`,
       method: 'GET',
     });
   },
 
-  getHook(uid: string, hookUid: string): JQuery.jqXHR<ExternalServiceHookResponse> {
+  getHook(
+    uid: string,
+    hookUid: string
+  ): JQuery.jqXHR<ExternalServiceHookResponse> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${uid}/hooks/${hookUid}/`,
       method: 'GET',
@@ -1168,21 +1174,31 @@ export const dataInterface: DataInterface = {
     });
   },
 
-  getHookLogs(uid: string, hookUid: string): JQuery.jqXHR<PaginatedResponse<ExternalServiceLogResponse>> {
+  getHookLogs(
+    uid: string,
+    hookUid: string
+  ): JQuery.jqXHR<PaginatedResponse<ExternalServiceLogResponse>> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${uid}/hooks/${hookUid}/logs/`,
       method: 'GET',
     });
   },
 
-  getHookLog(uid: string, hookUid: string, lid: string): JQuery.jqXHR<ExternalServiceLogResponse> {
+  getHookLog(
+    uid: string,
+    hookUid: string,
+    lid: string
+  ): JQuery.jqXHR<ExternalServiceLogResponse> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${uid}/hooks/${hookUid}/logs/${lid}/`,
       method: 'GET',
     });
   },
 
-  retryExternalServiceLogs(uid: string, hookUid: string): JQuery.jqXHR<RetryExternalServiceLogsResponse> {
+  retryExternalServiceLogs(
+    uid: string,
+    hookUid: string
+  ): JQuery.jqXHR<RetryExternalServiceLogsResponse> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${uid}/hooks/${hookUid}/retry/`,
       method: 'PATCH',
@@ -1447,7 +1463,9 @@ export const dataInterface: DataInterface = {
     }
   },
 
-  getAssetExports(assetUid: string): JQuery.jqXHR<PaginatedResponse<ExportDataResponse>> {
+  getAssetExports(
+    assetUid: string
+  ): JQuery.jqXHR<PaginatedResponse<ExportDataResponse>> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${assetUid}/exports/`,
       data: {
@@ -1472,7 +1490,10 @@ export const dataInterface: DataInterface = {
     });
   },
 
-  getAssetExport(assetUid: string, exportUid: string): JQuery.jqXHR<ExportDataResponse> {
+  getAssetExport(
+    assetUid: string,
+    exportUid: string
+  ): JQuery.jqXHR<ExportDataResponse> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${assetUid}/exports/${exportUid}/`,
       method: 'GET',
@@ -1919,13 +1940,19 @@ export const dataInterface: DataInterface = {
     });
   },
 
-  getEnketoEditLink(uid: string, sid: string): JQuery.jqXHR<EnketoLinkResponse> {
+  getEnketoEditLink(
+    uid: string,
+    sid: string
+  ): JQuery.jqXHR<EnketoLinkResponse> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${uid}/data/${sid}/enketo/edit/?return_url=false`,
       method: 'GET',
     });
   },
-  getEnketoViewLink(uid: string, sid: string): JQuery.jqXHR<EnketoLinkResponse> {
+  getEnketoViewLink(
+    uid: string,
+    sid: string
+  ): JQuery.jqXHR<EnketoLinkResponse> {
     return $ajax({
       url: `${ROOT_URL}/api/v2/assets/${uid}/data/${sid}/enketo/view/`,
       method: 'GET',

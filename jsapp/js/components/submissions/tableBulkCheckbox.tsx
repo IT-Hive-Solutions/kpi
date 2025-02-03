@@ -44,17 +44,21 @@ export function TableBulkCheckbox(props: TableBulkCheckboxProps) {
 
       <PopoverMenu
         type='table-bulk-checkbox'
-        triggerLabel={
-          <Icon name='caret-down' size='s' />
-        }
+        triggerLabel={<Icon name='caret-down' size='s' />}
         additionalModifiers={['right']}
       >
         <bem.PopoverMenu__link onClick={onSelectAllPages}>
-          {t('Select all results (##count##)').replace('##count##', String(props.totalRowsCount))}
+          {t('Select all results (##count##)').replace(
+            '##count##',
+            String(props.totalRowsCount)
+          )}
         </bem.PopoverMenu__link>
 
         <bem.PopoverMenu__link onClick={onSelectCurrentPage}>
-          {t('Select visible results (##count##)').replace('##count##', String(props.visibleRowsCount))}
+          {t('Select visible results (##count##)').replace(
+            '##count##',
+            String(props.visibleRowsCount)
+          )}
         </bem.PopoverMenu__link>
 
         <bem.PopoverMenu__link onClick={onClearSelection}>

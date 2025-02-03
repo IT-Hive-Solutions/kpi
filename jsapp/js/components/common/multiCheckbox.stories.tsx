@@ -30,13 +30,13 @@ export default {
   args: {
     allChecked: false,
     numberOfItems: 3,
-  }
+  },
 } as ComponentMeta<typeof MultiCheckbox>;
 
 const Template: ComponentStory<typeof MultiCheckbox> = (args: any) => {
   const items = Array.from({length: args.numberOfItems}, () => getRandomItem());
   if (args.allChecked) {
-    items.map((item => item.checked = true))
+    items.map((item) => (item.checked = true));
   }
   return <MultiCheckbox {...args} items={items} />;
 };

@@ -29,7 +29,9 @@ export default function MyOrgProjectsRoute() {
   // We need to load organization data to build the api url.
   useEffect(() => {
     if (orgQuery.data) {
-      setApiUrl(endpoints.ORG_ASSETS_URL.replace(':organization_id', orgQuery.data.id));
+      setApiUrl(
+        endpoints.ORG_ASSETS_URL.replace(':organization_id', orgQuery.data.id)
+      );
     }
   }, [orgQuery.data]);
 

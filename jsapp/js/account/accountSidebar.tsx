@@ -187,10 +187,7 @@ function AccountSidebar() {
     );
   }
 
-  return renderSingleUserOrgSidebar(
-    isStripeEnabled,
-    orgQuery.data.is_owner
-  );
+  return renderSingleUserOrgSidebar(isStripeEnabled, orgQuery.data.is_owner);
 }
 
 export default observer(AccountSidebar);

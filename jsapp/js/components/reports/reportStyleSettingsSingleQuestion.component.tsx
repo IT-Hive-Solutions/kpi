@@ -8,7 +8,10 @@ import Modal from 'js/components/common/modal';
 import ReportTypeEditor from './reportTypeEditor.component';
 import ReportColorsEditor from './reportColorsEditor.component';
 import Button from 'js/components/common/button';
-import ReportsModalTabs, {ReportsModalTabNames, DEFAULT_REPORTS_MODAL_TAB} from 'js/components/reports/reportsModalTabs.component';
+import ReportsModalTabs, {
+  ReportsModalTabNames,
+  DEFAULT_REPORTS_MODAL_TAB,
+} from 'js/components/reports/reportsModalTabs.component';
 
 // Utilities
 import {actions} from 'js/actions';
@@ -58,10 +61,14 @@ export default class ReportStyleSettingsSingleQuestion extends React.Component<
 
   componentDidMount() {
     this.unlisteners.push(
-      actions.reports.setStyle.completed.listen(this.onSetStyleCompleted.bind(this)),
+      actions.reports.setStyle.completed.listen(
+        this.onSetStyleCompleted.bind(this)
+      ),
       actions.reports.setStyle.failed.listen(this.onSetStyleFailed.bind(this)),
-      actions.reports.setCustom.completed.listen(this.onSetCustomCompleted.bind(this)),
-      actions.reports.setCustom.failed.listen(this.onSetCustomFailed.bind(this)),
+      actions.reports.setCustom.completed.listen(
+        this.onSetCustomCompleted.bind(this)
+      ),
+      actions.reports.setCustom.failed.listen(this.onSetCustomFailed.bind(this))
     );
 
     let specificSettings: {[rowName: string]: ReportStyle} | undefined;
@@ -78,7 +85,10 @@ export default class ReportStyleSettingsSingleQuestion extends React.Component<
       specificSettings?.[this.props.question] &&
       Object.keys(specificSettings[this.props.question]).length
     ) {
-      const reportStyle = Object.assign({}, specificSettings[this.props.question]);
+      const reportStyle = Object.assign(
+        {},
+        specificSettings[this.props.question]
+      );
       this.setState({reportStyle: reportStyle});
     }
   }
@@ -105,7 +115,6 @@ export default class ReportStyleSettingsSingleQuestion extends React.Component<
     this.setState({isPending: false});
   }
 
-
   saveSettings(reset: boolean) {
     const assetUid = this.props.parentState.asset?.uid;
     const customReport = this.props.parentState.currentCustomReport;
@@ -117,7 +126,9 @@ export default class ReportStyleSettingsSingleQuestion extends React.Component<
     if (!customReport) {
       const parentReportStyles = this.props.parentState.reportStyles;
       if (parentReportStyles) {
-        parentReportStyles.specified[this.props.question] = reset ? {} : this.state.reportStyle;
+        parentReportStyles.specified[this.props.question] = reset
+          ? {}
+          : this.state.reportStyle;
         actions.reports.setStyle(assetUid, parentReportStyles);
         this.setState({isPending: true});
       }
@@ -139,7 +150,11 @@ export default class ReportStyleSettingsSingleQuestion extends React.Component<
           cridReport.specified[this.props.question] = newStyle;
         }
 
-        actions.reports.setCustom(assetUid, parentReportCustom, customReport.crid);
+        actions.reports.setCustom(
+          assetUid,
+          parentReportCustom,
+          customReport.crid
+        );
         this.setState({isPending: true});
       }
     }
@@ -162,7 +177,10 @@ export default class ReportStyleSettingsSingleQuestion extends React.Component<
       <bem.GraphSettings>
         <Modal.Tabs>
           <ReportsModalTabs
-            tabs={[ReportsModalTabNames['chart-type'], ReportsModalTabNames.colors]}
+            tabs={[
+              ReportsModalTabNames['chart-type'],
+              ReportsModalTabNames.colors,
+            ]}
             activeTabName={this.state.activeModalTab}
             onRequestTabChange={this.toggleTab.bind(this)}
           />
@@ -170,7 +188,8 @@ export default class ReportStyleSettingsSingleQuestion extends React.Component<
 
         <Modal.Body>
           <div className='tabs-content'>
-            {this.state.activeModalTab === ReportsModalTabNames['chart-type'] && (
+            {this.state.activeModalTab ===
+              ReportsModalTabNames['chart-type'] && (
               <div id='graph-type'>
                 <ReportTypeEditor
                   style={this.state.reportStyle}

@@ -1,12 +1,8 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import { TextInput, TextInputProps } from '@mantine/core';
+import {TextInput, TextInputProps} from '@mantine/core';
 import Icon from './icon';
 
-const inputSizes: Array<TextInputProps['size']> = [
-  'sm',
-  'md',
-  'lg',
-];
+const inputSizes: Array<TextInputProps['size']> = ['sm', 'md', 'lg'];
 
 export default {
   title: 'common/TextInput',
@@ -81,7 +77,7 @@ export const WithError: Story = {
   args: {
     label: 'Email',
     placeholder: 'Enter your email',
-    value: "not an email",
+    value: 'not an email',
     error: 'Invalid email address',
     size: 'md',
   },

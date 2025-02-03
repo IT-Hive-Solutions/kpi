@@ -109,7 +109,10 @@ interface AlertifyDialogInstance {
   resizeTo: (width: number, height: number) => void;
   restore: Function;
   /** Pass whole object or two parameters. Returns back the updated instance? */
-  set: (keyOrObject: AlertifyDialogSettings | string, value?: any) => AlertifyDialogInstance;
+  set: (
+    keyOrObject: AlertifyDialogSettings | string,
+    value?: any
+  ) => AlertifyDialogInstance;
   setContent: (content: any) => void;
   setHeader: (content: any) => void;
   setMessage: (message: string) => void;
@@ -233,7 +236,7 @@ declare module 'alertifyjs' {
 interface HashHistoryListenData {
   action: string;
   hash: string;
-  key: string|null;
+  key: string | null;
   pathname: string;
   query: {};
   search: string;

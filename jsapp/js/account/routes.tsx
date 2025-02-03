@@ -16,7 +16,6 @@ import {
 } from 'js/account/routes.constants';
 
 export default function routes() {
-
   return (
     <>
       <Route

@@ -25,7 +25,8 @@ describe('getSupplementalPathParts', () => {
   });
 
   it('should return proper path parts for translation of a nested question', () => {
-    const path = '_supplementalDetails/outer_group/middle_group/inner_group/What_did_you_hear/transcript_fr';
+    const path =
+      '_supplementalDetails/outer_group/middle_group/inner_group/What_did_you_hear/transcript_fr';
     const test = getSupplementalPathParts(path);
     chai.expect(test).to.deep.equal({
       sourceRowName: 'What_did_you_hear',
@@ -36,7 +37,8 @@ describe('getSupplementalPathParts', () => {
   });
 
   it('should return proper path parts for analysis question', () => {
-    const path = '_supplementalDetails/your_name/a1234567-a123-123a-12a3-123aaaa45678';
+    const path =
+      '_supplementalDetails/your_name/a1234567-a123-123a-12a3-123aaaa45678';
     const test = getSupplementalPathParts(path);
     chai.expect(test).to.deep.equal({
       sourceRowName: 'your_name',
@@ -47,7 +49,8 @@ describe('getSupplementalPathParts', () => {
   });
 
   it('should return proper path parts for analysis question of a nested question', () => {
-    const path = '_supplementalDetails/outer_group/middle_group/inner_group/What_did_you_hear/a1234567-a123-123a-12a3-123aaaa45678';
+    const path =
+      '_supplementalDetails/outer_group/middle_group/inner_group/What_did_you_hear/a1234567-a123-123a-12a3-123aaaa45678';
     const test = getSupplementalPathParts(path);
     chai.expect(test).to.deep.equal({
       sourceRowName: 'What_did_you_hear',

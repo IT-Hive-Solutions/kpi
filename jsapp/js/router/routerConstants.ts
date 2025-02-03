@@ -57,7 +57,8 @@ export const PROJECTS_ROUTES: {readonly [key: string]: string} = {
   CUSTOM_VIEW: ROUTES.PROJECTS_ROOT + '/:viewUid',
 };
 
-export const PROCESSING_ROUTE_GENERIC = ROUTES.FORM_PROCESSING_ROOT + '/:tabName';
+export const PROCESSING_ROUTE_GENERIC =
+  ROUTES.FORM_PROCESSING_ROOT + '/:tabName';
 export const PROCESSING_ROUTES: {readonly [key: string]: string} = {
   TRANSCRIPT: PROCESSING_ROUTE_GENERIC.replace(':tabName', 'transcript'),
   TRANSLATIONS: PROCESSING_ROUTE_GENERIC.replace(':tabName', 'translations'),

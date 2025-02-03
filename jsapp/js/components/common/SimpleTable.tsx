@@ -17,9 +17,12 @@ interface SimpleTableProps extends MantineStyleProps {
  * headings, column data, and has optional minimum width. You can pass all
  * standard Mantine style props down to the inner `Table`.
  */
-export default function SimpleTable(
-  {head, body, minWidth, ...styleProps}: SimpleTableProps
-) {
+export default function SimpleTable({
+  head,
+  body,
+  minWidth,
+  ...styleProps
+}: SimpleTableProps) {
   const table = (
     <Table
       {...styleProps}

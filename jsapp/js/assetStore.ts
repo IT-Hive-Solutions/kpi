@@ -3,7 +3,9 @@ import {parsed} from './assetParserUtils';
 import {actions} from './actions';
 import type {AssetResponse} from 'js/dataInterface';
 
-export interface AssetStoreData {[uid: string]: AssetResponse}
+export interface AssetStoreData {
+  [uid: string]: AssetResponse;
+}
 
 interface WhenLoadedListeners {
   [assetUid: string]: Array<(foundAsset: AssetResponse) => void>;
@@ -18,9 +20,15 @@ class AssetStore extends Reflux.Store {
   private whenLoadedListeners: WhenLoadedListeners = {};
 
   init() {
-    actions.resources.loadAsset.completed.listen(this.onLoadAssetCompleted.bind(this));
-    actions.resources.updateAsset.completed.listen(this.onUpdateAssetCompleted.bind(this));
-    actions.resources.deleteAsset.completed.listen(this.onDeleteAssetCompleted.bind(this));
+    actions.resources.loadAsset.completed.listen(
+      this.onLoadAssetCompleted.bind(this)
+    );
+    actions.resources.updateAsset.completed.listen(
+      this.onUpdateAssetCompleted.bind(this)
+    );
+    actions.resources.deleteAsset.completed.listen(
+      this.onDeleteAssetCompleted.bind(this)
+    );
   }
 
   onDeleteAssetCompleted(resp: AssetResponse) {

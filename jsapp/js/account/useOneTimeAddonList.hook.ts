@@ -1,7 +1,5 @@
 import {createContext, useState} from 'react';
-import type {
-  OneTimeAddOn,
-} from 'js/account/stripe.types';
+import type {OneTimeAddOn} from 'js/account/stripe.types';
 import useWhenStripeIsEnabled from 'js/hooks/useWhenStripeIsEnabled.hook';
 import {getOneTimeAddOns} from 'js/account/stripe.api';
 

@@ -12,7 +12,11 @@ bem.HelpBubble = makeBem(null, 'help-bubble');
 bem.HelpBubble__close = makeBem(bem.HelpBubble, 'close', 'button');
 bem.HelpBubble__back = makeBem(bem.HelpBubble, 'back', 'button');
 bem.HelpBubble__trigger = makeBem(bem.HelpBubble, 'trigger', 'button');
-bem.HelpBubble__triggerCounter = makeBem(bem.HelpBubble, 'trigger-counter', 'span');
+bem.HelpBubble__triggerCounter = makeBem(
+  bem.HelpBubble,
+  'trigger-counter',
+  'span'
+);
 bem.HelpBubble__popup = makeBem(bem.HelpBubble, 'popup');
 bem.HelpBubble__popupContent = makeBem(bem.HelpBubble, 'popup-content');
 bem.HelpBubble__row = makeBem(bem.HelpBubble, 'row');
@@ -106,17 +110,16 @@ class HelpBubble extends React.Component<{}, HelpBubbleState> {
     this.open();
   }
 
-  renderSnippetRow(msg: InAppMessage, clickCallback: (messageUid: string) => void) {
+  renderSnippetRow(
+    msg: InAppMessage,
+    clickCallback: (messageUid: string) => void
+  ) {
     const modifiers = ['message', 'message-clickable'];
     if (!msg.interactions.readTime || msg.always_display_as_new) {
       modifiers.push('message-unread');
     }
     return (
-      <bem.HelpBubble__row
-        m={modifiers}
-        key={msg.uid}
-        onClick={clickCallback}
-      >
+      <bem.HelpBubble__row m={modifiers} key={msg.uid} onClick={clickCallback}>
         <header>{msg.title}</header>
         <div dangerouslySetInnerHTML={{__html: msg.html.snippet}} />
       </bem.HelpBubble__row>
@@ -150,7 +153,9 @@ class HelpBubble extends React.Component<{}, HelpBubbleState> {
               <i className='k-icon k-icon-help-articles' />
               <header>{t('Help Center')}</header>
               <p>
-                {t('Find answers in our extensive library of user support articles and tutorials.')}
+                {t(
+                  'Find answers in our extensive library of user support articles and tutorials.'
+                )}
               </p>
             </bem.HelpBubble__rowAnchor>
           )}
@@ -165,7 +170,9 @@ class HelpBubble extends React.Component<{}, HelpBubbleState> {
               <i className='k-icon k-icon-help-forum' />
               <header>{t('Community Forum')}</header>
               <p>
-                {t('Connect with thousands of KoboToolbox users, ask questions, and share ideas.')}
+                {t(
+                  'Connect with thousands of KoboToolbox users, ask questions, and share ideas.'
+                )}
               </p>
             </bem.HelpBubble__rowAnchor>
           )}
@@ -180,7 +187,9 @@ class HelpBubble extends React.Component<{}, HelpBubbleState> {
               <i className='k-icon k-icon-help-academy' />
               <header>{t('KoboToolbox Academy')}</header>
               <p>
-                {t('Enroll in an online self-paced course designed by Kobo staff experts.')}
+                {t(
+                  'Enroll in an online self-paced course designed by Kobo staff experts.'
+                )}
               </p>
             </bem.HelpBubble__rowAnchor>
           )}
@@ -196,7 +205,10 @@ class HelpBubble extends React.Component<{}, HelpBubbleState> {
             if (!msg.interactions.readTime || msg.always_display_as_new) {
               modifiers.push('message-unread');
             }
-            return this.renderSnippetRow(msg, this.onSelectMessage.bind(this, msg.uid));
+            return this.renderSnippetRow(
+              msg,
+              this.onSelectMessage.bind(this, msg.uid)
+            );
           })}
         </bem.HelpBubble__popupContent>
       </bem.HelpBubble__popup>
@@ -219,7 +231,12 @@ class HelpBubble extends React.Component<{}, HelpBubbleState> {
 
             return (
               <bem.HelpBubble__rowWrapper key={msg.uid}>
-                <bem.HelpBubble__close onClick={this.store.markMessageAcknowledged.bind(this.store, msg.uid)}>
+                <bem.HelpBubble__close
+                  onClick={this.store.markMessageAcknowledged.bind(
+                    this.store,
+                    msg.uid
+                  )}
+                >
                   <i className='k-icon k-icon-close' />
                 </bem.HelpBubble__close>
 
@@ -252,7 +269,9 @@ class HelpBubble extends React.Component<{}, HelpBubbleState> {
           <i className='k-icon k-icon-close' />
         </bem.HelpBubble__close>
 
-        <bem.HelpBubble__back onClick={this.store.unselectMessage.bind(this.store)}>
+        <bem.HelpBubble__back
+          onClick={this.store.unselectMessage.bind(this.store)}
+        >
           <i className='k-icon k-icon-angle-left' />
         </bem.HelpBubble__back>
 
@@ -277,7 +296,7 @@ class HelpBubble extends React.Component<{}, HelpBubbleState> {
         data-tip={t('Help')}
         disabled={this.store.isLoading}
       >
-        <Icon name='help' size='l'/>
+        <Icon name='help' size='l' />
 
         {this.store.unreadCount !== 0 && (
           <bem.HelpBubble__triggerCounter>

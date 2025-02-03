@@ -102,12 +102,7 @@ export async function acceptInvite(inviteUid: string) {
       {prependRootUrl: false, notifyAboutError: false}
     );
   } catch (error) {
-    handleApiFail(
-      error as FailResponse,
-      t(
-        'Failed to accept invite.'
-      )
-    );
+    handleApiFail(error as FailResponse, t('Failed to accept invite.'));
   }
 
   return response;
@@ -124,12 +119,7 @@ export async function declineInvite(inviteUid: string) {
       {prependRootUrl: false, notifyAboutError: false}
     );
   } catch (error) {
-    handleApiFail(
-      error as FailResponse,
-      t(
-        'Failed to decline invite'
-      )
-    );
+    handleApiFail(error as FailResponse, t('Failed to decline invite'));
   }
   return response;
 }
@@ -138,11 +128,11 @@ export async function declineInvite(inviteUid: string) {
 export async function getAllInvites() {
   let invites;
   try {
-    invites = await fetchGet<PaginatedResponse<InvitesResponse>>(INVITE_URL, {notifyAboutError: false});
+    invites = await fetchGet<PaginatedResponse<InvitesResponse>>(INVITE_URL, {
+      notifyAboutError: false,
+    });
   } catch (error) {
-    handleApiFail(
-      error as FailResponse,
-    );
+    handleApiFail(error as FailResponse);
   }
 
   return invites;
@@ -155,7 +145,9 @@ export async function getAllInvites() {
  * projects per transfer. This is not supported by the UI right now.
  */
 export async function getInviteDetail(inviteUid: string) {
-  return fetchGet<InvitesResponse>(INVITE_URL + inviteUid, {notifyAboutError: false});
+  return fetchGet<InvitesResponse>(INVITE_URL + inviteUid, {
+    notifyAboutError: false,
+  });
 }
 
 /** Check if the invite is meant for the currently logged in user. */
@@ -174,12 +166,7 @@ export async function isInviteForLoggedInUser(inviteUid: string) {
         getUsernameFromUrl(data.recipient);
     });
   } catch (error) {
-    handleApiFail(
-      error as FailResponse,
-      t(
-        'Invite is invaild.'
-      )
-    );
+    handleApiFail(error as FailResponse, t('Invite is invaild.'));
   }
 
   return inviteIsCorrect;
@@ -195,9 +182,7 @@ export async function getAssetFromInviteUid(inviteUid: string) {
       };
     });
   } catch (error) {
-    handleApiFail(
-      error as FailResponse,
-    );
+    handleApiFail(error as FailResponse);
   }
   return displayDetails;
 }

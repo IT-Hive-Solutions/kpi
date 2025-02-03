@@ -27,14 +27,12 @@ interface MemberRemoveModalProps {
  * Note: it's always open - if you need to hide it, just don't render it at
  * the parent level.
  */
-export default function MemberRemoveModal(
-  {
-    username,
-    isRemovingSelf,
-    onConfirmDone,
-    onCancel,
-  }: MemberRemoveModalProps
-) {
+export default function MemberRemoveModal({
+  username,
+  isRemovingSelf,
+  onConfirmDone,
+  onCancel,
+}: MemberRemoveModalProps) {
   const removeMember = useRemoveOrganizationMember();
   const mmoLabel = getSimpleMMOLabel(
     envStore.data,
@@ -47,14 +45,22 @@ export default function MemberRemoveModal(
   // one for leaving the organization.
   const REMOVE_MEMBER_TEXT = {
     title: t('Remove ##username## from this ##TEAM_OR_ORGANIZATION##'),
-    description: t('Are you sure you want to remove ##username## from this ##TEAM_OR_ORGANIZATION##?'),
-    dangerMessage: t('Removing them from this ##TEAM_OR_ORGANIZATION## also means they will immediately lose access to any projects owned by your ##TEAM_OR_ORGANIZATION##. This action cannot be undone.'),
+    description: t(
+      'Are you sure you want to remove ##username## from this ##TEAM_OR_ORGANIZATION##?'
+    ),
+    dangerMessage: t(
+      'Removing them from this ##TEAM_OR_ORGANIZATION## also means they will immediately lose access to any projects owned by your ##TEAM_OR_ORGANIZATION##. This action cannot be undone.'
+    ),
     confirmButtonLabel: t('Remove member'),
   };
   const REMOVE_SELF_TEXT = {
     title: t('Leave this ##TEAM_OR_ORGANIZATION##'),
-    description: t('Are you sure you want to leave this ##TEAM_OR_ORGANIZATION##?'),
-    dangerMessage: t('You will immediately lose access to any projects owned by this ##TEAM_OR_ORGANIZATION##. This action cannot be undone.'),
+    description: t(
+      'Are you sure you want to leave this ##TEAM_OR_ORGANIZATION##?'
+    ),
+    dangerMessage: t(
+      'You will immediately lose access to any projects owned by this ##TEAM_OR_ORGANIZATION##. This action cannot be undone.'
+    ),
     confirmButtonLabel: t('Leave ##TEAM_OR_ORGANIZATION##'),
   };
   const textToDisplay = isRemovingSelf ? REMOVE_SELF_TEXT : REMOVE_MEMBER_TEXT;
@@ -83,7 +89,11 @@ export default function MemberRemoveModal(
       <KoboModalContent>
         <p>{textToDisplay.description}</p>
 
-        <InlineMessage type='error' icon='alert' message={textToDisplay.dangerMessage}/>
+        <InlineMessage
+          type='error'
+          icon='alert'
+          message={textToDisplay.dangerMessage}
+        />
       </KoboModalContent>
 
       <KoboModalFooter>

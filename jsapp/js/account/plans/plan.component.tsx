@@ -38,7 +38,10 @@ import {PlanContainer} from 'js/account/plans/planContainer.component';
 import {ProductsContext} from '../useProducts.hook';
 import {ACCOUNT_ROUTES} from 'js/account/routes.constants';
 import {useRefreshApiFetcher} from 'js/hooks/useRefreshApiFetcher.hook';
-import {useOrganizationQuery, type Organization} from 'js/account/organization/organizationQuery';
+import {
+  useOrganizationQuery,
+  type Organization,
+} from 'js/account/organization/organizationQuery';
 
 export interface PlanState {
   subscribedProduct: null | SubscriptionInfo[];

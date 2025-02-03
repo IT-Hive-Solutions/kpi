@@ -25,27 +25,27 @@ export default class LibrarySidebar extends React.Component<
   state = {
     myLibraryCount: 0,
     isLoading: true,
-  }
+  };
 
   componentDidMount() {
     myLibraryStore.listen(this.myLibraryStoreChanged.bind(this), this);
     this.setState({
       isLoading: false,
-      myLibraryCount: myLibraryStore.getCurrentUserTotalAssets()
+      myLibraryCount: myLibraryStore.getCurrentUserTotalAssets(),
     });
   }
 
   myLibraryStoreChanged() {
     this.setState({
       isLoading: false,
-      myLibraryCount: myLibraryStore.getCurrentUserTotalAssets()
+      myLibraryCount: myLibraryStore.getCurrentUserTotalAssets(),
     });
   }
 
   showLibraryNewModal(evt: React.TouchEvent<HTMLButtonElement>) {
     evt.preventDefault();
     pageState.showModal({
-      type: MODAL_TYPES.LIBRARY_NEW_ITEM
+      type: MODAL_TYPES.LIBRARY_NEW_ITEM,
     });
   }
 
@@ -68,16 +68,17 @@ export default class LibrarySidebar extends React.Component<
         />
 
         <bem.FormSidebar m={sidebarModifier}>
-          <NavLink
-            className='form-sidebar__navlink'
-            to='/library/my-library'
-          >
+          <NavLink className='form-sidebar__navlink' to='/library/my-library'>
             <bem.FormSidebar__label
               m={{selected: routerIsActive(ROUTES.MY_LIBRARY)}}
             >
-              <i className='k-icon k-icon-library'/>
-              <bem.FormSidebar__labelText>{t('My Library')}</bem.FormSidebar__labelText>
-              <bem.FormSidebar__labelCount>{this.state.myLibraryCount}</bem.FormSidebar__labelCount>
+              <i className='k-icon k-icon-library' />
+              <bem.FormSidebar__labelText>
+                {t('My Library')}
+              </bem.FormSidebar__labelText>
+              <bem.FormSidebar__labelCount>
+                {this.state.myLibraryCount}
+              </bem.FormSidebar__labelCount>
             </bem.FormSidebar__label>
           </NavLink>
 
@@ -88,8 +89,10 @@ export default class LibrarySidebar extends React.Component<
             <bem.FormSidebar__label
               m={{selected: routerIsActive(ROUTES.PUBLIC_COLLECTIONS)}}
             >
-              <i className='k-icon k-icon-library-public'/>
-              <bem.FormSidebar__labelText>{t('Public Collections')}</bem.FormSidebar__labelText>
+              <i className='k-icon k-icon-library-public' />
+              <bem.FormSidebar__labelText>
+                {t('Public Collections')}
+              </bem.FormSidebar__labelText>
             </bem.FormSidebar__label>
           </NavLink>
         </bem.FormSidebar>

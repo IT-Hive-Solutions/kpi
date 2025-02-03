@@ -41,7 +41,7 @@ export function getReportRowTranslatedLabel(
    * to handle it here than in each place that is using this function.
    */
   survey: SurveyRow[] | undefined,
-  translationIndex: number,
+  translationIndex: number
 ): string {
   let label: string | null = null;
 

@@ -46,7 +46,9 @@ export default class MyLibraryRoute extends React.Component<
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   myLibraryStoreChanged() {
@@ -86,14 +88,20 @@ export default class MyLibraryRoute extends React.Component<
   }
 
   render() {
-    let contextualEmptyMessage: React.ReactNode = t('Your search returned no results.');
+    let contextualEmptyMessage: React.ReactNode = t(
+      'Your search returned no results.'
+    );
 
     if (myLibraryStore.data.totalUserAssets === 0) {
       contextualEmptyMessage = (
         <div>
-          {t("Let's get started by creating your first library question, block, template or collection. Click the New button to create it.")}
+          {t(
+            "Let's get started by creating your first library question, block, template or collection. Click the New button to create it."
+          )}
           <div className='pro-tip'>
-            {t('Advanced users: You can also drag and drop XLSForms here and they will be uploaded and converted to library items.')}
+            {t(
+              'Advanced users: You can also drag and drop XLSForms here and they will be uploaded and converted to library items.'
+            )}
           </div>
         </div>
       );
@@ -110,7 +118,9 @@ export default class MyLibraryRoute extends React.Component<
           accept={validFileTypes()}
         >
           <bem.Breadcrumbs m='gray-wrapper'>
-            <bem.Breadcrumbs__crumb>{ROOT_BREADCRUMBS.MY_LIBRARY.label}</bem.Breadcrumbs__crumb>
+            <bem.Breadcrumbs__crumb>
+              {ROOT_BREADCRUMBS.MY_LIBRARY.label}
+            </bem.Breadcrumbs__crumb>
           </bem.Breadcrumbs>
 
           <AssetsTable
@@ -126,13 +136,17 @@ export default class MyLibraryRoute extends React.Component<
             filterValue={this.state.filterValue}
             onFilterChange={this.onAssetsTableFilterChange.bind(this)}
             currentPage={this.state.currentPage}
-            totalPages={typeof this.state.totalPages === 'number' ? this.state.totalPages : undefined}
+            totalPages={
+              typeof this.state.totalPages === 'number'
+                ? this.state.totalPages
+                : undefined
+            }
             onSwitchPage={this.onAssetsTableSwitchPage.bind(this)}
             emptyMessage={contextualEmptyMessage}
           />
 
           <div className='dropzone-active-overlay'>
-            <i className='k-icon k-icon-upload'/>
+            <i className='k-icon k-icon-upload' />
             {t('Drop files to upload')}
           </div>
         </Dropzone>

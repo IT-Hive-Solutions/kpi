@@ -23,10 +23,12 @@ const Reports = React.lazy(
   () => import(/* webpackPrefetch: true */ 'js/components/reports/reports')
 );
 const FormLanding = React.lazy(
-  () => import(/* webpackPrefetch: true */ 'js/components/formLanding/formLanding')
+  () =>
+    import(/* webpackPrefetch: true */ 'js/components/formLanding/formLanding')
 );
 const FormSummary = React.lazy(
-  () => import(/* webpackPrefetch: true */ 'js/components/formSummary/formSummary')
+  () =>
+    import(/* webpackPrefetch: true */ 'js/components/formSummary/formSummary')
 );
 const FormSubScreens = React.lazy(
   () => import(/* webpackPrefetch: true */ 'js/components/formSubScreens')
@@ -210,7 +212,9 @@ export const router = createHashRouter(
                 />
               }
             />
-            <Route path={ROUTES.FORM_PROCESSING_ROOT}>{processingRoutes()}</Route>
+            <Route path={ROUTES.FORM_PROCESSING_ROOT}>
+              {processingRoutes()}
+            </Route>
           </Route>
 
           <Route path={ROUTES.FORM_SETTINGS}>

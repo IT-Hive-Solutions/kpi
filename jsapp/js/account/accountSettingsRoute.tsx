@@ -40,12 +40,13 @@ const AccountSettings = () => {
 
   const {currentLoggedAccount, refreshAccount} = useSession();
 
-  const [displayedFields, setDisplayedFields] = useState<Array<keyof AccountFieldsValues>>([]);
+  const [displayedFields, setDisplayedFields] = useState<
+    Array<keyof AccountFieldsValues>
+  >([]);
 
   const orgQuery = useOrganizationQuery();
 
   useEffect(() => {
-
     if (!currentLoggedAccount || !orgQuery.data) {
       return;
     }
@@ -54,7 +55,8 @@ const AccountSettings = () => {
       name: currentLoggedAccount.extra_details.name,
       organization_type: currentLoggedAccount.extra_details.organization_type,
       organization: currentLoggedAccount.extra_details.organization,
-      organization_website: currentLoggedAccount.extra_details.organization_website,
+      organization_website:
+        currentLoggedAccount.extra_details.organization_website,
       sector: currentLoggedAccount.extra_details.sector,
       gender: currentLoggedAccount.extra_details.gender,
       bio: currentLoggedAccount.extra_details.bio,
@@ -79,15 +81,15 @@ const AccountSettings = () => {
     setDisplayedFields(
       !organization?.is_mmo
         ? fieldKeys
-        : fieldKeys.filter((key) =>
-            ![
-              'organization',
-              'organization_website',
-              'organization_type',
-            ].includes(key)
+        : fieldKeys.filter(
+            (key) =>
+              ![
+                'organization',
+                'organization_website',
+                'organization_type',
+              ].includes(key)
           )
     );
-
   }, [currentLoggedAccount, orgQuery.data]);
 
   usePrompt({

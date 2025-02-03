@@ -33,19 +33,25 @@ export default class AssetPublicButton extends React.Component<
     super(props);
     this.state = {
       isPublicPending: false,
-      isAwaitingFreshPermissions: false
+      isAwaitingFreshPermissions: false,
     };
   }
 
   componentDidMount() {
     this.unlisteners.push(
-      actions.permissions.setAssetPublic.completed.listen(this.onSetAssetPublicCompleted.bind(this)),
-      actions.permissions.setAssetPublic.failed.listen(this.onSetAssetPublicFailed.bind(this))
+      actions.permissions.setAssetPublic.completed.listen(
+        this.onSetAssetPublicCompleted.bind(this)
+      ),
+      actions.permissions.setAssetPublic.failed.listen(
+        this.onSetAssetPublicFailed.bind(this)
+      )
     );
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   componentWillReceiveProps() {
@@ -87,7 +93,9 @@ export default class AssetPublicButton extends React.Component<
       this.setState({isPublicPending: true});
       actions.permissions.setAssetPublic(this.props.asset, true);
     } else {
-      publicReadyErrors.forEach((err) => {notify(err, 'error');});
+      publicReadyErrors.forEach((err) => {
+        notify(err, 'error');
+      });
     }
   }
 
@@ -101,10 +109,13 @@ export default class AssetPublicButton extends React.Component<
       return null;
     }
 
-    const isPublicable = this.props.asset.asset_type === ASSET_TYPES.collection.id;
-    const isPublic = isPublicable && assetUtils.isAssetPublic(this.props.asset.permissions);
+    const isPublicable =
+      this.props.asset.asset_type === ASSET_TYPES.collection.id;
+    const isPublic =
+      isPublicable && assetUtils.isAssetPublic(this.props.asset.permissions);
     const isSelfOwned = assetUtils.isSelfOwned(this.props.asset);
-    const isButtonPending = this.state.isPublicPending || this.state.isAwaitingFreshPermissions;
+    const isButtonPending =
+      this.state.isPublicPending || this.state.isAwaitingFreshPermissions;
 
     if (!isPublicable || !isSelfOwned) {
       return null;

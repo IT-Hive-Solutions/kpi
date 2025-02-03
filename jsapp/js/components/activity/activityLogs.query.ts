@@ -90,14 +90,16 @@ const getFilterOptions = async (
  * @returns {Promise<void>} The promise that starts the export
  */
 export const startActivityLogsExport = (assetUid: string) =>
-  fetchPost(endpoints.ASSET_HISTORY_EXPORT.replace(':asset_uid', assetUid), {notifyAboutError: false})
-    .catch((error) => {
-      const failResponse: FailResponse = {
-        status: 500,
-        statusText: error.message || t('An error occurred while exporting the logs'),
-      };
-      throw failResponse;
-    });
+  fetchPost(endpoints.ASSET_HISTORY_EXPORT.replace(':asset_uid', assetUid), {
+    notifyAboutError: false,
+  }).catch((error) => {
+    const failResponse: FailResponse = {
+      status: 500,
+      statusText:
+        error.message || t('An error occurred while exporting the logs'),
+    };
+    throw failResponse;
+  });
 
 /**
  * This is a hook that fetches activity logs from the server.

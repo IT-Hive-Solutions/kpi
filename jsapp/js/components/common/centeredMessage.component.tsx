@@ -12,9 +12,7 @@ interface CenteredMessageProps {
 export default function CenteredMessage(props: CenteredMessageProps) {
   return (
     <figure className={styles.centeredMessage}>
-      <div className={styles.centeredMessageInner}>
-        {props.message}
-      </div>
+      <div className={styles.centeredMessageInner}>{props.message}</div>
     </figure>
   );
 }

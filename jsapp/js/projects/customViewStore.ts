@@ -100,7 +100,7 @@ class CustomViewStore {
     viewUid: string,
     baseUrl: string,
     defaultVisibleFields: ProjectFieldName[],
-    includeTypeFilter = true,
+    includeTypeFilter = true
   ) {
     this.viewUid = viewUid;
     this.baseUrl = baseUrl;
@@ -221,7 +221,7 @@ class CustomViewStore {
 
     // Step 2: Prepare url
     const url = new URL(this.baseUrl);
-    const params = this.constructFullQueryParams(url)
+    const params = this.constructFullQueryParams(url);
 
     // Step 3: Stop any ongoing call (as it is no longer needed)
     if (this.ongoingFetch) {

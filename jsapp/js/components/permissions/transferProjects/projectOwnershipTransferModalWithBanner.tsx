@@ -57,12 +57,14 @@ export default function ProjectOwnershipTransferModalWithBanner() {
 
   return (
     <>
-      {isBannerVisible &&
+      {isBannerVisible && (
         <ProjectTransferInviteBanner
           invite={invite}
-          onRequestClose={() => {setIsBannerVisible(false);}}
+          onRequestClose={() => {
+            setIsBannerVisible(false);
+          }}
         />
-      }
+      )}
 
       {invite.valid && invite.uid !== '' && (
         <TransferProjectsInvite

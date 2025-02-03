@@ -26,10 +26,11 @@ export const selectImageAttachments = (
         IMAGE_MIMETYPES.includes(attachment.mimetype)
       );
       if (filterQuestion) {
-        return attachments.filter((attachment) =>
-        // Indices in the attachment xpath are for matching individual answer instances,
-        // so here we stripe them out
-          filterQuestion === attachment.question_xpath.replace(/\[\d*\]/g, "")
+        return attachments.filter(
+          (attachment) =>
+            // Indices in the attachment xpath are for matching individual answer instances,
+            // so here we stripe them out
+            filterQuestion === attachment.question_xpath.replace(/\[\d*\]/g, '')
         );
       }
       return attachments;

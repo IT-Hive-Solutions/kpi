@@ -30,7 +30,6 @@ const Wrapper = ({onChange}: {onChange: (newValue: string) => void}) => {
   );
 };
 
-
 describe('KoboSelect3', () => {
   const user = userEvent.setup();
 
@@ -61,76 +60,76 @@ describe('KoboSelect3', () => {
   });
 
   it('should be selectable by mouse click', async () => {
-      const trigger = screen.getByRole('combobox');
-      const list = screen.getByRole('listbox');
-      const listOptions = screen.getAllByRole('option');
+    const trigger = screen.getByRole('combobox');
+    const list = screen.getByRole('listbox');
+    const listOptions = screen.getAllByRole('option');
 
-      // Clicks the trigger
-      await user.click(trigger);
-      expect(list.dataset.expanded).toBe('true');
+    // Clicks the trigger
+    await user.click(trigger);
+    expect(list.dataset.expanded).toBe('true');
 
-      // Select first option
-      await user.click(listOptions[0]);
+    // Select first option
+    await user.click(listOptions[0]);
 
-      // Onchange should be called with the correct value
-      expect(onChangeMock).lastCalledWith(options[0].value);
+    // Onchange should be called with the correct value
+    expect(onChangeMock).lastCalledWith(options[0].value);
 
-      expect(list.dataset.expanded).toBe('false');
+    expect(list.dataset.expanded).toBe('false');
   });
 
   it('should be selectable by keyboard arrows', async () => {
-      const trigger = screen.getByRole('combobox');
-      const triggerLabel = trigger.querySelector('label');
+    const trigger = screen.getByRole('combobox');
+    const triggerLabel = trigger.querySelector('label');
 
-      // No item selected
-      expect(triggerLabel).toHaveTextContent('Select…');
+    // No item selected
+    expect(triggerLabel).toHaveTextContent('Select…');
 
-      // Increase option on arrow down
-      fireEvent.keyDown(trigger, {key: 'ArrowDown'});
-      expect(onChangeMock).lastCalledWith(options[0].value);
-      expect(triggerLabel).toHaveTextContent(options[0].label);
+    // Increase option on arrow down
+    fireEvent.keyDown(trigger, {key: 'ArrowDown'});
+    expect(onChangeMock).lastCalledWith(options[0].value);
+    expect(triggerLabel).toHaveTextContent(options[0].label);
 
-      // Increase option on arrow right
-      fireEvent.keyDown(trigger, {key: 'ArrowRight'});
-      expect(onChangeMock).lastCalledWith(options[1].value);
-      expect(triggerLabel).toHaveTextContent(options[1].label);
-      fireEvent.keyDown(trigger, {key: 'ArrowRight'});
-      expect(onChangeMock).lastCalledWith(options[2].value);
-      expect(triggerLabel).toHaveTextContent(options[2].label);
+    // Increase option on arrow right
+    fireEvent.keyDown(trigger, {key: 'ArrowRight'});
+    expect(onChangeMock).lastCalledWith(options[1].value);
+    expect(triggerLabel).toHaveTextContent(options[1].label);
+    fireEvent.keyDown(trigger, {key: 'ArrowRight'});
+    expect(onChangeMock).lastCalledWith(options[2].value);
+    expect(triggerLabel).toHaveTextContent(options[2].label);
 
-      // Don't go past the last one
-      onChangeMock.mockReset();
-      fireEvent.keyDown(trigger, {key: 'ArrowDown'});
-      expect(onChangeMock).not.toHaveBeenCalled();
-      expect(triggerLabel).toHaveTextContent(options[2].label);
+    // Don't go past the last one
+    onChangeMock.mockReset();
+    fireEvent.keyDown(trigger, {key: 'ArrowDown'});
+    expect(onChangeMock).not.toHaveBeenCalled();
+    expect(triggerLabel).toHaveTextContent(options[2].label);
 
-      // Decrease option on arrow up
-      fireEvent.keyDown(trigger, {key: 'ArrowUp'});
-      expect(onChangeMock).lastCalledWith(options[1].value);
-      expect(triggerLabel).toHaveTextContent(options[1].label);
+    // Decrease option on arrow up
+    fireEvent.keyDown(trigger, {key: 'ArrowUp'});
+    expect(onChangeMock).lastCalledWith(options[1].value);
+    expect(triggerLabel).toHaveTextContent(options[1].label);
 
-      // Decrease option on arrow left
-      fireEvent.keyDown(trigger, {key: 'ArrowLeft'});
-      expect(onChangeMock).lastCalledWith(options[0].value);
-      expect(triggerLabel).toHaveTextContent(options[0].label);
+    // Decrease option on arrow left
+    fireEvent.keyDown(trigger, {key: 'ArrowLeft'});
+    expect(onChangeMock).lastCalledWith(options[0].value);
+    expect(triggerLabel).toHaveTextContent(options[0].label);
 
-      // Don't go past the first one
-      onChangeMock.mockReset();
-      fireEvent.keyDown(trigger, {key: 'ArrowUp'});
-      expect(onChangeMock).not.toHaveBeenCalled();
-      expect(triggerLabel).toHaveTextContent(options[0].label);
+    // Don't go past the first one
+    onChangeMock.mockReset();
+    fireEvent.keyDown(trigger, {key: 'ArrowUp'});
+    expect(onChangeMock).not.toHaveBeenCalled();
+    expect(triggerLabel).toHaveTextContent(options[0].label);
   });
 
   it('should be selectable by typing', async () => {
-      const trigger = screen.getByRole('combobox');
-      const triggerLabel = trigger.querySelector('label');
+    const trigger = screen.getByRole('combobox');
+    const triggerLabel = trigger.querySelector('label');
 
-      // No item selected
-      expect(triggerLabel).toHaveTextContent('Select…');
+    // No item selected
+    expect(triggerLabel).toHaveTextContent('Select…');
 
-      // Type 'b' to select Banana
-      fireEvent.keyDown(trigger, {key: 'b'});
-      expect(onChangeMock).lastCalledWith(options[1].value);
-      expect(triggerLabel).toHaveTextContent(options[1].label);
+    // Type 'b' to select Banana
+    fireEvent.keyDown(trigger, {key: 'b'});
+    expect(onChangeMock).lastCalledWith(options[1].value);
+    expect(triggerLabel).toHaveTextContent(options[1].label);
   });
 });

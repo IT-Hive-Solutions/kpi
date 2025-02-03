@@ -29,8 +29,16 @@ bem.FormBuilder = makeBem(null, 'form-builder');
 bem.FormBuilder__contents = makeBem(bem.FormBuilder, 'contents');
 
 bem.FormBuilderMessageBox = makeBem(null, 'form-builder-message-box');
-bem.FormBuilderMessageBox__toggle = makeBem(bem.FormBuilderMessageBox, 'toggle', 'button');
-bem.FormBuilderMessageBox__details = makeBem(bem.FormBuilderMessageBox, 'details', 'section');
+bem.FormBuilderMessageBox__toggle = makeBem(
+  bem.FormBuilderMessageBox,
+  'toggle',
+  'button'
+);
+bem.FormBuilderMessageBox__details = makeBem(
+  bem.FormBuilderMessageBox,
+  'details',
+  'section'
+);
 
 bem.FormBuilderAside = makeBem(null, 'form-builder-aside');
 bem.FormBuilderAside__content = makeBem(bem.FormBuilderAside, 'content');
@@ -68,7 +76,11 @@ bem.TemplatesList = makeBem(null, 'templates-list');
 bem.TemplatesList__header = makeBem(bem.TemplatesList, 'header');
 bem.TemplatesList__column = makeBem(bem.TemplatesList, 'column');
 bem.TemplatesList__template = makeBem(bem.TemplatesList, 'template', 'label');
-bem.TemplatesList__templateRadio = makeBem(bem.TemplatesList, 'template-radio', 'input');
+bem.TemplatesList__templateRadio = makeBem(
+  bem.TemplatesList,
+  'template-radio',
+  'input'
+);
 
 bem.LibList = makeBem(null, 'lib-list', 'ul');
 bem.LibList__item = makeBem(bem.LibList, 'item', 'li');
@@ -80,7 +92,11 @@ bem.LibList__qtype = makeBem(bem.LibList, 'qtype');
 
 bem.TableMeta = makeBem(null, 'table-meta');
 bem.TableMeta__counter = makeBem(bem.TableMeta, 'counter');
-bem.TableMeta__additionalText = makeBem(bem.TableMeta, 'additional-text', 'span'); // generally text not needed on smaller screens
+bem.TableMeta__additionalText = makeBem(
+  bem.TableMeta,
+  'additional-text',
+  'span'
+); // generally text not needed on smaller screens
 bem.TableMeta__bulkOptions = makeBem(bem.TableMeta, 'bulk-options');
 
 bem.CollectionsWrapper = makeBem(null, 'collections-wrapper');
@@ -199,17 +215,48 @@ bem.AssetInfoBox__cell = makeBem(bem.AssetInfoBox, 'cell');
 bem.PrintOnly = makeBem(null, 'print-only');
 
 bem.ProjectDownloads = makeBem(null, 'project-downloads');
-bem.ProjectDownloads__advancedView = makeBem(bem.ProjectDownloads, 'advanced-view', 'section');
+bem.ProjectDownloads__advancedView = makeBem(
+  bem.ProjectDownloads,
+  'advanced-view',
+  'section'
+);
 bem.ProjectDownloads__column = makeBem(bem.ProjectDownloads, 'column');
 bem.ProjectDownloads__columnRow = makeBem(bem.ProjectDownloads, 'column-row');
 bem.ProjectDownloads__title = makeBem(bem.ProjectDownloads, 'title', 'span');
-bem.ProjectDownloads__selectorRow = makeBem(bem.ProjectDownloads, 'selector-row');
-bem.ProjectDownloads__anonymousRow = makeBem(bem.ProjectDownloads, 'anonymous-row');
-bem.ProjectDownloads__legacyIframeWrapper = makeBem(bem.ProjectDownloads, 'legacy-iframe-wrapper');
-bem.ProjectDownloads__submitRow = makeBem(bem.ProjectDownloads, 'submit-row', 'footer');
-bem.ProjectDownloads__exportsSelector = makeBem(bem.ProjectDownloads, 'exports-selector');
-bem.ProjectDownloads__exportsCreator = makeBem(bem.ProjectDownloads, 'exports-creator');
+bem.ProjectDownloads__selectorRow = makeBem(
+  bem.ProjectDownloads,
+  'selector-row'
+);
+bem.ProjectDownloads__anonymousRow = makeBem(
+  bem.ProjectDownloads,
+  'anonymous-row'
+);
+bem.ProjectDownloads__legacyIframeWrapper = makeBem(
+  bem.ProjectDownloads,
+  'legacy-iframe-wrapper'
+);
+bem.ProjectDownloads__submitRow = makeBem(
+  bem.ProjectDownloads,
+  'submit-row',
+  'footer'
+);
+bem.ProjectDownloads__exportsSelector = makeBem(
+  bem.ProjectDownloads,
+  'exports-selector'
+);
+bem.ProjectDownloads__exportsCreator = makeBem(
+  bem.ProjectDownloads,
+  'exports-creator'
+);
 
 bem.BackgroundAudioPlayer = makeBem(null, 'background-audio-player');
-bem.BackgroundAudioPlayer__label = makeBem(bem.BackgroundAudioPlayer, 'label', 'label');
-bem.BackgroundAudioPlayer__audio = makeBem(bem.BackgroundAudioPlayer, 'audio', 'audio');
+bem.BackgroundAudioPlayer__label = makeBem(
+  bem.BackgroundAudioPlayer,
+  'label',
+  'label'
+);
+bem.BackgroundAudioPlayer__audio = makeBem(
+  bem.BackgroundAudioPlayer,
+  'audio',
+  'audio'
+);

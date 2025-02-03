@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import bem from 'js/bem';
-import {
-  getCountryDisplayString,
-  getSectorDisplayString,
-} from 'js/assetUtils';
+import {getCountryDisplayString, getSectorDisplayString} from 'js/assetUtils';
 import type {
   AssetResponse,
   PaginatedResponse,
@@ -73,9 +70,7 @@ export default function FormSummaryProjectInfo(
               <bem.FormView__label>
                 {metadata.description?.label ?? t('Description')}
               </bem.FormView__label>
-              <div dir='auto'>
-                {props.asset.settings.description || '-'}
-              </div>
+              <div dir='auto'>{props.asset.settings.description || '-'}</div>
             </bem.FormView__cell>
           </bem.FormView__group>
         )}
@@ -84,7 +79,9 @@ export default function FormSummaryProjectInfo(
           {/* status */}
           <bem.FormView__cell m='padding'>
             <bem.FormView__label>{t('Status')}</bem.FormView__label>
-            <AssetStatusBadge deploymentStatus={props.asset.deployment_status}/>
+            <AssetStatusBadge
+              deploymentStatus={props.asset.deployment_status}
+            />
           </bem.FormView__cell>
 
           {/* questions count */}

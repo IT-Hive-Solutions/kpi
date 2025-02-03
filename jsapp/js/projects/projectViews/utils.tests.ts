@@ -1,9 +1,6 @@
 import chai from 'chai';
 import type {ProjectsFilterDefinition} from './constants';
-import {
-  removeIncorrectFilters,
-  buildQueriesFromFilters,
-} from './utils';
+import {removeIncorrectFilters, buildQueriesFromFilters} from './utils';
 
 describe('projectViewsUtils', () => {
   describe('removeIncorrectFilters', () => {
@@ -83,7 +80,11 @@ describe('projectViewsUtils', () => {
             'OR search_field__organization_name__iexact:"foo")',
         },
         {
-          in: {fieldName: 'ownerUsername', condition: 'doesNotContain', value: 'foo'},
+          in: {
+            fieldName: 'ownerUsername',
+            condition: 'doesNotContain',
+            value: 'foo',
+          },
           out:
             '(NOT search_field__owner_username__icontains:"foo" ' +
             'OR NOT search_field__organization_name__icontains:"foo")',

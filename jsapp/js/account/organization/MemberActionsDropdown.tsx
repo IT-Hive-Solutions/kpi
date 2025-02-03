@@ -53,7 +53,7 @@ export default function MemberActionsDropdown({
   // different UI - thus we check it here.
   const isAdminRemovingSelf = Boolean(
     targetUsername === session.currentLoggedAccount?.username &&
-    currentUserRole === OrganizationUserRole.admin
+      currentUserRole === OrganizationUserRole.admin
   );
 
   // Different button label when user is removing themselves
@@ -65,8 +65,10 @@ export default function MemberActionsDropdown({
       false,
       false
     );
-    removeButtonLabel = t('Leave ##TEAM_OR_ORGANIZATION##')
-      .replace('##TEAM_OR_ORGANIZATION##', mmoLabel);
+    removeButtonLabel = t('Leave ##TEAM_OR_ORGANIZATION##').replace(
+      '##TEAM_OR_ORGANIZATION##',
+      mmoLabel
+    );
   }
 
   const onRemovalConfirmation = () => {
@@ -79,14 +81,14 @@ export default function MemberActionsDropdown({
 
   return (
     <>
-      {isRemoveModalVisible &&
+      {isRemoveModalVisible && (
         <MemberRemoveModal
           username={targetUsername}
           isRemovingSelf={isAdminRemovingSelf}
           onConfirmDone={onRemovalConfirmation}
           onCancel={() => setIsRemoveModalVisible(false)}
         />
-      }
+      )}
 
       <Menu width={100} offset={0}>
         <Menu.Target>

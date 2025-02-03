@@ -27,18 +27,23 @@ export default class PublicCollectionsRoute extends React.Component<
       filterColumnId: publicCollectionsStore.data.filterColumnId,
       filterValue: publicCollectionsStore.data.filterValue,
       currentPage: publicCollectionsStore.data.currentPage,
-      totalPages: publicCollectionsStore.data.totalPages
+      totalPages: publicCollectionsStore.data.totalPages,
     };
   }
 
   componentDidMount() {
     this.unlisteners.push(
-      publicCollectionsStore.listen(this.publicCollectionsStoreChanged.bind(this), this)
+      publicCollectionsStore.listen(
+        this.publicCollectionsStoreChanged.bind(this),
+        this
+      )
     );
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   publicCollectionsStoreChanged() {
@@ -62,7 +67,9 @@ export default class PublicCollectionsRoute extends React.Component<
       <DocumentTitle title={`${t('Public Collections')} | KoboToolbox`}>
         <div className='public-collections-wrapper'>
           <bem.Breadcrumbs m='gray-wrapper'>
-            <bem.Breadcrumbs__crumb>{ROOT_BREADCRUMBS.PUBLIC_COLLECTIONS.label}</bem.Breadcrumbs__crumb>
+            <bem.Breadcrumbs__crumb>
+              {ROOT_BREADCRUMBS.PUBLIC_COLLECTIONS.label}
+            </bem.Breadcrumbs__crumb>
           </bem.Breadcrumbs>
 
           <AssetsTable
@@ -78,7 +85,11 @@ export default class PublicCollectionsRoute extends React.Component<
             filterValue={this.state.filterValue}
             onFilterChange={this.onAssetsTableFilterChange.bind(this)}
             currentPage={this.state.currentPage}
-            totalPages={typeof this.state.totalPages === 'number' ? this.state.totalPages : undefined}
+            totalPages={
+              typeof this.state.totalPages === 'number'
+                ? this.state.totalPages
+                : undefined
+            }
             onSwitchPage={this.onAssetsTableSwitchPage.bind(this)}
           />
         </div>

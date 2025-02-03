@@ -15,7 +15,9 @@ interface CollectMethodSelectorProps {
   selectedMethod: CollectionMethodName;
 }
 
-export default function CollectMethodSelector(props: CollectMethodSelectorProps) {
+export default function CollectMethodSelector(
+  props: CollectMethodSelectorProps
+) {
   const methodsList: Array<{
     value: CollectionMethodName;
     label: string;

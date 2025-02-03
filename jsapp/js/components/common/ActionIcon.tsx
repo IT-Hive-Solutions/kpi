@@ -1,6 +1,4 @@
-import {
-  ActionIcon as ActionIconMantine,
-} from '@mantine/core';
+import {ActionIcon as ActionIconMantine} from '@mantine/core';
 import type {ActionIconProps as ActionIconPropsMantine} from '@mantine/core/lib/components';
 import Icon, {IconSize} from './icon';
 import type {IconName} from 'jsapp/fonts/k-icons';
@@ -24,4 +22,4 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
   }
 );
 
-export default ActionIcon
+export default ActionIcon;

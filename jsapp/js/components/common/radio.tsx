@@ -33,7 +33,7 @@ interface RadioProps {
 
 /** A radio input generic component. */
 class Radio extends React.Component<RadioProps> {
-  constructor(props: RadioProps){
+  constructor(props: RadioProps) {
     if (typeof props.onChange !== 'function') {
       throw new Error('onChange callback missing!');
     }
@@ -60,27 +60,25 @@ class Radio extends React.Component<RadioProps> {
   render() {
     return (
       <bem.Radio m={{'disabled': Boolean(this.props.isDisabled)}}>
-        {this.props.title &&
+        {this.props.title && (
           <bem.Radio__row m='title'>{this.props.title}</bem.Radio__row>
-        }
+        )}
         {this.props.options.map((option) => (
-            <bem.Radio__row key={option.value}>
-              <bem.Radio__input
-                type='radio'
-                value={option.value}
-                name={this.props.name}
-                onChange={this.onChange.bind(this)}
-                onClick={this.onClick.bind(this)}
-                checked={this.props.selected === option.value}
-                disabled={this.props.isDisabled || option.isDisabled}
-                data-cy={this.props['data-cy']}
-              />
+          <bem.Radio__row key={option.value}>
+            <bem.Radio__input
+              type='radio'
+              value={option.value}
+              name={this.props.name}
+              onChange={this.onChange.bind(this)}
+              onClick={this.onClick.bind(this)}
+              checked={this.props.selected === option.value}
+              disabled={this.props.isDisabled || option.isDisabled}
+              data-cy={this.props['data-cy']}
+            />
 
-              <bem.Radio__label>
-                {option.label}
-              </bem.Radio__label>
-            </bem.Radio__row>
-          ))}
+            <bem.Radio__label>{option.label}</bem.Radio__label>
+          </bem.Radio__row>
+        ))}
       </bem.Radio>
     );
   }

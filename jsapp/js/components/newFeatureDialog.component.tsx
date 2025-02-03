@@ -102,10 +102,7 @@ export default function NewFeatureDialog({
           <div className={cx(styles.pointer, pointerClass)} />
           <div className={styles.header}>
             {t('New feature')}
-            <button
-              className={styles.closeButton}
-              onClick={closeDialog}
-            >
+            <button className={styles.closeButton} onClick={closeDialog}>
               <Icon name='close' size='m' />
             </button>
           </div>

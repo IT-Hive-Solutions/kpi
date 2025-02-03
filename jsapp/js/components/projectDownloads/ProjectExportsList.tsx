@@ -67,15 +67,21 @@ export default class ProjectExportsList extends React.Component<
     this.unlisteners.push(
       exportsStore.listen(this.onExportsStoreChange.bind(this), this),
       actions.exports.getExports.completed.listen(this.onGetExports.bind(this)),
-      actions.exports.createExport.completed.listen(this.onCreateExport.bind(this)),
-      actions.exports.deleteExport.completed.listen(this.onDeleteExport.bind(this)),
-      actions.exports.getExport.completed.listen(this.onGetExport.bind(this)),
+      actions.exports.createExport.completed.listen(
+        this.onCreateExport.bind(this)
+      ),
+      actions.exports.deleteExport.completed.listen(
+        this.onDeleteExport.bind(this)
+      ),
+      actions.exports.getExport.completed.listen(this.onGetExport.bind(this))
     );
     this.fetchExports();
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
     this.stopAllExportFetchers();
   }
 
@@ -176,10 +182,16 @@ export default class ProjectExportsList extends React.Component<
     const dialog = alertify.dialog('confirm');
     const opts = {
       title: t('Delete export?'),
-      message: t('Are you sure you want to delete this export? This action is not reversible.'),
+      message: t(
+        'Are you sure you want to delete this export? This action is not reversible.'
+      ),
       labels: {ok: t('Delete'), cancel: t('Cancel')},
-      onok: () => {actions.exports.deleteExport(this.props.asset.uid, exportUid);},
-      oncancel: () => {dialog.destroy();},
+      onok: () => {
+        actions.exports.deleteExport(this.props.asset.uid, exportUid);
+      },
+      oncancel: () => {
+        dialog.destroy();
+      },
     };
     dialog.set(opts).show();
   }
@@ -203,7 +215,7 @@ export default class ProjectExportsList extends React.Component<
     const exportLangCast = exportLang as keyof typeof EXPORT_FORMATS;
     // Unknown happens when export was done for a translated language that
     // doesn't exist in current form version
-    let languageDisplay: React.ReactNode = (<em>{t('Unknown')}</em>);
+    let languageDisplay: React.ReactNode = <em>{t('Unknown')}</em>;
     const langIndex = getLanguageIndex(this.props.asset, exportLangCast);
     if (langIndex !== -1) {
       languageDisplay = exportLangCast;
@@ -214,63 +226,59 @@ export default class ProjectExportsList extends React.Component<
   }
 
   getRows() {
-    return this.state.rows.map((exportData) => (
-      [
-        EXPORT_TYPES[exportData.data.type]?.label,
-        formatTime(exportData.date_created),
-        this.renderLanguage(exportData.data.lang),
-        <Text key='include-groups' ta='center'>
-          {this.renderBooleanAnswer(exportData.data.hierarchy_in_labels)}
-        </Text>,
-        <Text key='multiple-versions' ta='center'>
-          {this.renderBooleanAnswer(exportData.data.fields_from_all_versions)}
-        </Text>,
-        <Flex
-          gap='xs'
-          justify='flex-end'
-          align='center'
-          direction='row'
-          wrap='nowrap'
-          key='buttons'
-        >
-          {exportData.status === ExportStatusName.complete &&
-            <Button
-              type='secondary'
-              size='m'
-              startIcon='download'
-              label={t('Download')}
-              onClick={() => {
-                if (exportData.result !== null) {
-                  window.open(exportData.result, '_blank');
-                }
-              }}
-            />
-          }
+    return this.state.rows.map((exportData) => [
+      EXPORT_TYPES[exportData.data.type]?.label,
+      formatTime(exportData.date_created),
+      this.renderLanguage(exportData.data.lang),
+      <Text key='include-groups' ta='center'>
+        {this.renderBooleanAnswer(exportData.data.hierarchy_in_labels)}
+      </Text>,
+      <Text key='multiple-versions' ta='center'>
+        {this.renderBooleanAnswer(exportData.data.fields_from_all_versions)}
+      </Text>,
+      <Flex
+        gap='xs'
+        justify='flex-end'
+        align='center'
+        direction='row'
+        wrap='nowrap'
+        key='buttons'
+      >
+        {exportData.status === ExportStatusName.complete && (
+          <Button
+            type='secondary'
+            size='m'
+            startIcon='download'
+            label={t('Download')}
+            onClick={() => {
+              if (exportData.result !== null) {
+                window.open(exportData.result, '_blank');
+              }
+            }}
+          />
+        )}
 
-          {exportData.status === ExportStatusName.error &&
-            <span className='right-tooltip' data-tip={exportData.messages?.error}>
-              {t('Export Failed')}
-            </span>
-          }
+        {exportData.status === ExportStatusName.error && (
+          <span className='right-tooltip' data-tip={exportData.messages?.error}>
+            {t('Export Failed')}
+          </span>
+        )}
 
-          {(
-            exportData.status !== ExportStatusName.complete &&
-            exportData.status !== ExportStatusName.error
-          ) &&
+        {exportData.status !== ExportStatusName.complete &&
+          exportData.status !== ExportStatusName.error && (
             <span className='animate-processing'>{t('Processing…')}</span>
-          }
+          )}
 
-          {userCan(PERMISSIONS_CODENAMES.view_submissions, this.props.asset) &&
-            <Button
-              type='secondary-danger'
-              size='m'
-              startIcon='trash'
-              onClick={this.deleteExport.bind(this, exportData.uid)}
-            />
-          }
-        </Flex>,
-      ]
-    ));
+        {userCan(PERMISSIONS_CODENAMES.view_submissions, this.props.asset) && (
+          <Button
+            type='secondary-danger'
+            size='m'
+            startIcon='trash'
+            onClick={this.deleteExport.bind(this, exportData.uid)}
+          />
+        )}
+      </Flex>,
+    ]);
   }
 
   render() {
@@ -278,12 +286,12 @@ export default class ProjectExportsList extends React.Component<
       return (
         <bem.FormView__row>
           <bem.FormView__cell>
-            <LoadingSpinner/>
+            <LoadingSpinner />
           </bem.FormView__cell>
         </bem.FormView__row>
       );
-    // don't display the component if no exports
-    // or if selected a legacy type
+      // don't display the component if no exports
+      // or if selected a legacy type
     } else if (
       this.state.rows.length === 0 ||
       this.state.selectedExportType.isLegacy
@@ -301,8 +309,12 @@ export default class ProjectExportsList extends React.Component<
               t('Type'),
               t('Created'),
               t('Language'),
-              <Text key='include-groups' ta='center'>{t('Include Groups')}</Text>,
-              <Text key='multiple-versions' ta='center'>{t('Multiple Versions')}</Text>,
+              <Text key='include-groups' ta='center'>
+                {t('Include Groups')}
+              </Text>,
+              <Text key='multiple-versions' ta='center'>
+                {t('Multiple Versions')}
+              </Text>,
               '',
             ]}
             body={this.getRows()}

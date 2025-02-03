@@ -10,7 +10,6 @@ interface AssetStatusBadgeProps {
  * the project is draft, deployed, or archived.
  */
 export default function AssetStatusBadge(props: AssetStatusBadgeProps) {
-
   if (props.deploymentStatus === 'archived') {
     return (
       <Badge

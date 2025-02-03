@@ -24,7 +24,7 @@ class PageStateStore extends Reflux.Store {
     assetNavExpanded: false,
     showFixedDrawer: false,
     modal: false,
-  }
+  };
 
   setState(newState: PageStateStoreState) {
     Object.assign(this.state, newState);
@@ -41,13 +41,13 @@ class PageStateStore extends Reflux.Store {
 
   showModal(params: PageStateModalParams) {
     this.setState({
-      modal: params
+      modal: params,
     });
   }
 
   hideModal() {
     this.setState({
-      modal: false
+      modal: false,
     });
   }
 
@@ -69,7 +69,7 @@ class PageStateStore extends Reflux.Store {
   switchToPreviousModal() {
     if (this.state.modal) {
       this.switchModal({
-        type: this.state.modal.previousType
+        type: this.state.modal.previousType,
       });
     }
   }

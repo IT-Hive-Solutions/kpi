@@ -19,10 +19,7 @@ export const useDisplayPrice = (
       price.transform_quantity
     );
     if (!price?.recurring?.interval) {
-      return t('$##price##').replace(
-      '##price##',
-      totalPrice.toFixed(2)
-    );
+      return t('$##price##').replace('##price##', totalPrice.toFixed(2));
     }
     return t('$##price## USD/month').replace(
       '##price##',

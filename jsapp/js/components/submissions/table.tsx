@@ -250,8 +250,10 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
       newSettings = {};
     }
 
-    const prevAdditionalFields = prevProps.asset?.analysis_form_json?.additional_fields;
-    const newAdditionalFields = this.props.asset?.analysis_form_json?.additional_fields;
+    const prevAdditionalFields =
+      prevProps.asset?.analysis_form_json?.additional_fields;
+    const newAdditionalFields =
+      this.props.asset?.analysis_form_json?.additional_fields;
 
     // If sort setting changed, we definitely need to get new submissions (which
     // will rebuild columns)
@@ -327,16 +329,19 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
           results
         );
       }
-      this.setState({
-        loading: false,
-        selectedRows: {},
-        selectAll: false,
-        submissions: results,
-        submissionPager: undefined,
-        resultsTotal: response.count,
-      }, () => {
-        this._prepColumns(results);
-      });
+      this.setState(
+        {
+          loading: false,
+          selectedRows: {},
+          selectAll: false,
+          submissions: results,
+          submissionPager: undefined,
+          resultsTotal: response.count,
+        },
+        () => {
+          this._prepColumns(results);
+        }
+      );
     } else if (options.filter?.length) {
       // if there are no results, but there is some filtering applied, we don't
       // want to display the "no data" message
@@ -571,7 +576,11 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
             {userCanSeeCheckbox && (
               <Checkbox
                 checked={Boolean(this.state.selectedRows[row.original._id])}
-                onClick={(evt: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>) => {
+                onClick={(
+                  evt:
+                    | React.MouseEvent<HTMLInputElement>
+                    | React.TouchEvent<HTMLInputElement>
+                ) => {
                   this.onRowCheckboxClick(evt, row.original._id);
                 }}
                 onChange={() => {}}
@@ -850,10 +859,9 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
           if (q === undefined && key.startsWith(SUPPLEMENTAL_DETAILS_PROP)) {
             const supplementalColumnSource = key.split('/')[1];
             // Add extra step for grouped items
-            const sourceCleaned = supplementalColumnSource
-              .replace(/-/g, '/')
-              .split('/')
-              .at(-1) || '';
+            const sourceCleaned =
+              supplementalColumnSource.replace(/-/g, '/').split('/').at(-1) ||
+              '';
             const sourceColumn = columnsToRender.find(
               (column) => column.id === flatPaths[sourceCleaned]
             );
@@ -873,7 +881,8 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         elClassNames.push('is-sorted');
       }
 
-      let columnIcon: React.DetailedReactHTMLElement<{}, HTMLElement> | null = null;
+      let columnIcon: React.DetailedReactHTMLElement<{}, HTMLElement> | null =
+        null;
       if (q && q.type) {
         columnIcon = renderQuestionTypeIcon(q.type);
       }
@@ -940,7 +949,10 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
             this.state.translationIndex
           );
 
-          if (typeof row.value === 'object' && !key.startsWith(SUPPLEMENTAL_DETAILS_PROP)) {
+          if (
+            typeof row.value === 'object' &&
+            !key.startsWith(SUPPLEMENTAL_DETAILS_PROP)
+          ) {
             const repeatGroupAnswers = getRepeatGroupAnswers(row.original, key);
             if (repeatGroupAnswers) {
               // display a list of answers from a repeat group question
@@ -970,7 +982,8 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                 q.type === QUESTION_TYPES.audio.id ||
                 q.type === QUESTION_TYPES['background-audio'].id
               ) {
-                const submissionEditId = row.original['meta/rootUuid'] || row.original._uuid;
+                const submissionEditId =
+                  row.original['meta/rootUuid'] || row.original._uuid;
 
                 if (mediaAttachment !== null && q.$xpath !== undefined) {
                   return (
@@ -1119,7 +1132,10 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
           >
             <option value=''>{t('Show All')}</option>
             {choices
-              .filter((choiceItem) => choiceItem.list_name === columnQuestion?.select_from_list_name)
+              .filter(
+                (choiceItem) =>
+                  choiceItem.list_name === columnQuestion?.select_from_list_name
+              )
               .map((item, n) => {
                 const displayName = getQuestionOrChoiceDisplayName(
                   item,
@@ -1133,7 +1149,9 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
               })}
           </select>
         );
-      } else if (isTableColumnFilterableByTextInput(columnQuestion?.type, col.id)) {
+      } else if (
+        isTableColumnFilterableByTextInput(columnQuestion?.type, col.id)
+      ) {
         col.filterable = true;
         col.Filter = ({filter, onChange}) => (
           <DebounceInput
@@ -1144,7 +1162,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
             placeholder={t('Search')}
           />
         );
-      };
+      }
 
       // Ensure frozen columns stay correctly aligned to the left, even after
       // scrolling or reloads.
@@ -1159,7 +1177,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         col.headerClassName = col.headerClassName
           ? `is-frozen is-last-frozen ${col.headerClassName}`
           : 'is-frozen is-last-frozen';
-          col.style = {...col.style, left: this.frozenLeftRef};
+        col.style = {...col.style, left: this.frozenLeftRef};
       }
     });
 
@@ -1299,7 +1317,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
     sid: string,
     submissions: SubmissionResponse[],
     isDuplicated: boolean = false,
-    duplicatedSubmission: SubmissionResponse | null = null,
+    duplicatedSubmission: SubmissionResponse | null = null
   ) {
     const ids = submissions.map((item) => item._id);
 
@@ -1364,7 +1382,9 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
    * Handles row checkbox selection for bulk actions.
    */
   onRowCheckboxClick(
-    evt: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>,
+    evt:
+      | React.MouseEvent<HTMLInputElement>
+      | React.TouchEvent<HTMLInputElement>,
     sid: string
   ) {
     const isChecked = evt.currentTarget.checked;

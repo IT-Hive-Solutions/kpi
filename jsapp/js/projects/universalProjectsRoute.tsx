@@ -68,7 +68,7 @@ function UniversalProjectsRoute(props: UniversalProjectsRouteProps) {
     props.viewUid,
     props.baseUrl,
     props.defaultVisibleFields,
-    props.includeTypeFilter
+    props.includeTypeFilter,
   ]);
 
   // Whenever we do a full page (of results) reload, we need to clear up
@@ -98,12 +98,16 @@ function UniversalProjectsRoute(props: UniversalProjectsRouteProps) {
     if (foundView) {
       fetchPostUrl(foundView.assets_export, {uid: props.viewUid}).then(() => {
         notify.warning(
-          t("Export is being generated, you will receive an email when it's done")
+          t(
+            "Export is being generated, you will receive an email when it's done"
+          )
         );
       }, handleApiFail);
     } else {
       notify.error(
-        t("We couldn't create the export, please try again later or contact support")
+        t(
+          "We couldn't create the export, please try again later or contact support"
+        )
       );
     }
   };
@@ -154,7 +158,7 @@ function UniversalProjectsRoute(props: UniversalProjectsRouteProps) {
             excludedFields={props.defaultExcludedFields}
           />
 
-          {props.isExportButtonVisible &&
+          {props.isExportButtonVisible && (
             <Button
               type='secondary'
               size='s'
@@ -162,7 +166,7 @@ function UniversalProjectsRoute(props: UniversalProjectsRouteProps) {
               label={t('Export all data')}
               onClick={exportAllData}
             />
-          }
+          )}
 
           {selectedAssets.length === 0 && (
             <div className={styles.actions}>
@@ -197,7 +201,6 @@ function UniversalProjectsRoute(props: UniversalProjectsRouteProps) {
           selectedRows={selectedRows}
           onRowsSelected={setSelectedRows}
         />
-
       </section>
     </Dropzone>
   );

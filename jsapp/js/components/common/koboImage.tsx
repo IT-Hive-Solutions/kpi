@@ -19,7 +19,7 @@ interface KoboImageState {
  * An image component that handles loading the image with a spinner.
  */
 class KoboImage extends React.Component<KoboImageProps, KoboImageState> {
-  constructor(props: KoboImageProps){
+  constructor(props: KoboImageProps) {
     super(props);
     this.state = {
       isLoading: true,
@@ -47,17 +47,15 @@ class KoboImage extends React.Component<KoboImageProps, KoboImageState> {
 
   render() {
     return (
-      <bem.KoboImage >
-        {this.state.isLoading &&
-          <LoadingSpinner message={false} />
-        }
+      <bem.KoboImage>
+        {this.state.isLoading && <LoadingSpinner message={false} />}
 
-        {!this.state.isLoading &&
+        {!this.state.isLoading && (
           <bem.KoboImage__image
             src={this.props.src}
             data-cy={this.props['data-cy']}
           />
-        }
+        )}
       </bem.KoboImage>
     );
   }

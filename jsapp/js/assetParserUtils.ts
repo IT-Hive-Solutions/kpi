@@ -1,11 +1,10 @@
-import {
-  AssetResponse,
-  AssetContentSettings
-} from 'js/dataInterface'
+import {AssetResponse, AssetContentSettings} from 'js/dataInterface';
 
 export function parseTags(asset: AssetResponse) {
   return {
-    tags: asset.tag_string.split(',').filter((tg) => { return tg.length !== 0; })
+    tags: asset.tag_string.split(',').filter((tg) => {
+      return tg.length !== 0;
+    }),
   };
 }
 

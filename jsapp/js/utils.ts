@@ -226,7 +226,9 @@ interface LangObject {
 export type LangString = string;
 
 // langString contains name and code e.g. "English (en)"
-export function getLangAsObject(langString: LangString): LangObject | undefined {
+export function getLangAsObject(
+  langString: LangString
+): LangObject | undefined {
   const openingIndex = langString.indexOf('(');
   const closingIndex = langString.indexOf(')');
 
@@ -386,8 +388,8 @@ export const truncateNumber = (decimal: number, decimalPlaces = 2) =>
 /**
  * Standard method for converting seconds to minutes for billing purposes
  */
- export const convertSecondsToMinutes = (seconds: number) =>
-  Math.floor(truncateNumber(seconds/60, 1))
+export const convertSecondsToMinutes = (seconds: number) =>
+  Math.floor(truncateNumber(seconds / 60, 1));
 
 /**
  * Generates a simple lowercase, underscored version of a string. Useful for
@@ -439,14 +441,14 @@ export function txtid() {
     const randChar = () => {
       let charI;
       charI = Math.floor(Math.random() * 52);
-      charI += (charI <= 25 ? 65 : 71);
+      charI += charI <= 25 ? 65 : 71;
       return String.fromCharCode(charI);
     };
     const r = Math.random();
     if (c === 'a') {
       return randChar();
     } else if (c === 'A') {
-      return String.fromCharCode(65 + (r * 26 | 0));
+      return String.fromCharCode(65 + ((r * 26) | 0));
     } else if (c === 'C') {
       const newI = Math.floor(r * 62);
       if (newI > 52) {

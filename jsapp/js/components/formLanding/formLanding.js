@@ -315,7 +315,9 @@ class FormLanding extends React.Component {
                       <Button
                         type='text'
                         size='m'
-                        onClick={() => {this.saveCloneAs(item.uid);}}
+                        onClick={() => {
+                          this.saveCloneAs(item.uid);
+                        }}
                         startIcon='duplicate'
                         tooltip={t('Clone this version as a new project')}
                         tooltipPosition='right'
@@ -334,7 +336,11 @@ class FormLanding extends React.Component {
               size='m'
               startIcon={this.state.historyExpanded ? 'angle-up' : 'angle-down'}
               onClick={this.toggleDeploymentHistory.bind(this)}
-              label={this.state.historyExpanded ? t('Hide full history') : t('Show full history')}
+              label={
+                this.state.historyExpanded
+                  ? t('Hide full history')
+                  : t('Show full history')
+              }
             />
 
             {this.state.historyExpanded &&
@@ -378,7 +384,9 @@ class FormLanding extends React.Component {
           <bem.FormView__cell m={['columns', 'padding', 'collect-header']}>
             <bem.FormView__cell>
               <CollectMethodSelector
-                onChange={(newMethod) => {this.setCollectMethod(newMethod);}}
+                onChange={(newMethod) => {
+                  this.setCollectMethod(newMethod);
+                }}
                 selectedMethod={chosenMethod}
               />
             </bem.FormView__cell>
@@ -495,11 +503,7 @@ class FormLanding extends React.Component {
           }}
           options={{format: 'text/plain'}}
         >
-          <Button
-            type='secondary'
-            size='m'
-            label={t('Copy')}
-          />
+          <Button type='secondary' size='m' label={t('Copy')} />
         </CopyToClipboard>
       );
     }
@@ -513,11 +517,7 @@ class FormLanding extends React.Component {
           }}
           options={{format: 'text/plain'}}
         >
-          <Button
-            type='secondary'
-            size='m'
-            label={t('Copy')}
-          />
+          <Button type='secondary' size='m' label={t('Copy')} />
         </CopyToClipboard>
 
         <Button
@@ -586,7 +586,9 @@ class FormLanding extends React.Component {
             type='text'
             size='m'
             startIcon='edit'
-            tooltip={t('Editing capabilities not granted, you can only view this form')}
+            tooltip={t(
+              'Editing capabilities not granted, you can only view this form'
+            )}
             tooltipPosition='right'
             isDisabled
           />
@@ -624,19 +626,17 @@ class FormLanding extends React.Component {
             />
           }
         >
-          {downloads.map((dl) =>
-            (
-              <bem.PopoverMenu__link
-                m={`dl-${dl.format}`}
-                href={dl.url}
-                key={`dl-${dl.format}`}
-              >
-                <i className={`k-icon k-icon-file-${dl.format}`} />
-                {t('Download')}&nbsp;
-                {dl.format.toString().toUpperCase()}
-              </bem.PopoverMenu__link>
-            )
-          )}
+          {downloads.map((dl) => (
+            <bem.PopoverMenu__link
+              m={`dl-${dl.format}`}
+              href={dl.url}
+              key={`dl-${dl.format}`}
+            >
+              <i className={`k-icon k-icon-file-${dl.format}`} />
+              {t('Download')}&nbsp;
+              {dl.format.toString().toUpperCase()}
+            </bem.PopoverMenu__link>
+          ))}
 
           {userCanEdit && (
             <bem.PopoverMenu__link onClick={this.showSharingModal}>
@@ -698,9 +698,9 @@ class FormLanding extends React.Component {
             t('This project has no languages defined yet')}
           {this.hasLanguagesDefined(translations) && (
             <ul>
-              {translations.map((langString, n) =>
+              {translations.map((langString, n) => (
                 <li key={n}>{langString || t('Unnamed language')}</li>
-              )}
+              ))}
             </ul>
           )}
         </bem.FormView__cell>
@@ -738,8 +738,8 @@ class FormLanding extends React.Component {
                 {this.state.deployment__active
                   ? t('Current version')
                   : this.state.has_deployment
-                  ? t('Archived version')
-                  : t('Draft version')}
+                    ? t('Archived version')
+                    : t('Draft version')}
               </bem.FormView__cell>
               <bem.FormView__cell m='action-buttons'>
                 {this.renderButtons(userCanEdit)}

@@ -31,7 +31,14 @@ export default class AssetName extends React.Component<AssetNameProps> {
       if (this.props.asset.summary.row_count === 2) {
         extra = <small>{t('and one other question')}</small>;
       } else if (this.props.asset.summary.row_count > 2) {
-        extra = <small>{t('and ## other questions').replace('##', String(this.props.asset.summary.row_count - 1))}</small>;
+        extra = (
+          <small>
+            {t('and ## other questions').replace(
+              '##',
+              String(this.props.asset.summary.row_count - 1)
+            )}
+          </small>
+        );
       }
     }
 

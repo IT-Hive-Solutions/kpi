@@ -65,7 +65,10 @@ function ViewSwitcher(props: ViewSwitcherProps) {
 
   let triggerLabel = HOME_VIEW.name;
   if (props.selectedViewUid === ORG_VIEW.uid) {
-    triggerLabel = ORG_VIEW.name.replace('##organization name##', organizationName);
+    triggerLabel = ORG_VIEW.name.replace(
+      '##organization name##',
+      organizationName
+    );
   } else if (props.selectedViewUid !== HOME_VIEW.uid) {
     triggerLabel = projectViews.getView(props.selectedViewUid)?.name || '-';
   }
@@ -119,15 +122,18 @@ function ViewSwitcher(props: ViewSwitcherProps) {
 
             {/* This is the organization view option - restricted to
             MMO admins and owners */}
-            {displayMyOrgOption &&
+            {displayMyOrgOption && (
               <button
                 key={ORG_VIEW.uid}
                 className={styles.menuOption}
                 onClick={() => onOptionClick(ORG_VIEW.uid)}
               >
-                {ORG_VIEW.name.replace('##organization name##', organizationName)}
+                {ORG_VIEW.name.replace(
+                  '##organization name##',
+                  organizationName
+                )}
               </button>
-            }
+            )}
 
             {/* This is the list of all options for custom views. These are only
             being added if custom views are defined (at least one). */}

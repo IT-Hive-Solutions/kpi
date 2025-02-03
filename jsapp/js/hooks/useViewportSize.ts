@@ -14,7 +14,10 @@ export function useViewportSize() {
   });
 
   const setSize = useCallback(() => {
-    setWindowSize({ width: window.innerWidth || 0, height: window.innerHeight || 0 });
+    setWindowSize({
+      width: window.innerWidth || 0,
+      height: window.innerHeight || 0,
+    });
   }, []);
 
   useWindowEvent('resize', setSize, eventListerOptions);

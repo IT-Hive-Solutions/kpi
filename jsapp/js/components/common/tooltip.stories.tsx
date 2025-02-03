@@ -17,8 +17,7 @@ export default {
       control: 'text',
     },
     alignment: {
-      description:
-        'Position of the tooltip (centered as default)',
+      description: 'Position of the tooltip (centered as default)',
       options: tooltipPositions,
       control: 'radio',
     },

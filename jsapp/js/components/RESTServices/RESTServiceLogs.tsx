@@ -23,10 +23,7 @@ import type {
   ExternalServiceHookResponse,
   RetryExternalServiceLogsResponse,
 } from 'js/dataInterface';
-import {
-  HOOK_LOG_STATUSES,
-  MODAL_TYPES,
-} from 'js/constants';
+import {HOOK_LOG_STATUSES, MODAL_TYPES} from 'js/constants';
 
 interface RESTServiceLogsProps {
   assetUid: string;
@@ -45,7 +42,10 @@ interface RESTServiceLogsState {
   nextPageUrl: string | null;
 }
 
-export default class RESTServiceLogs extends React.Component<RESTServiceLogsProps, RESTServiceLogsState> {
+export default class RESTServiceLogs extends React.Component<
+  RESTServiceLogsProps,
+  RESTServiceLogsState
+> {
   constructor(props: RESTServiceLogsProps) {
     super(props);
     this.state = {
@@ -63,7 +63,8 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
   componentDidMount() {
     actions.hooks.getLogs.completed.listen(this.onLogsUpdated.bind(this));
 
-    dataInterface.getHook(this.state.assetUid, this.state.hookUid)
+    dataInterface
+      .getHook(this.state.assetUid, this.state.hookUid)
       .done((data: ExternalServiceHookResponse) => {
         this.setState({
           isLoadingHook: false,
@@ -76,24 +77,20 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
         notify.error(t('Could not load REST Service'));
       });
 
-    actions.hooks.getLogs(
-      this.state.assetUid,
-      this.state.hookUid,
-      {
-        onComplete: (data) => {
-          this.setState({
-            isLoadingLogs: false,
-            logs: data.results,
-            nextPageUrl: data.next,
-            totalLogsCount: data.count,
-          });
-        },
-        onFail: () => {
-          this.setState({isLoadingLogs: false});
-          notify.error(t('Could not load REST Service logs'));
-        },
-      }
-    );
+    actions.hooks.getLogs(this.state.assetUid, this.state.hookUid, {
+      onComplete: (data) => {
+        this.setState({
+          isLoadingLogs: false,
+          logs: data.results,
+          nextPageUrl: data.next,
+          totalLogsCount: data.count,
+        });
+      },
+      onFail: () => {
+        this.setState({isLoadingLogs: false});
+        notify.error(t('Could not load REST Service logs'));
+      },
+    });
   }
 
   loadMore() {
@@ -103,7 +100,11 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
       return;
     }
 
-    (dataInterface.loadNextPageUrl(this.state.nextPageUrl) as JQuery.jqXHR<PaginatedResponse<ExternalServiceLogResponse>>)
+    (
+      dataInterface.loadNextPageUrl(this.state.nextPageUrl) as JQuery.jqXHR<
+        PaginatedResponse<ExternalServiceLogResponse>
+      >
+    )
       .done((data) => {
         let newLogs: ExternalServiceLogResponse[] = [];
         newLogs = newLogs.concat(this.state.logs, data.results);
@@ -133,15 +134,14 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
     });
     this.overrideLogsStatus(failedLogUids, HOOK_LOG_STATUSES.PENDING);
 
-    actions.hooks.retryLogs(
-      this.state.assetUid,
-      this.state.hookUid,
-      {
-        onComplete: (response: RetryExternalServiceLogsResponse) => {
-          this.overrideLogsStatus(response.pending_uids, HOOK_LOG_STATUSES.PENDING);
-        },
-      }
-    );
+    actions.hooks.retryLogs(this.state.assetUid, this.state.hookUid, {
+      onComplete: (response: RetryExternalServiceLogsResponse) => {
+        this.overrideLogsStatus(
+          response.pending_uids,
+          HOOK_LOG_STATUSES.PENDING
+        );
+      },
+    });
   }
 
   retryLog(log: ExternalServiceLogResponse) {
@@ -152,18 +152,14 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
 
     this.overrideLogsStatus([log.uid], HOOK_LOG_STATUSES.PENDING);
 
-    actions.hooks.retryLog(
-      this.state.assetUid,
-      this.state.hookUid,
-      log.uid, {
-        onFail: (response: FailResponse) => {
-          if (response.responseJSON?.detail) {
-            this.overrideLogMessage(log.uid, response.responseJSON.detail);
-          }
-          this.overrideLogsStatus([log.uid], HOOK_LOG_STATUSES.FAILED);
-        },
-      }
-    );
+    actions.hooks.retryLog(this.state.assetUid, this.state.hookUid, log.uid, {
+      onFail: (response: FailResponse) => {
+        if (response.responseJSON?.detail) {
+          this.overrideLogMessage(log.uid, response.responseJSON.detail);
+        }
+        this.overrideLogsStatus([log.uid], HOOK_LOG_STATUSES.FAILED);
+      },
+    });
   }
 
   overrideLogMessage(logUid: string, newMessage: string) {
@@ -189,7 +185,10 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
   }
 
   showLogInfo(log: ExternalServiceLogResponse) {
-    const title = t('Submission Failure Detail (##id##)').replace('##id##', String(log.submission_id));
+    const title = t('Submission Failure Detail (##id##)').replace(
+      '##id##',
+      String(log.submission_id)
+    );
     const escapedMessage = $('<div/>').text(log.message).html();
     alertify.alert(title, `<pre>${escapedMessage}</pre>`);
   }
@@ -232,7 +231,9 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
           type='secondary'
           size='m'
           onClick={() => {
-            window.location.assign(`/#/forms/${this.state.assetUid}/settings/rest`);
+            window.location.assign(
+              `/#/forms/${this.state.assetUid}/settings/rest`
+            );
           }}
           startIcon='angle-left'
           label={t('Back to REST Services')}
@@ -264,7 +265,10 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
   renderEmptyView() {
     return (
       <bem.FormView m={'form-settings'} className='rest-services'>
-        <bem.FormView__cell m='rest-services-list' className='rest-services-list--empty'>
+        <bem.FormView__cell
+          m='rest-services-list'
+          className='rest-services-list--empty'
+        >
           {this.renderHeader()}
 
           <bem.EmptyContent>
@@ -285,10 +289,12 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
 
           <bem.FormView__cell m={['box']}>
             <bem.ServiceRow m='header'>
-              <bem.ServiceRow__column m='submission'>{t('Submission')}</bem.ServiceRow__column>
+              <bem.ServiceRow__column m='submission'>
+                {t('Submission')}
+              </bem.ServiceRow__column>
               <bem.ServiceRow__column m='status'>
                 {t('Status')}
-                { this.hasAnyFailedLogs() &&
+                {this.hasAnyFailedLogs() && (
                   <Button
                     type='text'
                     size='m'
@@ -297,9 +303,11 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
                     isDisabled={!this.state.isHookActive}
                     startIcon='replace'
                   />
-                }
+                )}
               </bem.ServiceRow__column>
-              <bem.ServiceRow__column m='date'>{t('Date')}</bem.ServiceRow__column>
+              <bem.ServiceRow__column m='date'>
+                {t('Date')}
+              </bem.ServiceRow__column>
             </bem.ServiceRow>
 
             {this.state.logs.map((log, n) => {
@@ -317,7 +325,10 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
                 statusLabel = t('Pending');
 
                 if (log.tries && log.tries > 1) {
-                  statusLabel = t('Pending (##count##×)').replace('##count##', String(log.tries));
+                  statusLabel = t('Pending (##count##×)').replace(
+                    '##count##',
+                    String(log.tries)
+                  );
                 }
               }
               if (log.status === HOOK_LOG_STATUSES.FAILED) {
@@ -331,12 +342,10 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
                     {log.submission_id}
                   </bem.ServiceRow__column>
 
-                  <bem.ServiceRow__column
-                    m={['status', statusMod]}
-                  >
+                  <bem.ServiceRow__column m={['status', statusMod]}>
                     {statusLabel}
 
-                    {log.status === HOOK_LOG_STATUSES.FAILED &&
+                    {log.status === HOOK_LOG_STATUSES.FAILED && (
                       <Button
                         type='text'
                         size='m'
@@ -345,9 +354,9 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
                         tooltip={t('Retry submission')}
                         startIcon='replace'
                       />
-                    }
+                    )}
 
-                    {this.hasInfoToDisplay(log) &&
+                    {this.hasInfoToDisplay(log) && (
                       <Button
                         type='text'
                         size='m'
@@ -355,7 +364,7 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
                         tooltip={t('More info')}
                         startIcon='information'
                       />
-                    }
+                    )}
                   </bem.ServiceRow__column>
 
                   <bem.ServiceRow__column m='date'>
@@ -373,8 +382,11 @@ export default class RESTServiceLogs extends React.Component<RESTServiceLogsProp
   }
 
   render() {
-    if (this.state.isLoadingHook || (this.state.isLoadingLogs && this.state.logs.length === 0)) {
-      return (<LoadingSpinner/>);
+    if (
+      this.state.isLoadingHook ||
+      (this.state.isLoadingLogs && this.state.logs.length === 0)
+    ) {
+      return <LoadingSpinner />;
     } else if (this.state.logs.length === 0) {
       return this.renderEmptyView();
     } else {

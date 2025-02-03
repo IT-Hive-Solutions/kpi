@@ -524,10 +524,7 @@ export default class UserAssetPermsEditor extends React.Component<
               </span>
 
               {/* We display an equals character between elements here :) */}
-              <AriaText
-                uiText='='
-                screenReaderText={t('equals')}
-              />
+              <AriaText uiText='=' screenReaderText={t('equals')} />
 
               <span className={styles.valueInputWrapper}>
                 <TextBox

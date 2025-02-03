@@ -217,29 +217,38 @@ export default function TransferProjects(props: TransferProjectsProps) {
               <InlineMessage
                 type='error'
                 icon='warning'
-                message={(
+                message={
                   <div>
-                    {t('You will be the owner of the project until the transfer is accepted.')}
+                    {t(
+                      'You will be the owner of the project until the transfer is accepted.'
+                    )}
                     <br />
                     <strong>
-                      {t('Once the transfer is accepted, you will not be able to undo this action.')}
+                      {t(
+                        'Once the transfer is accepted, you will not be able to undo this action.'
+                      )}
                     </strong>
                     &nbsp;
                     <a
-                      href={envStore.data.support_url + HELP_ARTICLE_ANON_SUBMISSIONS_URL}
+                      href={
+                        envStore.data.support_url +
+                        HELP_ARTICLE_ANON_SUBMISSIONS_URL
+                      }
                       target='_blank'
                     >
                       {t('Learn more')}
                     </a>
                   </div>
-                )}
+                }
               />
 
               {/* Unused element to prevent firefox autocomplete suggestions on username field */}
               <input type='text' style={{display: 'none'}} />
               <div>
                 <TextBox
-                  label={t('To complete the transfer, enter the username of the new project owner')}
+                  label={t(
+                    'To complete the transfer, enter the username of the new project owner'
+                  )}
                   type='text'
                   value={transfer.usernameInput}
                   placeholder={t('Enter username here')}

@@ -38,7 +38,7 @@ import {
   replaceAssetForm,
   modifyAssetTags,
   manageAssetLanguages,
-  manageAssetSettings
+  manageAssetSettings,
 } from 'jsapp/js/assetQuickActions';
 import {userCan} from 'js/components/permissions/utils';
 import {Link} from 'react-router-dom';

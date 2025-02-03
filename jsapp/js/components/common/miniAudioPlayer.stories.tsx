@@ -14,6 +14,7 @@ const Template: ComponentStory<typeof MiniAudioPlayer> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  mediaURL: 'https://ia800304.us.archive.org/20/items/OTRR_Gunsmoke_Singles/Gunsmoke%2052-04-26%20%28001%29%20Billy%20the%20Kid.mp3',
-  preload: false
+  mediaURL:
+    'https://ia800304.us.archive.org/20/items/OTRR_Gunsmoke_Singles/Gunsmoke%2052-04-26%20%28001%29%20Billy%20the%20Kid.mp3',
+  preload: false,
 };

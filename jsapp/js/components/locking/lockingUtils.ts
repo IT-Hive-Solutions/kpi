@@ -71,9 +71,15 @@ export function getLockingProfile(
   profileName: string
 ): null | IndexedAssetLockingProfileDefinition {
   const lockingProfiles = assetContent?.[LOCKING_PROFILES_PROP_NAME];
-  if (!lockingProfiles || !Array.isArray(lockingProfiles)) {return null;}
-  const lockingProfileIndex = lockingProfiles.findIndex((profile) => profile.name === profileName);
-  if (lockingProfileIndex === -1) {return null;}
+  if (!lockingProfiles || !Array.isArray(lockingProfiles)) {
+    return null;
+  }
+  const lockingProfileIndex = lockingProfiles.findIndex(
+    (profile) => profile.name === profileName
+  );
+  if (lockingProfileIndex === -1) {
+    return null;
+  }
   const lockingProfile = lockingProfiles[lockingProfileIndex];
 
   // we make a copy of profile definition to add index to it
@@ -97,8 +103,8 @@ export function getRowLockingProfile(
     return null;
   }
 
-  const foundRow = assetContent.survey.find((row) =>
-    getRowName(row) === rowName
+  const foundRow = assetContent.survey.find(
+    (row) => getRowName(row) === rowName
   );
   if (
     foundRow &&
@@ -123,7 +129,10 @@ export function getAssetLockingProfile(assetContent: AssetContent) {
     typeof assetContent.settings[LOCKING_PROFILE_PROP_NAME] === 'string' &&
     assetContent.settings[LOCKING_PROFILE_PROP_NAME].length >= 1
   ) {
-    return getLockingProfile(assetContent, assetContent.settings[LOCKING_PROFILE_PROP_NAME]);
+    return getLockingProfile(
+      assetContent,
+      assetContent.settings[LOCKING_PROFILE_PROP_NAME]
+    );
   }
 
   return null;
@@ -163,10 +172,7 @@ export function hasAssetAnyLocking(assetContent: AssetContent) {
     isRowLocked(assetContent, getRowName(row))
   );
 
-  return (
-    isAssetLocked(assetContent) ||
-    Boolean(foundLockedRow)
-  );
+  return isAssetLocked(assetContent) || Boolean(foundLockedRow);
 }
 
 /**
@@ -177,8 +183,8 @@ export function hasAssetAnyLocking(assetContent: AssetContent) {
 export function isAssetAllLocked(assetContent: AssetContent) {
   return Boolean(
     assetContent?.settings &&
-    LOCK_ALL_PROP_NAME in assetContent.settings &&
-    assetContent.settings[LOCK_ALL_PROP_NAME] === true
+      LOCK_ALL_PROP_NAME in assetContent.settings &&
+      assetContent.settings[LOCK_ALL_PROP_NAME] === true
   );
 }
 
@@ -187,7 +193,9 @@ export function isAssetAllLocked(assetContent: AssetContent) {
  * elements locked (e.g. disabled or hidden) when it's being locked.
  */
 export function isAssetLockable(assetType: AssetTypeName) {
-  return assetType === AssetTypeName.survey || assetType === AssetTypeName.template;
+  return (
+    assetType === AssetTypeName.survey || assetType === AssetTypeName.template
+  );
 }
 
 /**
@@ -199,8 +207,8 @@ export function getQuestionFeatures(
   rowName: string
 ) {
   // if question does not exist then return null
-  const foundRow = assetContent.survey?.find((row) =>
-    getRowName(row) === rowName
+  const foundRow = assetContent.survey?.find(
+    (row) => getRowName(row) === rowName
   );
   if (!foundRow) {
     return null;
@@ -217,13 +225,10 @@ export function getQuestionFeatures(
  * Returns a list of enabled/disabled restrictions for given group.
  * Returns `null` if group or profile not found.
  */
-export function getGroupFeatures(
-  assetContent: AssetContent,
-  rowName: string
-) {
+export function getGroupFeatures(assetContent: AssetContent, rowName: string) {
   // if question does not exist then return null
-  const foundRow = assetContent.survey?.find((row) =>
-    getRowName(row) === rowName
+  const foundRow = assetContent.survey?.find(
+    (row) => getRowName(row) === rowName
   );
   if (!foundRow) {
     return null;

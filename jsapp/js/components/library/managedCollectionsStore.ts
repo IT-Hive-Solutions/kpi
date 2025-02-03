@@ -27,16 +27,30 @@ class ManagedCollectionsStore extends Reflux.Store {
   };
 
   init() {
-    actions.library.getCollections.completed.listen(this.onGetCollectionsCompleted.bind(this));
-    actions.library.getCollections.failed.listen(this.onGetCollectionsFailed.bind(this));
+    actions.library.getCollections.completed.listen(
+      this.onGetCollectionsCompleted.bind(this)
+    );
+    actions.library.getCollections.failed.listen(
+      this.onGetCollectionsFailed.bind(this)
+    );
     // NOTE: this could update the list of collections, but currently nothing is using
     // these parts of data that will be updated by this, thus it is commented out:
     // // actions.library.moveToCollection.completed.listen(this.onMoveToCollectionCompleted.bind(this));
-    actions.resources.loadAsset.completed.listen(this.onAssetChangedOrCreated.bind(this));
-    actions.resources.updateAsset.completed.listen(this.onAssetChangedOrCreated.bind(this));
-    actions.resources.cloneAsset.completed.listen(this.onAssetChangedOrCreated.bind(this));
-    actions.resources.createResource.completed.listen(this.onAssetChangedOrCreated.bind(this));
-    actions.resources.deleteAsset.completed.listen(this.onDeleteAssetCompleted.bind(this));
+    actions.resources.loadAsset.completed.listen(
+      this.onAssetChangedOrCreated.bind(this)
+    );
+    actions.resources.updateAsset.completed.listen(
+      this.onAssetChangedOrCreated.bind(this)
+    );
+    actions.resources.cloneAsset.completed.listen(
+      this.onAssetChangedOrCreated.bind(this)
+    );
+    actions.resources.createResource.completed.listen(
+      this.onAssetChangedOrCreated.bind(this)
+    );
+    actions.resources.deleteAsset.completed.listen(
+      this.onDeleteAssetCompleted.bind(this)
+    );
 
     when(() => sessionStore.isLoggedIn, this.startupStore.bind(this));
 
@@ -124,7 +138,7 @@ class ManagedCollectionsStore extends Reflux.Store {
     this.trigger(this.data);
 
     actions.library.getCollections({
-      pageSize: 0 // zero gives all results with no limit
+      pageSize: 0, // zero gives all results with no limit
     });
   }
 

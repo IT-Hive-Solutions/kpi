@@ -23,7 +23,10 @@ export const MembersRoute = React.lazy(
   () => import(/* webpackPrefetch: true */ './organization/MembersRoute')
 );
 export const OrganizationSettingsRoute = React.lazy(
-  () => import(/* webpackPrefetch: true */ './organization/OrganizationSettingsRoute')
+  () =>
+    import(
+      /* webpackPrefetch: true */ './organization/OrganizationSettingsRoute'
+    )
 );
 export const ACCOUNT_ROUTES: {readonly [key: string]: string} = {
   ACCOUNT_SETTINGS: ROUTES.ACCOUNT_ROOT + '/settings',

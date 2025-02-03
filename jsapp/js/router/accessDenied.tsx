@@ -28,31 +28,34 @@ const AccessDenied = (props: AccessDeniedProps) => {
   let messageText = sessionStatus();
 
   // Obtaining error message number
-  if(props.errorMessage){
-    errorNumber = parseInt(props.errorMessage.replace( /[^\d].*/, '' ));
-  }
-  else{
+  if (props.errorMessage) {
+    errorNumber = parseInt(props.errorMessage.replace(/[^\d].*/, ''));
+  } else {
     errorNumber = 404;
   }
-  
+
   // Conditionally rendering error message based on number
-  switch (errorNumber){
+  switch (errorNumber) {
     case 403 || 401:
       bodyText = t(`You don't have access to this page.`);
       break;
     case 404:
-      bodyText = t(`Either you don't have access to this page or this page simply doesn't exist.`);
+      bodyText = t(
+        `Either you don't have access to this page or this page simply doesn't exist.`
+      );
       break;
     default:
       headerText = t(`Something went wrong`);
-      bodyText = t(`We're sorry, but there was an unexpected error while trying to serve this page.`);
+      bodyText = t(
+        `We're sorry, but there was an unexpected error while trying to serve this page.`
+      );
       messageText = t(
         `Please try again later, or [contact the support team] if this happens repeatedly.`
       );
       break;
   }
 
-  function sessionStatus(){
+  function sessionStatus() {
     if (sessionStore.isLoggedIn) {
       return loggedIn;
     } else {
@@ -69,9 +72,7 @@ const AccessDenied = (props: AccessDeniedProps) => {
     <bem.AccessDenied>
       <bem.AccessDenied__body>
         <bem.AccessDenied__header>
-          {errorNumber < 500 && 
-            <i className='k-icon k-icon-lock-alt' />
-          }
+          {errorNumber < 500 && <i className='k-icon k-icon-lock-alt' />}
           {headerText}
         </bem.AccessDenied__header>
 

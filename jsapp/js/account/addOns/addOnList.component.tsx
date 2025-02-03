@@ -44,7 +44,8 @@ const AddOnList = (props: {
   const recurringAddOnProducts = addOnProducts.filter(
     (product) => product.metadata.product_type === 'addon'
   );
-  const showRecurringAddons = !subscribedPlans.length && !!recurringAddOnProducts.length;
+  const showRecurringAddons =
+    !subscribedPlans.length && !!recurringAddOnProducts.length;
 
   /**
    * Extract the add-on products and prices from the list of all products
@@ -182,7 +183,9 @@ const AddOnList = (props: {
         <tbody>
           {showRecurringAddons && (
             <OneTimeAddOnRow
-              key={recurringAddOnProducts.map((product) => product.id).join('-')}
+              key={recurringAddOnProducts
+                .map((product) => product.id)
+                .join('-')}
               products={recurringAddOnProducts}
               isBusy={props.isBusy}
               setIsBusy={props.setIsBusy}

@@ -58,15 +58,20 @@ export default function EmailSection() {
   }, []);
 
   function setNewUserEmail(newEmail: string) {
-    setUserEmail(newEmail).then(() => {
-      getUserEmails().then((data) => {
-        setEmail({
-          ...email,
-          emails: data.results,
-          newEmail: '',
+    setUserEmail(newEmail).then(
+      () => {
+        getUserEmails().then((data) => {
+          setEmail({
+            ...email,
+            emails: data.results,
+            newEmail: '',
+          });
         });
-      });
-    }, () => {/* Avoid crashing app when 500 error happens */});
+      },
+      () => {
+        /* Avoid crashing app when 500 error happens */
+      }
+    );
   }
 
   function deleteNewUserEmail() {
@@ -127,7 +132,9 @@ export default function EmailSection() {
   return (
     <section className={securityStyles.securitySection}>
       <div className={securityStyles.securitySectionTitle}>
-        <h2 className={securityStyles.securitySectionTitleText}>{t('Email address')}</h2>
+        <h2 className={securityStyles.securitySectionTitleText}>
+          {t('Email address')}
+        </h2>
       </div>
 
       <div

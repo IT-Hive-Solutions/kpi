@@ -25,8 +25,7 @@ export default function ReportColorsEditor(props: ReportColorsEditorProps) {
    */
   function isChecked(set: ChartColorSet) {
     return (
-      JSON.stringify(props.style.report_colors) ===
-      JSON.stringify(set.colors)
+      JSON.stringify(props.style.report_colors) === JSON.stringify(set.colors)
     );
   }
 

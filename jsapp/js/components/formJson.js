@@ -20,7 +20,7 @@ export default class FormJson extends React.Component {
   }
 
   assetStoreTriggered(response) {
-    const { content } = Object.values(response)[0];
+    const {content} = Object.values(response)[0];
     this.setState({assetContent: content});
   }
 
@@ -33,9 +33,7 @@ export default class FormJson extends React.Component {
     return (
       <bem.FormView m='ui-panel'>
         <pre>
-          <code>
-            {content}
-          </code>
+          <code>{content}</code>
         </pre>
       </bem.FormView>
     );

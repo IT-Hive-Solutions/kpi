@@ -98,17 +98,17 @@ export default function ProjectsFilter(props: ProjectsFilterProps) {
         size='s'
         onClick={toggleModal}
         startIcon='filter'
-        label={(
+        label={
           <span>
             {t('filter')}
-            {props.filters.length >= 1 &&
+            {props.filters.length >= 1 && (
               <>
                 &nbsp;
                 <strong>{props.filters.length}</strong>
               </>
-            }
+            )}
           </span>
-        )}
+        }
         // With any filters active, we want to highlight the button - the same
         // color will be used for all columns that filters apply to.
         className={cx({[styles.buttonHasFilters]: props.filters.length >= 1})}

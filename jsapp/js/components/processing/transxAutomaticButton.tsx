@@ -86,14 +86,12 @@ export default class TransxAutomaticButton extends React.Component<
     let hasServicesAvailable = false;
     try {
       if (this.props.type === 'transcript') {
-        hasServicesAvailable = await hasTranscriptServicesAvailable(
-          languageCode
-        );
+        hasServicesAvailable =
+          await hasTranscriptServicesAvailable(languageCode);
       }
       if (this.props.type === 'translation') {
-        hasServicesAvailable = await hasTranslationServicesAvailable(
-          languageCode
-        );
+        hasServicesAvailable =
+          await hasTranslationServicesAvailable(languageCode);
       }
     } catch (error) {
       console.error(`Language ${languageCode} not found 3`);

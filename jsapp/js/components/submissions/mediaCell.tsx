@@ -1,10 +1,7 @@
 import autoBind from 'react-autobind';
 import React from 'react';
 import bem, {makeBem} from 'js/bem';
-import {
-  MODAL_TYPES,
-  QUESTION_TYPES,
-} from 'js/constants';
+import {MODAL_TYPES, QUESTION_TYPES} from 'js/constants';
 import type {AnyRowTypeName} from 'js/constants';
 import Button from 'js/components/common/button';
 import {truncateString} from 'js/utils';
@@ -16,9 +13,21 @@ import type {IconName} from 'jsapp/fonts/k-icons';
 import pageState from 'js/pageState.store';
 
 bem.TableMediaPreviewHeader = makeBem(null, 'table-media-preview-header');
-bem.TableMediaPreviewHeader__title = makeBem(bem.TableMediaPreviewHeader, 'title', 'div');
-bem.TableMediaPreviewHeader__label = makeBem(bem.TableMediaPreviewHeader, 'label', 'label');
-bem.TableMediaPreviewHeader__options = makeBem(bem.TableMediaPreviewHeader, 'options', 'div');
+bem.TableMediaPreviewHeader__title = makeBem(
+  bem.TableMediaPreviewHeader,
+  'title',
+  'div'
+);
+bem.TableMediaPreviewHeader__label = makeBem(
+  bem.TableMediaPreviewHeader,
+  'label',
+  'label'
+);
+bem.TableMediaPreviewHeader__options = makeBem(
+  bem.TableMediaPreviewHeader,
+  'options',
+  'div'
+);
 
 bem.MediaCell = makeBem(null, 'media-cell');
 bem.MediaCell__duration = makeBem(bem.MediaCell, 'duration', 'label');
@@ -28,18 +37,18 @@ bem.MediaCellIconWrapper = makeBem(null, 'icon-wrapper');
 bem.MediaCellIconWrapper__icon = makeBem(bem.MediaCellIconWrapper, 'icon', 'i');
 
 interface MediaCellProps {
- questionType: AnyRowTypeName;
- /** If string is passed it's an error message. */
- mediaAttachment: SubmissionAttachment | string;
- /** Backend stored media attachment file name or the content of a text question. */
- mediaName: string;
- /** Index of the submission for text questions. */
- submissionIndex: number;
- /** Total submissions for text questions. */
- submissionTotal: number;
- assetUid: string;
- xpath: string;
- submissionUuid: string;
+  questionType: AnyRowTypeName;
+  /** If string is passed it's an error message. */
+  mediaAttachment: SubmissionAttachment | string;
+  /** Backend stored media attachment file name or the content of a text question. */
+  mediaName: string;
+  /** Index of the submission for text questions. */
+  submissionIndex: number;
+  /** Total submissions for text questions. */
+  submissionTotal: number;
+  assetUid: string;
+  xpath: string;
+  submissionUuid: string;
 }
 
 /**
@@ -79,7 +88,7 @@ class MediaCell extends React.Component<MediaCellProps, {}> {
           this.props.mediaAttachment?.download_url,
           this.props.mediaName,
           this.props.submissionIndex,
-          this.props.submissionTotal,
+          this.props.submissionTotal
         ),
       });
     }
@@ -90,7 +99,7 @@ class MediaCell extends React.Component<MediaCellProps, {}> {
     mediaURL: string,
     mediaName: string,
     submissionIndex: number,
-    submissionTotal: number,
+    submissionTotal: number
   ) {
     let titleText = null;
 
@@ -106,7 +115,7 @@ class MediaCell extends React.Component<MediaCellProps, {}> {
     return (
       <bem.TableMediaPreviewHeader>
         <bem.TableMediaPreviewHeader__title>
-          <Icon name={questionIcon}/>
+          <Icon name={questionIcon} />
           <bem.TableMediaPreviewHeader__label
             // Give the user a way to see the full file name
             title={mediaName}
@@ -116,7 +125,7 @@ class MediaCell extends React.Component<MediaCellProps, {}> {
         </bem.TableMediaPreviewHeader__title>
 
         <bem.TableMediaPreviewHeader__options>
-          {mediaURL &&
+          {mediaURL && (
             <a
               // TODO: once we get this button to `save as`, remove this target
               target='_blank'
@@ -129,7 +138,7 @@ class MediaCell extends React.Component<MediaCellProps, {}> {
                 label={t('download')}
               />
             </a>
-          }
+          )}
         </bem.TableMediaPreviewHeader__options>
       </bem.TableMediaPreviewHeader>
     );
@@ -142,7 +151,7 @@ class MediaCell extends React.Component<MediaCellProps, {}> {
       return (
         <bem.MediaCell>
           <bem.MediaCellIconWrapper data-tip={this.props.mediaAttachment}>
-            <Icon name='alert' color='mid-red' size='s'/>
+            <Icon name='alert' color='mid-red' size='s' />
           </bem.MediaCellIconWrapper>
         </bem.MediaCell>
       );
@@ -165,8 +174,7 @@ class MediaCell extends React.Component<MediaCellProps, {}> {
           <bem.MediaCell__duration>
             {tempTime}
           </bem.MediaCell__duration>
-          */
-        }
+          */}
       </bem.MediaCell>
     );
   }

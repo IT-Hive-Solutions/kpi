@@ -57,7 +57,11 @@ describe('tableUtils', () => {
         'outer_group/middle_group/inner_group/What_did_you_hear',
         true
       );
-      chai.expect(test).to.equal('Outer group / Middle group / Inner group / What did you hear?');
+      chai
+        .expect(test)
+        .to.equal(
+          'Outer group / Middle group / Inner group / What did you hear?'
+        );
     });
 
     it('should return proper label for transcript of a nested group audio question', () => {
@@ -66,7 +70,11 @@ describe('tableUtils', () => {
         '_supplementalDetails/outer_group/middle_group/inner_group/What_did_you_hear/transcript_pl',
         true
       );
-      chai.expect(test).to.equal('transcript (pl) | Outer group / Middle group / Inner group / What did you hear?');
+      chai
+        .expect(test)
+        .to.equal(
+          'transcript (pl) | Outer group / Middle group / Inner group / What did you hear?'
+        );
     });
 
     it('should return proper no-groups label for transcript of a nested group audio question', () => {

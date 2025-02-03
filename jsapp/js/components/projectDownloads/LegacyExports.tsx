@@ -32,7 +32,7 @@ export default class LegacyExports extends React.Component<
   LegacyExportsProps,
   LegacyExportsState
 > {
-  constructor(props: LegacyExportsProps){
+  constructor(props: LegacyExportsProps) {
     super(props);
     this.state = {selectedExportType: exportsStore.getExportType()};
   }
@@ -41,12 +41,14 @@ export default class LegacyExports extends React.Component<
 
   componentDidMount() {
     this.unlisteners.push(
-      exportsStore.listen(this.onExportsStoreChange.bind(this), this),
+      exportsStore.listen(this.onExportsStoreChange.bind(this), this)
     );
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   onExportsStoreChange() {
@@ -54,26 +56,29 @@ export default class LegacyExports extends React.Component<
   }
 
   render() {
-    const exportType = this.state.selectedExportType.value as keyof typeof ExportTypeName;
+    const exportType = this.state.selectedExportType
+      .value as keyof typeof ExportTypeName;
 
     return (
       <bem.FormView__cell m={['box', 'padding']}>
         <bem.ProjectDownloads__selectorRow>
-          <ExportTypeSelector/>
+          <ExportTypeSelector />
         </bem.ProjectDownloads__selectorRow>
 
         {exportType !== EXPORT_TYPES.zip_legacy.value && (
           <InlineMessage
             type='warning'
             icon='alert'
-            message={t('This export format will not be supported in the future. Please consider using one of the other export types available.')}
+            message={t(
+              'This export format will not be supported in the future. Please consider using one of the other export types available.'
+            )}
           />
         )}
 
         <div className='project-downloads__legacy-iframe-wrapper'>
-          <iframe src={
-            this.props.asset.deployment__data_download_links?.[exportType]
-          } />
+          <iframe
+            src={this.props.asset.deployment__data_download_links?.[exportType]}
+          />
         </div>
       </bem.FormView__cell>
     );

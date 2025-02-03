@@ -55,18 +55,30 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
     this.audioInterface = new Audio(this.props.mediaURL);
 
     // Set up listeners for audio component.
-    this.audioInterface.addEventListener('loadedmetadata', this.onAudioLoadedBound);
+    this.audioInterface.addEventListener(
+      'loadedmetadata',
+      this.onAudioLoadedBound
+    );
     this.audioInterface.addEventListener('error', this.onAudioErrorBound);
-    this.audioInterface.addEventListener('timeupdate', this.onAudioTimeUpdatedBound);
+    this.audioInterface.addEventListener(
+      'timeupdate',
+      this.onAudioTimeUpdatedBound
+    );
   }
 
   componentWillUnmount() {
     // Pausing makes it subject to garbage collection.
     this.audioInterface.pause();
 
-    this.audioInterface.removeEventListener('loadedmetadata', this.onAudioLoadedBound);
+    this.audioInterface.removeEventListener(
+      'loadedmetadata',
+      this.onAudioLoadedBound
+    );
     this.audioInterface.removeEventListener('error', this.onAudioErrorBound);
-    this.audioInterface.removeEventListener('timeupdate', this.onAudioTimeUpdatedBound);
+    this.audioInterface.removeEventListener(
+      'timeupdate',
+      this.onAudioTimeUpdatedBound
+    );
   }
 
   /** Cleans up the file name to include just the name withouth path. */
@@ -123,14 +135,14 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
   renderPlayer() {
     return (
       <React.Fragment>
-        {this.name !== undefined &&
+        {this.name !== undefined && (
           <bem.AudioPlayer__name>
             <bem.AudioPlayer__nameIcon>
-              <Icon name='file-audio' size='m'/>
+              <Icon name='file-audio' size='m' />
             </bem.AudioPlayer__nameIcon>
             <label>{this.name}</label>
           </bem.AudioPlayer__name>
-        }
+        )}
         <bem.AudioPlayer__controls>
           <Button
             type='text'
@@ -154,18 +166,14 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
   render() {
     return (
       <bem.AudioPlayer data-cy={this.props['data-cy']}>
-        {this.state.isLoading &&
-          <LoadingSpinner/>
-        }
-        {!this.state.isLoading && this.state.isBroken &&
+        {this.state.isLoading && <LoadingSpinner />}
+        {!this.state.isLoading && this.state.isBroken && (
           <InlineMessage
             type='error'
             message={t('Could not load media file')}
           />
-        }
-        {!this.state.isLoading && !this.state.isBroken &&
-          this.renderPlayer()
-        }
+        )}
+        {!this.state.isLoading && !this.state.isBroken && this.renderPlayer()}
       </bem.AudioPlayer>
     );
   }

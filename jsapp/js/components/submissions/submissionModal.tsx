@@ -35,7 +35,7 @@ import {getMediaAttachment} from 'js/components/submissions/submissionUtils';
 import type {SubmissionPageName} from 'js/components/submissions/table.types';
 import './submissionModal.scss';
 
-const DETAIL_NOT_FOUND = '{\"detail\":\"Not found.\"}';
+const DETAIL_NOT_FOUND = '{"detail":"Not found."}';
 
 interface SubmissionModalProps {
   sid: string;
@@ -182,14 +182,12 @@ export default class SubmissionModal extends React.Component<
       this.state.submission &&
       this.props.asset.deployment__active &&
       !this.state.isEnketoEditLoading &&
-      (
-        userCan('change_submissions', this.props.asset) ||
+      (userCan('change_submissions', this.props.asset) ||
         userHasPermForSubmission(
           'change_submissions',
           this.props.asset,
           this.state.submission
-        )
-      )
+        ))
     );
   }
 
@@ -245,9 +243,15 @@ export default class SubmissionModal extends React.Component<
               'The submission could not be found. It may have been deleted. Submission ID: ##id##'
             ).replace('##id##', sid);
           }
-          this.setState({submissionDataFetchError: error_message, isFetchingSubmissionData: false});
+          this.setState({
+            submissionDataFetchError: error_message,
+            isFetchingSubmissionData: false,
+          });
         } else if (error.statusText) {
-          this.setState({submissionDataFetchError: error.statusText, isFetchingSubmissionData: false});
+          this.setState({
+            submissionDataFetchError: error.statusText,
+            isFetchingSubmissionData: false,
+          });
         } else {
           this.setState({
             submissionDataFetchError: t('Error: could not load data.'),
@@ -323,8 +327,12 @@ export default class SubmissionModal extends React.Component<
     enketoHandler
       .openSubmission(this.props.asset.uid, this.state.sid, EnketoActions.edit)
       .then(
-        () => {this.setState({isEnketoEditLoading: false});},
-        () => {this.setState({isEnketoEditLoading: false});}
+        () => {
+          this.setState({isEnketoEditLoading: false});
+        },
+        () => {
+          this.setState({isEnketoEditLoading: false});
+        }
       );
   }
 
@@ -336,8 +344,12 @@ export default class SubmissionModal extends React.Component<
     enketoHandler
       .openSubmission(this.props.asset.uid, this.state.sid, EnketoActions.view)
       .then(
-        () => {this.setState({isEnketoViewLoading: false});},
-        () => {this.setState({isEnketoViewLoading: false});}
+        () => {
+          this.setState({isEnketoViewLoading: false});
+        },
+        () => {
+          this.setState({isEnketoViewLoading: false});
+        }
       );
   }
 
@@ -463,7 +475,9 @@ export default class SubmissionModal extends React.Component<
         if (typeof mediaAttachment === 'string') {
           return mediaAttachment;
         } else {
-          return mediaAttachment.download_medium_url || mediaAttachment.download_url;
+          return (
+            mediaAttachment.download_medium_url || mediaAttachment.download_url
+          );
         }
       }
     }
@@ -503,15 +517,16 @@ export default class SubmissionModal extends React.Component<
           type='outline'
           size='s'
           options={VALIDATION_STATUS_OPTIONS}
-          selectedOption={
-            this.state.submission._validation_status?.uid || null
-          }
+          selectedOption={this.state.submission._validation_status?.uid || null}
           onChange={(newSelectedOption: string | null) => {
             if (newSelectedOption !== null) {
-              const castOption = newSelectedOption as ValidationStatusOptionName;
+              const castOption =
+                newSelectedOption as ValidationStatusOptionName;
               this.onValidationStatusChange(castOption);
             } else {
-              this.onValidationStatusChange(ValidationStatusAdditionalName.no_status);
+              this.onValidationStatusChange(
+                ValidationStatusAdditionalName.no_status
+              );
             }
           }}
           isPending={this.state.isValidationStatusChangePending}
@@ -551,7 +566,9 @@ export default class SubmissionModal extends React.Component<
         </h1>
 
         <p className='submission-duplicate__text'>
-          {t('A duplicate of the submission record was successfully created. You can view the new instance below and make changes using the action buttons below.')}
+          {t(
+            'A duplicate of the submission record was successfully created. You can view the new instance below and make changes using the action buttons below.'
+          )}
         </p>
 
         <p className='submission-duplicate__text'>
@@ -776,18 +793,20 @@ export default class SubmissionModal extends React.Component<
               </bem.SubmissionDataTable__column>
             </bem.SubmissionDataTable__row>
 
-            <bem.SubmissionDataTable__row m={['columns', 'response', 'type-audio']}>
-              {bgAudioUrl &&
+            <bem.SubmissionDataTable__row
+              m={['columns', 'response', 'type-audio']}
+            >
+              {bgAudioUrl && (
                 <bem.SubmissionDataTable__column m={['data', 'type-audio']}>
                   <AudioPlayer mediaURL={bgAudioUrl} />
                 </bem.SubmissionDataTable__column>
-              }
+              )}
 
-              {!bgAudioUrl &&
+              {!bgAudioUrl && (
                 <bem.SubmissionDataTable__column m='data'>
                   {t('N/A')}
                 </bem.SubmissionDataTable__column>
-              }
+              )}
             </bem.SubmissionDataTable__row>
           </bem.SubmissionDataTable>
         )}

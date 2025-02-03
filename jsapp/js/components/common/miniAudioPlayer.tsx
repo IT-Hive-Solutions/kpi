@@ -133,12 +133,14 @@ class MiniAudioPlayer extends React.Component<
 
   start() {
     const playPromise = this.audioRef.current!.play();
-    playPromise.then(() => {
-      const event = new CustomEvent(PLAYER_STARTED_EVENT, {detail: this.uid});
-      document.dispatchEvent(event);
-    }).catch((reason) => {
-      notify.error(reason.name + ' ' + reason.message);
-    });
+    playPromise
+      .then(() => {
+        const event = new CustomEvent(PLAYER_STARTED_EVENT, {detail: this.uid});
+        document.dispatchEvent(event);
+      })
+      .catch((reason) => {
+        notify.error(reason.name + ' ' + reason.message);
+      });
   }
 
   stop() {

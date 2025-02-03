@@ -2,10 +2,7 @@ import React from 'react';
 import bem, {makeBem} from 'js/bem';
 import {getFlatQuestionsList, getLanguageIndex} from 'js/assetUtils';
 import type {FlatQuestion} from 'js/assetUtils';
-import type {
-  AssetResponse,
-  SubmissionResponse,
-} from 'js/dataInterface';
+import type {AssetResponse, SubmissionResponse} from 'js/dataInterface';
 import {getRowData} from 'js/components/submissions/submissionUtils';
 import './submissionDataList.scss';
 import singleProcessingStore from '../processing/singleProcessingStore';
@@ -93,11 +90,10 @@ export default class SubmissionDataList extends React.Component<
       return null;
     }
 
-    const languageIndex =
-      getLanguageIndex(
-        this.props.asset,
-        singleProcessingStore.getCurrentlyDisplayedLanguage()
-      );
+    const languageIndex = getLanguageIndex(
+      this.props.asset,
+      singleProcessingStore.getCurrentlyDisplayedLanguage()
+    );
 
     const items = getFlatQuestionsList(
       this.props.asset.content.survey,

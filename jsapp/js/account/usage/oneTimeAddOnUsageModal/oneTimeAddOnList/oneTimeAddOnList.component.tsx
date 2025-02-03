@@ -48,11 +48,7 @@ function OneTimeAddOnList(props: OneTimeAddOnList) {
         <div className={styles.oneTimeAddOnListEntry} key={i}>
           <label className={styles.productName}>
             <span>{addon.productName}</span>
-            {addon.quantity > 1 && (
-              <span>
-                &nbsp;x {addon.quantity}
-              </span>
-            )}
+            {addon.quantity > 1 && <span>&nbsp;x {addon.quantity}</span>}
           </label>
           <div>
             {t('##REMAINING## remaining').replace(

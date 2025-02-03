@@ -15,7 +15,9 @@ export default {
 } as ComponentMeta<typeof KoboPrompt>;
 
 const Template: ComponentStory<typeof KoboPrompt> = (args) => (
-  <KoboPrompt {...args}>This is just some basic prompt example with single button.</KoboPrompt>
+  <KoboPrompt {...args}>
+    This is just some basic prompt example with single button.
+  </KoboPrompt>
 );
 
 export const Primary = Template.bind({});

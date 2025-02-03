@@ -13,8 +13,12 @@ interface Props {
 export const RequireOrg = ({children}: Props) => {
   const orgQuery = useOrganizationQuery();
 
-  if (orgQuery.isPending) {return <LoadingSpinner />;}
-  if (orgQuery.error) {return <LoadingSpinner />;} // TODO: Nicier error page.
+  if (orgQuery.isPending) {
+    return <LoadingSpinner />;
+  }
+  if (orgQuery.error) {
+    return <LoadingSpinner />;
+  } // TODO: Nicier error page.
 
   return children;
 };

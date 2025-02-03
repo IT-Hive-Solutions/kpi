@@ -13,7 +13,11 @@ interface LanguageDisplayLabelProps {
  */
 export class LanguageDisplayLabel extends React.Component<LanguageDisplayLabelProps> {
   render() {
-    return <span>{this.props.name}&nbsp;<small>({this.props.code})</small></span>;
+    return (
+      <span>
+        {this.props.name}&nbsp;<small>({this.props.code})</small>
+      </span>
+    );
   }
 }
 
@@ -65,7 +69,9 @@ export class AsyncLanguageDisplayLabel extends React.Component<
       return <span>…</span>;
     }
     if (this.state.name) {
-      return <LanguageDisplayLabel code={this.props.code} name={this.state.name}/>;
+      return (
+        <LanguageDisplayLabel code={this.props.code} name={this.state.name} />
+      );
     }
     // Display code as fallback mechanism.
     return this.props.code;
@@ -81,7 +87,9 @@ export function getLanguageDisplayLabel(name: string, code: LanguageCode) {
 }
 
 /** Checks if given language has any automated transcription services available. */
-export async function hasTranscriptServicesAvailable(code: LanguageCode): Promise<boolean> {
+export async function hasTranscriptServicesAvailable(
+  code: LanguageCode
+): Promise<boolean> {
   try {
     const language = await languagesStore.getLanguage(code);
     if (language) {
@@ -95,7 +103,9 @@ export async function hasTranscriptServicesAvailable(code: LanguageCode): Promis
 }
 
 /** Checks if given language has any automated translation services available. */
-export async function hasTranslationServicesAvailable(code: LanguageCode): Promise<boolean> {
+export async function hasTranslationServicesAvailable(
+  code: LanguageCode
+): Promise<boolean> {
   try {
     const language = await languagesStore.getLanguage(code);
     if (language) {

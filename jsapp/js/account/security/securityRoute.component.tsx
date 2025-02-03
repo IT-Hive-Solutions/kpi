@@ -16,9 +16,7 @@ export default function securityRoute() {
   return (
     <div className={styles.securityRouteRoot}>
       <header className={styles.securityHeader}>
-        <h2 className={styles.securityHeaderText}>
-          {t('Security')}
-        </h2>
+        <h2 className={styles.securityHeaderText}>{t('Security')}</h2>
       </header>
 
       <PasswordSection />

@@ -136,8 +136,12 @@ export default function AnalysisQuestionEditor(
 
         // We get all questions in the response, but we only need the one we've
         // just updated
-        const newQuestions = getQuestionsFromSchema(response?.advanced_features);
-        const currentNewQuestion = newQuestions.find((item) => item.uuid === props.uuid);
+        const newQuestions = getQuestionsFromSchema(
+          response?.advanced_features
+        );
+        const currentNewQuestion = newQuestions.find(
+          (item) => item.uuid === props.uuid
+        );
 
         if (currentNewQuestion) {
           // Step 4: update reducer's state with new list after the call finishes

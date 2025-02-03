@@ -16,25 +16,28 @@ import {ROUTES} from 'js/router/routerConstants';
 import {withRouter} from 'js/router/legacy';
 import TransferProjects from 'js/components/permissions/transferProjects/transferProjects.component';
 
-const ConnectProjects = React.lazy(() =>
-  import(
-    /* webpackPrefetch: true */ 'js/components/dataAttachments/connectProjects'
-  )
+const ConnectProjects = React.lazy(
+  () =>
+    import(
+      /* webpackPrefetch: true */ 'js/components/dataAttachments/connectProjects'
+    )
 );
-const DataTable = React.lazy(() =>
-  import(/* webpackPrefetch: true */ 'js/components/submissions/table')
+const DataTable = React.lazy(
+  () => import(/* webpackPrefetch: true */ 'js/components/submissions/table')
 );
-const ProjectDownloads = React.lazy(() =>
-  import(
-    /* webpackPrefetch: true */ 'js/components/projectDownloads/ProjectDownloads'
-  )
+const ProjectDownloads = React.lazy(
+  () =>
+    import(
+      /* webpackPrefetch: true */ 'js/components/projectDownloads/ProjectDownloads'
+    )
 );
-const FormGallery = React.lazy(() =>
-  import(/* webpackPrefetch: true */ './formGallery/formGallery.component')
+const FormGallery = React.lazy(
+  () =>
+    import(/* webpackPrefetch: true */ './formGallery/formGallery.component')
 );
 
-const FormActivity = React.lazy(() =>
-  import(/* webpackPrefetch: true */ './activity/formActivity')
+const FormActivity = React.lazy(
+  () => import(/* webpackPrefetch: true */ './activity/formActivity')
 );
 
 export class FormSubScreens extends React.Component {
@@ -109,7 +112,7 @@ export class FormSubScreens extends React.Component {
         case ROUTES.FORM_RESET.replace(':uid', this.state.uid):
           return this.renderReset();
         case ROUTES.FORM_ACTIVITY.replace(':uid', this.state.uid):
-          return <FormActivity />
+          return <FormActivity />;
       }
     }
 

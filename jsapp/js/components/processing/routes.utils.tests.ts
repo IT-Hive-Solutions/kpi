@@ -8,7 +8,8 @@ import {
 describe('processing routes.utils tests', () => {
   describe('getProcessingRouteParts', () => {
     it('should return proper path parts for analysis route', () => {
-      const path = '/forms/abc123/data/processing/My_que/def-45gh-jklm/analysis';
+      const path =
+        '/forms/abc123/data/processing/My_que/def-45gh-jklm/analysis';
       const test = getProcessingRouteParts(path);
       chai.expect(test).to.deep.equal({
         assetUid: 'abc123',
@@ -19,7 +20,8 @@ describe('processing routes.utils tests', () => {
     });
 
     it('should return proper path parts for transcript route with query', () => {
-      const path = '/forms/abc123/data/processing/My_que/def-45gh-jklm/transcript?something';
+      const path =
+        '/forms/abc123/data/processing/My_que/def-45gh-jklm/transcript?something';
       const test = getProcessingRouteParts(path);
       chai.expect(test).to.deep.equal({
         assetUid: 'abc123',
@@ -40,7 +42,8 @@ describe('processing routes.utils tests', () => {
     });
 
     it('should return proper path parts for processing root route with query', () => {
-      const path = '/forms/abc123/data/processing/My_que/def-45gh-jklm?something';
+      const path =
+        '/forms/abc123/data/processing/My_que/def-45gh-jklm?something';
       const test = getProcessingRouteParts(path);
       chai.expect(test).to.deep.equal({
         assetUid: 'abc123',

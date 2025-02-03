@@ -36,7 +36,10 @@ async function getAccessLogs(limit: number, offset: number) {
   );
 }
 
-export default function useAccessLogsQuery({limit, offset}: PaginatedQueryHookParams) {
+export default function useAccessLogsQuery({
+  limit,
+  offset,
+}: PaginatedQueryHookParams) {
   return useQuery({
     queryKey: [QueryKeys.accessLogs, limit, offset],
     queryFn: () => getAccessLogs(limit, offset),
@@ -54,12 +57,13 @@ export default function useAccessLogsQuery({limit, offset}: PaginatedQueryHookPa
  * @returns {Promise<void>} A promise that starts the export.
  */
 export const startAccessLogsExport = () =>
-  fetchPost(endpoints.ACCESS_LOGS_EXPORT_URL, {notifyAboutError: false})
-    .catch((error) => {
+  fetchPost(endpoints.ACCESS_LOGS_EXPORT_URL, {notifyAboutError: false}).catch(
+    (error) => {
       const failResponse: FailResponse = {
         status: 500,
         statusText:
           error.message || t('An error occurred while exporting the logs'),
       };
       throw failResponse;
-    });
+    }
+  );

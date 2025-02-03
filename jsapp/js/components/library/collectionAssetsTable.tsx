@@ -14,39 +14,42 @@ interface CollectionAssetsTableProps {
  * Operates identically to `myLibraryRoute` but utilizes `singleCollectionStore`
  * instead.
  */
-export default class CollectionAssetsTable extends React.Component<
-  CollectionAssetsTableProps
-> {
+export default class CollectionAssetsTable extends React.Component<CollectionAssetsTableProps> {
   private unlisteners: Function[] = [];
 
   // Listen for changes in store and update state to match
   componentDidMount() {
     this.unlisteners.push(
-      singleCollectionStore.listen(this.onSingleCollectionStoreChanged.bind(this), this)
+      singleCollectionStore.listen(
+        this.onSingleCollectionStoreChanged.bind(this),
+        this
+      )
     );
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   /**
-  * Don't want to store a duplicate of store data here just for the sake of
-  * comparison, so we need to make the component re-render itself when the
-  * store changes :shrug:.
-  */
+   * Don't want to store a duplicate of store data here just for the sake of
+   * comparison, so we need to make the component re-render itself when the
+   * store changes :shrug:.
+   */
   onSingleCollectionStoreChanged() {
     this.forceUpdate();
   }
 
-  onAssetsTableOrderChange(
-    columnId: string,
-    columnValue: OrderDirection
-  ) {
+  onAssetsTableOrderChange(columnId: string, columnValue: OrderDirection) {
     singleCollectionStore.setOrder(columnId, columnValue);
   }
 
-  onAssetsTableFilterChange(columnId: string | null, columnValue: string | null) {
+  onAssetsTableFilterChange(
+    columnId: string | null,
+    columnValue: string | null
+  ) {
     singleCollectionStore.setFilter(columnId, columnValue);
   }
 

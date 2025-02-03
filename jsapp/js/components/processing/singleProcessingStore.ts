@@ -26,7 +26,11 @@ import type {
   GetProcessingSubmissionsResponse,
 } from 'js/dataInterface';
 import type {LanguageCode} from 'js/components/languages/languagesStore';
-import {QUESTION_TYPES, type AnyRowTypeName, XML_VALUES_OPTION_VALUE} from 'js/constants';
+import {
+  QUESTION_TYPES,
+  type AnyRowTypeName,
+  XML_VALUES_OPTION_VALUE,
+} from 'js/constants';
 import {destroyConfirm} from 'js/alertify';
 import {
   isAnyProcessingRoute,
@@ -685,7 +689,8 @@ class SingleProcessingStore extends Reflux.Store {
       return;
     }
 
-    const googleTsResponse = event.response[this.currentQuestionXpath]?.googlets;
+    const googleTsResponse =
+      event.response[this.currentQuestionXpath]?.googlets;
     if (googleTsResponse && this.isAutoTranscriptionEventApplicable(event)) {
       this.data.isPollingForTranscript = false;
       this.data.transcriptDraft.value = googleTsResponse.value;
@@ -697,21 +702,25 @@ class SingleProcessingStore extends Reflux.Store {
   }
 
   private onRequestAutoTranscriptionInProgress(event: AutoTransxEvent) {
-    setTimeout(() => {
-      // make sure to check for applicability *after* the timeout fires, not
-      // before. someone can do a lot of navigating in 5 seconds
-      if (this.isAutoTranscriptionEventApplicable(event)) {
-        this.data.exponentialBackoffCount = this.data.exponentialBackoffCount + 1;
-        this.data.isPollingForTranscript = true;
-        this.requestAutoTranscription();
-      } else {
-        this.data.isPollingForTranscript = false;
-      }
-    }, getExponentialDelayTime(
-      this.data.exponentialBackoffCount,
-      envStore.data.min_retry_time,
-      envStore.data.max_retry_time
-    ));
+    setTimeout(
+      () => {
+        // make sure to check for applicability *after* the timeout fires, not
+        // before. someone can do a lot of navigating in 5 seconds
+        if (this.isAutoTranscriptionEventApplicable(event)) {
+          this.data.exponentialBackoffCount =
+            this.data.exponentialBackoffCount + 1;
+          this.data.isPollingForTranscript = true;
+          this.requestAutoTranscription();
+        } else {
+          this.data.isPollingForTranscript = false;
+        }
+      },
+      getExponentialDelayTime(
+        this.data.exponentialBackoffCount,
+        envStore.data.min_retry_time,
+        envStore.data.max_retry_time
+      )
+    );
   }
 
   private onSetTranslationCompleted(newTranslations: Transx[]) {
@@ -746,11 +755,9 @@ class SingleProcessingStore extends Reflux.Store {
       return;
     }
 
-    const googleTxResponse = event.response[this.currentQuestionXpath]?.googletx;
-    if (
-      googleTxResponse &&
-      this.isAutoTranslationEventApplicable(event)
-    ) {
+    const googleTxResponse =
+      event.response[this.currentQuestionXpath]?.googletx;
+    if (googleTxResponse && this.isAutoTranslationEventApplicable(event)) {
       this.data.translationDraft.value = googleTxResponse.value;
       this.data.exponentialBackoffCount = 1;
     }
@@ -760,25 +767,29 @@ class SingleProcessingStore extends Reflux.Store {
   }
 
   private onRequestAutoTranslationInProgress(event: AutoTransxEvent) {
-    setTimeout(() => {
-      // make sure to check for applicability *after* the timeout fires, not
-      // before. someone can do a lot of navigating in 5 seconds
-      if (this.isAutoTranslationEventApplicable(event)) {
-        this.data.exponentialBackoffCount = this.data.exponentialBackoffCount + 1;
-        this.data.isPollingForTranslation = true;
-        console.log('trying to poll!'); // TEMP DELETEME
-        this.requestAutoTranslation(
-          event.response[this.currentQuestionXpath]!.googlets!.languageCode
-        );
-      } else {
-        console.log('no more polling!'); // TEMP DELETEME
-        this.data.isPollingForTranslation = false;
-      }
-    }, getExponentialDelayTime(
-      this.data.exponentialBackoffCount,
-      envStore.data.min_retry_time,
-      envStore.data.max_retry_time
-    ));
+    setTimeout(
+      () => {
+        // make sure to check for applicability *after* the timeout fires, not
+        // before. someone can do a lot of navigating in 5 seconds
+        if (this.isAutoTranslationEventApplicable(event)) {
+          this.data.exponentialBackoffCount =
+            this.data.exponentialBackoffCount + 1;
+          this.data.isPollingForTranslation = true;
+          console.log('trying to poll!'); // TEMP DELETEME
+          this.requestAutoTranslation(
+            event.response[this.currentQuestionXpath]!.googlets!.languageCode
+          );
+        } else {
+          console.log('no more polling!'); // TEMP DELETEME
+          this.data.isPollingForTranslation = false;
+        }
+      },
+      getExponentialDelayTime(
+        this.data.exponentialBackoffCount,
+        envStore.data.min_retry_time,
+        envStore.data.max_retry_time
+      )
+    );
   }
 
   /**
@@ -988,7 +999,9 @@ class SingleProcessingStore extends Reflux.Store {
   getProcessedFileLabel() {
     if (this.currentQuestionType === QUESTION_TYPES.audio.id) {
       return QUESTION_TYPES.audio.label.toLowerCase();
-    } else if (this.currentQuestionType === QUESTION_TYPES['background-audio'].id) {
+    } else if (
+      this.currentQuestionType === QUESTION_TYPES['background-audio'].id
+    ) {
       return QUESTION_TYPES['background-audio'].label.toLowerCase();
     }
     // Fallback
@@ -1034,7 +1047,10 @@ class SingleProcessingStore extends Reflux.Store {
   getDisplayedLanguagesList(): KoboSelectOption[] {
     const languagesList = [];
 
-    languagesList.push({label: t('XML values'), value: XML_VALUES_OPTION_VALUE});
+    languagesList.push({
+      label: t('XML values'),
+      value: XML_VALUES_OPTION_VALUE,
+    });
     const asset = assetStore.getAsset(this.currentAssetUid);
     const baseLabel = t('Labels');
 
@@ -1048,8 +1064,8 @@ class SingleProcessingStore extends Reflux.Store {
         }
         languagesList.push({label: label, value: language});
       });
-    // …otherwise we creat a single "default language" option that uses empty
-    // string as value.
+      // …otherwise we creat a single "default language" option that uses empty
+      // string as value.
     } else {
       languagesList.push({label: baseLabel, value: ''});
     }

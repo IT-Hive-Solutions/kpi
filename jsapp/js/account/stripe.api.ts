@@ -280,9 +280,8 @@ export async function getAccountLimits(
   products: Product[],
   oneTimeAddOns: OneTimeAddOn[]
 ) {
-  const {metadata, hasFreeTier} = await getStripeMetadataAndFreeTierStatus(
-    products
-  );
+  const {metadata, hasFreeTier} =
+    await getStripeMetadataAndFreeTierStatus(products);
 
   // initialize to unlimited
   let recurringLimits: AccountLimit = {...DEFAULT_LIMITS};

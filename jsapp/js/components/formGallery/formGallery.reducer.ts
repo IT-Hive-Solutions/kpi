@@ -46,8 +46,8 @@ export function reducer(state: State, action: FormGalleryAction): State {
     case 'loadMoreSubmissions':
       return {
         ...state,
-        isLoading: true
-      }
+        isLoading: true,
+      };
     case 'loadMoreSubmissionsCompleted':
       return {
         ...state,

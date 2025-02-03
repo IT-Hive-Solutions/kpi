@@ -28,7 +28,6 @@ interface ProjectsTableHeaderProps {
 }
 
 export default function ProjectsTableHeader(props: ProjectsTableHeaderProps) {
-
   const renderColumn = (field: ProjectFieldDefinition) => {
     // Hide not visible fields.
     if (!props.visibleFields.includes(field.name)) {

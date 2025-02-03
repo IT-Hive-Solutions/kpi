@@ -45,12 +45,24 @@ class TableBulkOptions extends React.Component<TableBulkOptionsProps> {
   currentDialog: AlertifyDialogInstance | null = null;
 
   componentDidMount() {
-    actions.submissions.bulkDeleteStatus.completed.listen(this.closeCurrentDialog.bind(this));
-    actions.submissions.bulkDeleteStatus.failed.listen(this.closeCurrentDialog.bind(this));
-    actions.submissions.bulkPatchStatus.completed.listen(this.closeCurrentDialog.bind(this));
-    actions.submissions.bulkPatchStatus.failed.listen(this.closeCurrentDialog.bind(this));
-    actions.submissions.bulkDelete.completed.listen(this.closeCurrentDialog.bind(this));
-    actions.submissions.bulkDelete.failed.listen(this.closeCurrentDialog.bind(this));
+    actions.submissions.bulkDeleteStatus.completed.listen(
+      this.closeCurrentDialog.bind(this)
+    );
+    actions.submissions.bulkDeleteStatus.failed.listen(
+      this.closeCurrentDialog.bind(this)
+    );
+    actions.submissions.bulkPatchStatus.completed.listen(
+      this.closeCurrentDialog.bind(this)
+    );
+    actions.submissions.bulkPatchStatus.failed.listen(
+      this.closeCurrentDialog.bind(this)
+    );
+    actions.submissions.bulkDelete.completed.listen(
+      this.closeCurrentDialog.bind(this)
+    );
+    actions.submissions.bulkDelete.failed.listen(
+      this.closeCurrentDialog.bind(this)
+    );
   }
 
   closeCurrentDialog() {
@@ -104,7 +116,9 @@ class TableBulkOptions extends React.Component<TableBulkOptionsProps> {
     this.currentDialog = alertify.dialog('confirm');
     const opts = {
       title: t('Update status of selected submissions'),
-      message: t('You have selected ## submissions. Are you sure you would like to update their status? This action is irreversible.').replace('##', String(selectedCount)),
+      message: t(
+        'You have selected ## submissions. Are you sure you would like to update their status? This action is irreversible.'
+      ).replace('##', String(selectedCount)),
       labels: {ok: t('Update Validation Status'), cancel: t('Cancel')},
       onok: () => {
         apiFn(this.props.asset.uid, requestObj);
@@ -122,12 +136,14 @@ class TableBulkOptions extends React.Component<TableBulkOptionsProps> {
 
     if (this.props.selectedAllPages) {
       if (this.props.fetchState.filtered.length) {
-        this.props.fetchState.filtered.map((filteredItem: ReactTableStateFilteredItem) => {
-          if (!requestObj.query) {
-            requestObj.query = {};
+        this.props.fetchState.filtered.map(
+          (filteredItem: ReactTableStateFilteredItem) => {
+            if (!requestObj.query) {
+              requestObj.query = {};
+            }
+            requestObj.query[filteredItem.id] = filteredItem.value;
           }
-          requestObj.query[filteredItem.id] = filteredItem.value;
-        });
+        );
       } else {
         requestObj.confirm = true;
       }
@@ -138,19 +154,23 @@ class TableBulkOptions extends React.Component<TableBulkOptionsProps> {
     }
     let msg;
     let onshow;
-    msg = t('You are about to permanently delete ##count## submissions. It is not possible to recover deleted submissions.')
-      .replace('##count##', String(selectedCount));
+    msg = t(
+      'You are about to permanently delete ##count## submissions. It is not possible to recover deleted submissions.'
+    ).replace('##count##', String(selectedCount));
     msg = `${renderCheckbox('dt1', msg)}`;
 
     this.closeCurrentDialog(); // just for safety sake
     this.currentDialog = alertify.dialog('confirm');
     onshow = () => {
-      let ok_button = this.currentDialog?.elements.buttons.primary.firstChild as HTMLButtonElement;
+      let ok_button = this.currentDialog?.elements.buttons.primary
+        .firstChild as HTMLButtonElement;
       let $els = $('.alertify-toggle input');
 
       ok_button.disabled = true;
 
-      $els.each(function () {$(this).prop('checked', false);});
+      $els.each(function () {
+        $(this).prop('checked', false);
+      });
       $els.change(function () {
         ok_button.disabled = false;
         $els.each(function () {
@@ -191,17 +211,19 @@ class TableBulkOptions extends React.Component<TableBulkOptionsProps> {
     if (this.props.selectedAllPages) {
       selectedCount = this.props.totalRowsCount;
     }
-    const selectedLabel = t('##count## selected').replace('##count##', String(selectedCount));
+    const selectedLabel = t('##count## selected').replace(
+      '##count##',
+      String(selectedCount)
+    );
 
     const maxPageRes = Math.min(this.props.pageSize, this.props.data.length);
-    const isSelectAllAvailable = (
+    const isSelectAllAvailable =
       Object.keys(this.props.selectedRows).length === maxPageRes &&
-      this.props.totalRowsCount > this.props.pageSize
-    );
+      this.props.totalRowsCount > this.props.pageSize;
 
     return (
       <bem.TableMeta__bulkOptions>
-        {selectedCount > 1 &&
+        {selectedCount > 1 && (
           <Badge
             color='light-storm'
             size='s'
@@ -213,15 +235,15 @@ class TableBulkOptions extends React.Component<TableBulkOptionsProps> {
                   className='bulk-clear-badge-icon'
                   onClick={this.onClearSelection.bind(this)}
                 >
-                  <Icon name='close' size='xxs'/>
+                  <Icon name='close' size='xxs' />
                 </button>
               </>
             }
             disableShortening
           />
-        }
+        )}
 
-        {Object.keys(this.props.selectedRows).length > 0 &&
+        {Object.keys(this.props.selectedRows).length > 0 && (
           <PopoverMenu
             type='bulkUpdate-menu'
             triggerLabel={
@@ -233,43 +255,69 @@ class TableBulkOptions extends React.Component<TableBulkOptionsProps> {
               />
             }
           >
-            {(userCan(PERMISSIONS_CODENAMES.validate_submissions, this.props.asset) || userCanPartially(PERMISSIONS_CODENAMES.validate_submissions, this.props.asset)) &&
+            {(userCan(
+              PERMISSIONS_CODENAMES.validate_submissions,
+              this.props.asset
+            ) ||
+              userCanPartially(
+                PERMISSIONS_CODENAMES.validate_submissions,
+                this.props.asset
+              )) &&
               VALIDATION_STATUS_OPTIONS.map((item, n) => {
                 return (
                   <bem.PopoverMenu__link
                     onClick={this.onUpdateStatus.bind(this, item.value)}
                     key={n}
                   >
-                    {t('Set status: ##status##').replace('##status##', item.label)}
+                    {t('Set status: ##status##').replace(
+                      '##status##',
+                      item.label
+                    )}
                   </bem.PopoverMenu__link>
                 );
-              })
-            }
+              })}
           </PopoverMenu>
-        }
+        )}
 
-        {Object.keys(this.props.selectedRows).length > 0 && this.props.asset.deployment__active && (userCan(PERMISSIONS_CODENAMES.change_submissions, this.props.asset) || userCanPartially(PERMISSIONS_CODENAMES.change_submissions, this.props.asset)) &&
-          <Button
-            type='secondary'
-            size='s'
-            onClick={this.onEdit.bind(this)}
-            isDisabled={this.props.selectedAllPages && isSelectAllAvailable}
-            startIcon='edit'
-            label={t('Edit')}
-            className='table-meta__additional-text'
-          />
-        }
+        {Object.keys(this.props.selectedRows).length > 0 &&
+          this.props.asset.deployment__active &&
+          (userCan(
+            PERMISSIONS_CODENAMES.change_submissions,
+            this.props.asset
+          ) ||
+            userCanPartially(
+              PERMISSIONS_CODENAMES.change_submissions,
+              this.props.asset
+            )) && (
+            <Button
+              type='secondary'
+              size='s'
+              onClick={this.onEdit.bind(this)}
+              isDisabled={this.props.selectedAllPages && isSelectAllAvailable}
+              startIcon='edit'
+              label={t('Edit')}
+              className='table-meta__additional-text'
+            />
+          )}
 
-        {Object.keys(this.props.selectedRows).length > 0 && (userCan(PERMISSIONS_CODENAMES.delete_submissions, this.props.asset) || userCanPartially(PERMISSIONS_CODENAMES.delete_submissions, this.props.asset)) &&
-          <Button
-            type='secondary-danger'
-            size='s'
-            onClick={this.onDelete.bind(this)}
-            startIcon='trash'
-            label={t('Delete')}
-            className='table-meta__additional-text'
-          />
-        }
+        {Object.keys(this.props.selectedRows).length > 0 &&
+          (userCan(
+            PERMISSIONS_CODENAMES.delete_submissions,
+            this.props.asset
+          ) ||
+            userCanPartially(
+              PERMISSIONS_CODENAMES.delete_submissions,
+              this.props.asset
+            )) && (
+            <Button
+              type='secondary-danger'
+              size='s'
+              onClick={this.onDelete.bind(this)}
+              startIcon='trash'
+              label={t('Delete')}
+              className='table-meta__additional-text'
+            />
+          )}
       </bem.TableMeta__bulkOptions>
     );
   }

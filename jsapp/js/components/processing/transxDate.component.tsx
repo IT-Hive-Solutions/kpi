@@ -48,10 +48,14 @@ export default function TransxDate(props: TransxDateProps) {
   return (
     <>
       {dateText.long !== '' && (
-        <time className={cx(styles.transxDate, styles.transxDateLong)}>{dateText.long}</time>
+        <time className={cx(styles.transxDate, styles.transxDateLong)}>
+          {dateText.long}
+        </time>
       )}
       {dateText.short !== '' && (
-        <time className={cx(styles.transxDate, styles.transxDateShort)}>{dateText.short}</time>
+        <time className={cx(styles.transxDate, styles.transxDateShort)}>
+          {dateText.short}
+        </time>
       )}
     </>
   );

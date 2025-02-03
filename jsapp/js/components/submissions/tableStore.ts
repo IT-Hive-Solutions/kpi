@@ -52,17 +52,30 @@ class TableStore extends Reflux.Store {
       clonedeep(asset?.settings[DATA_TABLE_SETTING]) || {};
 
     // overrides take precedense over asset endpoint settings
-    if (typeof this.data.overrides[DATA_TABLE_SETTINGS.SHOW_GROUP] !== 'undefined') {
-      tableSettings[DATA_TABLE_SETTINGS.SHOW_GROUP] = this.data.overrides[DATA_TABLE_SETTINGS.SHOW_GROUP];
+    if (
+      typeof this.data.overrides[DATA_TABLE_SETTINGS.SHOW_GROUP] !== 'undefined'
+    ) {
+      tableSettings[DATA_TABLE_SETTINGS.SHOW_GROUP] =
+        this.data.overrides[DATA_TABLE_SETTINGS.SHOW_GROUP];
     }
-    if (typeof this.data.overrides[DATA_TABLE_SETTINGS.TRANSLATION] !== 'undefined') {
-      tableSettings[DATA_TABLE_SETTINGS.TRANSLATION] = this.data.overrides[DATA_TABLE_SETTINGS.TRANSLATION];
+    if (
+      typeof this.data.overrides[DATA_TABLE_SETTINGS.TRANSLATION] !==
+      'undefined'
+    ) {
+      tableSettings[DATA_TABLE_SETTINGS.TRANSLATION] =
+        this.data.overrides[DATA_TABLE_SETTINGS.TRANSLATION];
     }
-    if (typeof this.data.overrides[DATA_TABLE_SETTINGS.SHOW_HXL] !== 'undefined') {
-      tableSettings[DATA_TABLE_SETTINGS.SHOW_HXL] = this.data.overrides[DATA_TABLE_SETTINGS.SHOW_HXL];
+    if (
+      typeof this.data.overrides[DATA_TABLE_SETTINGS.SHOW_HXL] !== 'undefined'
+    ) {
+      tableSettings[DATA_TABLE_SETTINGS.SHOW_HXL] =
+        this.data.overrides[DATA_TABLE_SETTINGS.SHOW_HXL];
     }
-    if (typeof this.data.overrides[DATA_TABLE_SETTINGS.SORT_BY] !== 'undefined') {
-      tableSettings[DATA_TABLE_SETTINGS.SORT_BY] = this.data.overrides[DATA_TABLE_SETTINGS.SORT_BY];
+    if (
+      typeof this.data.overrides[DATA_TABLE_SETTINGS.SORT_BY] !== 'undefined'
+    ) {
+      tableSettings[DATA_TABLE_SETTINGS.SORT_BY] =
+        this.data.overrides[DATA_TABLE_SETTINGS.SORT_BY];
     }
 
     return tableSettings;
@@ -115,16 +128,20 @@ class TableStore extends Reflux.Store {
    */
   setOverrides(newOverrides: AssetTableSettings) {
     if (typeof newOverrides[DATA_TABLE_SETTINGS.SHOW_GROUP] !== 'undefined') {
-      this.data.overrides[DATA_TABLE_SETTINGS.SHOW_GROUP] = newOverrides[DATA_TABLE_SETTINGS.SHOW_GROUP];
+      this.data.overrides[DATA_TABLE_SETTINGS.SHOW_GROUP] =
+        newOverrides[DATA_TABLE_SETTINGS.SHOW_GROUP];
     }
     if (typeof newOverrides[DATA_TABLE_SETTINGS.TRANSLATION] !== 'undefined') {
-      this.data.overrides[DATA_TABLE_SETTINGS.TRANSLATION] = newOverrides[DATA_TABLE_SETTINGS.TRANSLATION];
+      this.data.overrides[DATA_TABLE_SETTINGS.TRANSLATION] =
+        newOverrides[DATA_TABLE_SETTINGS.TRANSLATION];
     }
     if (typeof newOverrides[DATA_TABLE_SETTINGS.SHOW_HXL] !== 'undefined') {
-      this.data.overrides[DATA_TABLE_SETTINGS.SHOW_HXL] = newOverrides[DATA_TABLE_SETTINGS.SHOW_HXL];
+      this.data.overrides[DATA_TABLE_SETTINGS.SHOW_HXL] =
+        newOverrides[DATA_TABLE_SETTINGS.SHOW_HXL];
     }
     if (typeof newOverrides[DATA_TABLE_SETTINGS.SORT_BY] !== 'undefined') {
-      this.data.overrides[DATA_TABLE_SETTINGS.SORT_BY] = newOverrides[DATA_TABLE_SETTINGS.SORT_BY];
+      this.data.overrides[DATA_TABLE_SETTINGS.SORT_BY] =
+        newOverrides[DATA_TABLE_SETTINGS.SORT_BY];
     }
 
     this.trigger(this.data);

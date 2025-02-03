@@ -2,10 +2,7 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import bem, {makeBem} from 'js/bem';
 import Button from 'js/components/common/button';
-import {
-  formatTimeDate,
-  formatDate,
-} from 'js/utils';
+import {formatTimeDate, formatDate} from 'js/utils';
 import {findRow, renderQuestionTypeIcon} from 'js/assetUtils';
 import {
   DISPLAY_GROUP_TYPES,
@@ -26,10 +23,7 @@ import type {
   MetaQuestionTypeName,
 } from 'js/constants';
 import './submissionDataTable.scss';
-import type {
-  AssetResponse,
-  SubmissionResponse,
-} from 'jsapp/js/dataInterface';
+import type {AssetResponse, SubmissionResponse} from 'jsapp/js/dataInterface';
 import AudioPlayer from 'js/components/common/audioPlayer';
 import {goToProcessing} from 'js/components/processing/routes.utils';
 import {PROCESSING_QUESTION_TYPES} from 'js/components/processing/processingUtils';
@@ -78,18 +72,18 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
         key={`${item.name}__${itemIndex}`}
         dir='auto'
       >
-        {item.name !== null &&
+        {item.name !== null && (
           <bem.SubmissionDataTable__row m='group-label'>
             {item.label}
-            {this.props.showXMLNames &&
+            {this.props.showXMLNames && (
               <bem.SubmissionDataTable__XMLName>
                 {item.name}
               </bem.SubmissionDataTable__XMLName>
-            }
+            )}
           </bem.SubmissionDataTable__row>
-        }
+        )}
 
-        {item.type === DISPLAY_GROUP_TYPES.group_root &&
+        {item.type === DISPLAY_GROUP_TYPES.group_root && (
           <bem.SubmissionDataTable__row m={['columns', 'column-names']}>
             <bem.SubmissionDataTable__column m='type'>
               {t('Type')}
@@ -103,7 +97,7 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
               {t('Response')}
             </bem.SubmissionDataTable__column>
           </bem.SubmissionDataTable__row>
-        }
+        )}
 
         <bem.SubmissionDataTable__row m='group-children'>
           {item.children?.map((child, index) => {
@@ -131,11 +125,11 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
 
         <bem.SubmissionDataTable__column m='label'>
           {item.label}
-          {this.props.showXMLNames &&
+          {this.props.showXMLNames && (
             <bem.SubmissionDataTable__XMLName>
               {item.name}
             </bem.SubmissionDataTable__XMLName>
-          }
+          )}
         </bem.SubmissionDataTable__column>
 
         <bem.SubmissionDataTable__column m={['data', `type-${item.type}`]}>
@@ -165,7 +159,9 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
       case RANK_LEVEL_TYPE:
         choice = this.findChoice(item.listName, item.data);
         if (!choice) {
-          console.error(`Choice not found for "${item.listName}" and "${item.data}".`);
+          console.error(
+            `Choice not found for "${item.listName}" and "${item.data}".`
+          );
           // fallback to raw data to display anything meaningful
           return item.data;
         } else {
@@ -181,14 +177,17 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
             {item.data.split(' ').map((answer, answerIndex) => {
               choice = this.findChoice(item.listName, answer);
               if (!choice) {
-                console.error(`Choice not found for "${item.listName}" and "${answer}".`);
+                console.error(
+                  `Choice not found for "${item.listName}" and "${answer}".`
+                );
                 // fallback to raw data to display anything meaningful
                 return answer;
               } else {
                 return (
                   <li key={answerIndex}>
                     <bem.SubmissionDataTable__value>
-                      {choice.label?.[this.props.translationIndex] || choice.name}
+                      {choice.label?.[this.props.translationIndex] ||
+                        choice.name}
                     </bem.SubmissionDataTable__value>
                   </li>
                 );
@@ -212,7 +211,12 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
       case QUESTION_TYPES.audio.id:
       case QUESTION_TYPES.video.id:
       case QUESTION_TYPES.file.id:
-        return this.renderAttachment(item.type, item.data, item.name, item.xpath);
+        return this.renderAttachment(
+          item.type,
+          item.data,
+          item.name,
+          item.xpath
+        );
       case QUESTION_TYPES.geopoint.id:
       case QUESTION_TYPES.geotrace.id:
       case QUESTION_TYPES.geoshape.id:
@@ -228,13 +232,15 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
   }
 
   findChoice(listName: string | undefined, choiceName: string) {
-    return this.props.asset.content?.choices?.find((choice) =>
-      choice.name === choiceName && choice.list_name === listName
+    return this.props.asset.content?.choices?.find(
+      (choice) => choice.name === choiceName && choice.list_name === listName
     );
   }
 
   renderPointsData(data: string) {
-    const pointsArray: string[][] = data.split(';').map((pointString) => pointString.split(' '));
+    const pointsArray: string[][] = data
+      .split(';')
+      .map((pointString) => pointString.split(' '));
 
     return (
       <SimpleTable
@@ -245,9 +251,12 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
           t('altitude (m):'),
           t('accuracy (m):'),
         ]}
-        body={pointsArray.map((pointArray, pointIndex) => (
-          [<>P<sub>{pointIndex + 1}</sub></>, ...pointArray]
-        ))}
+        body={pointsArray.map((pointArray, pointIndex) => [
+          <>
+            P<sub>{pointIndex + 1}</sub>
+          </>,
+          ...pointArray,
+        ])}
       />
     );
   }
@@ -258,11 +267,15 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
     name: string,
     xpath: string
   ) {
-    const attachment = getMediaAttachment(this.props.submissionData, filename, xpath);
+    const attachment = getMediaAttachment(
+      this.props.submissionData,
+      filename,
+      xpath
+    );
     if (attachment && attachment instanceof Object) {
       return (
         <>
-          {type === QUESTION_TYPES.audio.id &&
+          {type === QUESTION_TYPES.audio.id && (
             <>
               <AudioPlayer mediaURL={attachment.download_url} />
 
@@ -274,28 +287,25 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
                 onClick={this.openProcessing.bind(this, name)}
               />
             </>
-          }
-          {type === QUESTION_TYPES.image.id &&
+          )}
+          {type === QUESTION_TYPES.image.id && (
             <a href={attachment.download_url} target='_blank'>
-              <img src={attachment.download_medium_url}/>
+              <img src={attachment.download_medium_url} />
             </a>
-          }
+          )}
 
-          {type === QUESTION_TYPES.video.id &&
-            <video
-              src={attachment.download_url}
-              controls
-            />
-          }
+          {type === QUESTION_TYPES.video.id && (
+            <video src={attachment.download_url} controls />
+          )}
 
-          {type === QUESTION_TYPES.file.id &&
+          {type === QUESTION_TYPES.file.id && (
             <a href={attachment.download_url} target='_blank'>
               {filename}
             </a>
-          }
+          )}
         </>
       );
-    // In the case that an attachment is missing, don't crash the page
+      // In the case that an attachment is missing, don't crash the page
     } else {
       return attachment;
     }
@@ -313,11 +323,11 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
 
         <bem.SubmissionDataTable__column m='label'>
           {label}
-          {this.props.showXMLNames &&
+          {this.props.showXMLNames && (
             <bem.SubmissionDataTable__XMLName>
               {dataName}
             </bem.SubmissionDataTable__XMLName>
-          }
+          )}
         </bem.SubmissionDataTable__column>
 
         <bem.SubmissionDataTable__column m='data'>
@@ -345,7 +355,10 @@ class SubmissionDataTable extends React.Component<SubmissionDataTableProps> {
         {this.renderMetaResponse(META_QUESTION_TYPES.today, t('today'))}
         {this.renderMetaResponse(META_QUESTION_TYPES.username, t('username'))}
         {this.renderMetaResponse(META_QUESTION_TYPES.deviceid, t('device ID'))}
-        {this.renderMetaResponse(META_QUESTION_TYPES.phonenumber, t('phone number'))}
+        {this.renderMetaResponse(
+          META_QUESTION_TYPES.phonenumber,
+          t('phone number')
+        )}
         {this.renderMetaResponse(META_QUESTION_TYPES.audit, t('audit'))}
         {this.renderMetaResponse('__version__', t('__version__'))}
         {this.renderMetaResponse('_id', t('_id'))}

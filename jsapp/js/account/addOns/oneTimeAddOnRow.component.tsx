@@ -1,9 +1,6 @@
 import styles from 'js/account/addOns/addOnList.module.scss';
 import React, {useMemo, useState} from 'react';
-import type {
-  Product,
-  SubscriptionInfo,
-} from 'js/account/stripe.types';
+import type {Product, SubscriptionInfo} from 'js/account/stripe.types';
 import KoboSelect3 from 'js/components/special/koboAccessibleSelect';
 import BillingButton from 'js/account/plans/billingButton.component';
 import {postCheckout, postCustomerPortal} from 'js/account/stripe.api';
@@ -163,9 +160,7 @@ export const OneTimeAddOnRow = ({
       <td className={styles.productName}>
         {displayName}
         {description && <p className={styles.description}>{description}</p>}
-        <div className={styles.mobileView}>
-          {priceTableCells}
-        </div>
+        <div className={styles.mobileView}>{priceTableCells}</div>
       </td>
       <td className={styles.price}>
         <div className={styles.oneTime}>
@@ -197,9 +192,7 @@ export const OneTimeAddOnRow = ({
           )}
         </div>
       </td>
-      <td className={styles.fullScreen}>
-        {priceTableCells}
-      </td>
+      <td className={styles.fullScreen}>{priceTableCells}</td>
     </tr>
   );
 };

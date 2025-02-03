@@ -4,11 +4,7 @@ import {observer} from 'mobx-react';
 import zip from 'lodash.zip';
 import isEqual from 'lodash.isequal';
 import Chart from 'chart.js/auto';
-import type {
-  ChartType,
-  ChartDataset,
-  ChartConfiguration,
-} from 'chart.js/auto';
+import type {ChartType, ChartDataset, ChartConfiguration} from 'chart.js/auto';
 import clonedeep from 'lodash.clonedeep';
 import bem from 'js/bem';
 
@@ -132,7 +128,8 @@ class ReportViewItem extends React.Component<ReportViewItemProps> {
     Chart.defaults.maintainAspectRatio = false;
 
     // If there is some invalid data we default to bar type
-    const chartJsType: ChartType = CHART_STYLES[chartType]?.chartJsType || 'bar';
+    const chartJsType: ChartType =
+      CHART_STYLES[chartType]?.chartJsType || 'bar';
 
     const datasets: ChartDataset[] = [];
 

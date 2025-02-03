@@ -30,25 +30,25 @@ export default function ReportsModalTabs(props: ReportsModalTabsProps) {
   if (props.tabs.includes(ReportsModalTabNames['chart-type'])) {
     displayedTabs.push({
       name: ReportsModalTabNames['chart-type'],
-      label: t('Chart Type')
+      label: t('Chart Type'),
     });
   }
   if (props.tabs.includes(ReportsModalTabNames.colors)) {
     displayedTabs.push({
       name: ReportsModalTabNames.colors,
-      label: t('Colors')
+      label: t('Colors'),
     });
   }
   if (props.tabs.includes(ReportsModalTabNames['group-by'])) {
     displayedTabs.push({
       name: ReportsModalTabNames['group-by'],
-      label: t('Group By')
+      label: t('Group By'),
     });
   }
   if (props.tabs.includes(ReportsModalTabNames.translation)) {
     displayedTabs.push({
       name: ReportsModalTabNames.translation,
-      label: t('Translation')
+      label: t('Translation'),
     });
   }
 
@@ -58,7 +58,9 @@ export default function ReportsModalTabs(props: ReportsModalTabsProps) {
         'legacy-modal-tab-button': true,
         'legacy-modal-tab-button--active': props.activeTabName === tab.name,
       })}
-      onClick={() => {props.onRequestTabChange(tab.name);}}
+      onClick={() => {
+        props.onRequestTabChange(tab.name);
+      }}
       key={tab.name}
     >
       {tab.label}

@@ -31,15 +31,18 @@ const SsoSection = observer(() => {
     }
   };
 
-  const providerLink = useCallback((socialApp: SocialApp) => {
-    let providerPath = '';
-    if (socialApp.provider === 'openid_connect') {
-      providerPath = 'oidc/' + socialApp.provider_id;
-    } else {
-      providerPath = socialApp.provider_id || socialApp.provider;
-    }
-    return `accounts/${providerPath}/login/?process=connect&next=%2F%23%2Faccount%2Fsecurity`;
-  }, [sessionStore.currentAccount]);
+  const providerLink = useCallback(
+    (socialApp: SocialApp) => {
+      let providerPath = '';
+      if (socialApp.provider === 'openid_connect') {
+        providerPath = 'oidc/' + socialApp.provider_id;
+      } else {
+        providerPath = socialApp.provider_id || socialApp.provider;
+      }
+      return `accounts/${providerPath}/login/?process=connect&next=%2F%23%2Faccount%2Fsecurity`;
+    },
+    [sessionStore.currentAccount]
+  );
 
   if (socialApps.length === 0 && socialAccounts.length === 0) {
     return <></>;
@@ -48,7 +51,9 @@ const SsoSection = observer(() => {
   return (
     <section className={securityStyles.securitySection}>
       <div className={securityStyles.securitySectionTitle}>
-        <h2 className={securityStyles.securitySectionTitleText}>{t('Single-Sign On')}</h2>
+        <h2 className={securityStyles.securitySectionTitleText}>
+          {t('Single-Sign On')}
+        </h2>
       </div>
 
       {socialAccounts.length === 0 ? (
@@ -68,10 +73,7 @@ const SsoSection = observer(() => {
       {socialAccounts.length === 0 ? (
         <div className={cx(styles.options, styles.ssoSetup)}>
           {socialApps.map((socialApp) => (
-            <a
-              key={socialApp.name}
-              href={providerLink(socialApp)}
-            >
+            <a key={socialApp.name} href={providerLink(socialApp)}>
               <Button
                 label={socialApp.name}
                 size='m'

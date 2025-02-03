@@ -41,7 +41,6 @@ class LibraryAssetEditorComponent extends React.Component {
     };
     autoBind(this);
 
-
     if (this.props.router.path === ROUTES.EDIT_LIBRARY_ITEM) {
       this.state.isNewAsset = false;
     }

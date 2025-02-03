@@ -1,7 +1,10 @@
 import React from 'react';
 import Select from 'react-select';
 import bem from 'js/bem';
-import {EXPORT_TYPES, type ExportTypeDefinition} from 'js/components/projectDownloads/exportsConstants';
+import {
+  EXPORT_TYPES,
+  type ExportTypeDefinition,
+} from 'js/components/projectDownloads/exportsConstants';
 import exportsStore from 'js/components/projectDownloads/exportsStore';
 
 interface ExportTypeSelectorProps {
@@ -31,12 +34,14 @@ export default class ExportTypeSelector extends React.Component<
 
   componentDidMount() {
     this.unlisteners.push(
-      exportsStore.listen(this.onExportsStoreChange.bind(this), this),
+      exportsStore.listen(this.onExportsStoreChange.bind(this), this)
     );
   }
 
   componentWillUnmount() {
-    this.unlisteners.forEach((clb) => {clb();});
+    this.unlisteners.forEach((clb) => {
+      clb();
+    });
   }
 
   onExportsStoreChange() {

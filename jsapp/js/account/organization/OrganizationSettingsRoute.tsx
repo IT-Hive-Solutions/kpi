@@ -10,13 +10,20 @@ import KoboSelect from 'jsapp/js/components/common/koboSelect';
 
 // Stores, hooks and utilities
 import useWhenStripeIsEnabled from 'js/hooks/useWhenStripeIsEnabled.hook';
-import {OrganizationUserRole, useOrganizationQuery, usePatchOrganization} from 'js/account/organization/organizationQuery';
+import {
+  OrganizationUserRole,
+  useOrganizationQuery,
+  usePatchOrganization,
+} from 'js/account/organization/organizationQuery';
 import subscriptionStore from 'js/account/subscriptionStore';
 import envStore from 'js/envStore';
 import {getSimpleMMOLabel} from './organization.utils';
 
 // Constants and types
-import {ORGANIZATION_TYPES, type OrganizationTypeName} from 'jsapp/js/account/organization/organizationQuery';
+import {
+  ORGANIZATION_TYPES,
+  type OrganizationTypeName,
+} from 'jsapp/js/account/organization/organizationQuery';
 
 // Styles
 import styles from 'js/account/organization/organizationSettingsRoute.module.scss';
@@ -52,11 +59,11 @@ export default function OrganizationSettingsRoute() {
     setIsStripeEnabled(true);
   }, []);
 
-  const isUserAdminOrOwner = (
+  const isUserAdminOrOwner =
     orgQuery.data?.request_user_role &&
-    [OrganizationUserRole.admin, OrganizationUserRole.owner]
-      .includes(orgQuery.data?.request_user_role)
-  );
+    [OrganizationUserRole.admin, OrganizationUserRole.owner].includes(
+      orgQuery.data?.request_user_role
+    );
 
   function handleSave(e: React.FormEvent) {
     e.preventDefault();
@@ -83,21 +90,28 @@ export default function OrganizationSettingsRoute() {
     return <LoadingSpinner />;
   }
 
-  let deletionMessage = t('To delete this ##TEAM_OR_ORGANIZATION##, please contact the server administrator.')
-    .replaceAll('##TEAM_OR_ORGANIZATION##', mmoLabelLowercase);
+  let deletionMessage = t(
+    'To delete this ##TEAM_OR_ORGANIZATION##, please contact the server administrator.'
+  ).replaceAll('##TEAM_OR_ORGANIZATION##', mmoLabelLowercase);
   if (isStripeEnabled) {
-    deletionMessage = t("To delete this ##TEAM_OR_ORGANIZATION##, you need to cancel your current ##plan name## plan. At the end of the plan period your ##TEAM_OR_ORGANIZATION##'s projects will be converted to projects owned by your personal account.")
-    .replaceAll('##TEAM_OR_ORGANIZATION##', mmoLabelLowercase)
-    .replace('##plan name##', subscriptions.planName);
+    deletionMessage = t(
+      "To delete this ##TEAM_OR_ORGANIZATION##, you need to cancel your current ##plan name## plan. At the end of the plan period your ##TEAM_OR_ORGANIZATION##'s projects will be converted to projects owned by your personal account."
+    )
+      .replaceAll('##TEAM_OR_ORGANIZATION##', mmoLabelLowercase)
+      .replace('##plan name##', subscriptions.planName);
   }
 
-  const currentTypeLabel = orgType === null ? '' : ORGANIZATION_TYPES[orgType]?.label;
+  const currentTypeLabel =
+    orgType === null ? '' : ORGANIZATION_TYPES[orgType]?.label;
 
   return (
     <form className={styles.orgSettingsRoot} onSubmit={handleSave}>
       <header className={styles.orgSettingsHeader}>
         <h2 className={styles.orgSettingsHeaderText}>
-          {t('##TEAM_OR_ORGANIZATION## details').replace('##TEAM_OR_ORGANIZATION##', mmoLabel)}
+          {t('##TEAM_OR_ORGANIZATION## details').replace(
+            '##TEAM_OR_ORGANIZATION##',
+            mmoLabel
+          )}
         </h2>
       </header>
 
@@ -108,11 +122,18 @@ export default function OrganizationSettingsRoute() {
         */}
         <TextBox
           className={styles.field}
-          label={t('##TEAM_OR_ORGANIZATION## name').replace('##TEAM_OR_ORGANIZATION##', mmoLabel)}
+          label={t('##TEAM_OR_ORGANIZATION## name').replace(
+            '##TEAM_OR_ORGANIZATION##',
+            mmoLabel
+          )}
           value={name}
           required
           onChange={handleChangeName}
-          disabled={!isUserAdminOrOwner || orgQuery.isPending || patchOrganization.isPending}
+          disabled={
+            !isUserAdminOrOwner ||
+            orgQuery.isPending ||
+            patchOrganization.isPending
+          }
           errors={name === ''}
         />
 
@@ -125,11 +146,18 @@ export default function OrganizationSettingsRoute() {
           <TextBox
             className={styles.field}
             type='url'
-            label={t('##TEAM_OR_ORGANIZATION## website').replace('##TEAM_OR_ORGANIZATION##', mmoLabel)}
+            label={t('##TEAM_OR_ORGANIZATION## website').replace(
+              '##TEAM_OR_ORGANIZATION##',
+              mmoLabel
+            )}
             value={website}
             required
             onChange={handleChangeWebsite}
-            disabled={!isUserAdminOrOwner || orgQuery.isPending || patchOrganization.isPending}
+            disabled={
+              !isUserAdminOrOwner ||
+              orgQuery.isPending ||
+              patchOrganization.isPending
+            }
             errors={website === ''}
           />
         )}
@@ -148,11 +176,16 @@ export default function OrganizationSettingsRoute() {
             type='outline'
             size='l'
             isDisabled // always disabled
-            label={t('##TEAM_OR_ORGANIZATION## type').replace('##TEAM_OR_ORGANIZATION##', mmoLabel)}
-            options={[{
-              value: 'orgType',
-              label: currentTypeLabel,
-            }]}
+            label={t('##TEAM_OR_ORGANIZATION## type').replace(
+              '##TEAM_OR_ORGANIZATION##',
+              mmoLabel
+            )}
+            options={[
+              {
+                value: 'orgType',
+                label: currentTypeLabel,
+              },
+            ]}
             selectedOption='orgType'
             onChange={() => null}
           />

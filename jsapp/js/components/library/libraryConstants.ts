@@ -12,4 +12,3 @@ export const ROOT_BREADCRUMBS = Object.freeze({
     href: '#/library/public-collections',
   },
 });
-

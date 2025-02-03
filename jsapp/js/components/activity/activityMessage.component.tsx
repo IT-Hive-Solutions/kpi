@@ -1,5 +1,9 @@
 import Avatar from '../common/avatar';
-import {type ActivityLogsItem, AUDIT_ACTION_TYPES, FALLBACK_MESSAGE} from './activity.constants';
+import {
+  type ActivityLogsItem,
+  AUDIT_ACTION_TYPES,
+  FALLBACK_MESSAGE,
+} from './activity.constants';
 import styles from './activityMessage.module.scss';
 
 /**
@@ -7,7 +11,8 @@ import styles from './activityMessage.module.scss';
  * by short text describing what username did.
  */
 export function ActivityMessage(props: {data: ActivityLogsItem}) {
-  let message = AUDIT_ACTION_TYPES[props.data.action]?.message || FALLBACK_MESSAGE;
+  let message =
+    AUDIT_ACTION_TYPES[props.data.action]?.message || FALLBACK_MESSAGE;
 
   // Here we reaplace all possible placeholders with appropriate data. This way
   // we don't really need to know which message (out of around 30) are we
@@ -22,10 +27,16 @@ export function ActivityMessage(props: {data: ActivityLogsItem}) {
   // If metadata is missing we leave the ##username2## placeholder on purpose
   // so that it is clear that the data is missing
   if (props.data.metadata.username) {
-    message = message.replace('##username2##', `<strong>${props.data.metadata.username}</strong>`);
+    message = message.replace(
+      '##username2##',
+      `<strong>${props.data.metadata.username}</strong>`
+    );
   }
   if (props.data.metadata.permissions?.username) {
-    message = message.replace('##username2##', `<strong>${props.data.metadata.permissions.username}</strong>`);
+    message = message.replace(
+      '##username2##',
+      `<strong>${props.data.metadata.permissions.username}</strong>`
+    );
   }
 
   return (

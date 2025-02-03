@@ -2,7 +2,7 @@ import React from 'react';
 import reactMixin from 'react-mixin';
 import autoBind from 'react-autobind';
 import Reflux from 'reflux';
-import { Link, NavLink } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import mixins from 'js/mixins';
 import bem from 'js/bem';
 import DocumentTitle from 'react-document-title';
@@ -27,45 +27,45 @@ class FormSummary extends React.Component {
   renderQuickLinks() {
     return (
       <bem.FormView__cell m='data-tabs'>
-        {userCan('add_submissions', this.state) &&
+        {userCan('add_submissions', this.state) && (
           <Link
             to={`/forms/${this.state.uid}/landing`}
             key='landing'
             data-path={`/forms/${this.state.uid}/landing`}
             onClick={this.triggerRefresh}
           >
-              <i className='k-icon k-icon-projects' />
-              {t('Collect data')}
-              <Icon name='angle-right' size='s'/>
+            <i className='k-icon k-icon-projects' />
+            {t('Collect data')}
+            <Icon name='angle-right' size='s' />
           </Link>
-        }
+        )}
 
-        {userCan('change_asset', this.state) &&
+        {userCan('change_asset', this.state) && (
           <button onClick={this.sharingModal}>
-            <i className='k-icon k-icon-user-share'/>
+            <i className='k-icon k-icon-user-share' />
             {t('Share project')}
-            <Icon name='angle-right' size='s'/>
+            <Icon name='angle-right' size='s' />
           </button>
-        }
+        )}
 
-        {userCan('change_asset', this.state) &&
+        {userCan('change_asset', this.state) && (
           <Link
             to={`/forms/${this.state.uid}/edit`}
             key='edit'
             data-path={`/forms/${this.state.uid}/edit`}
             onClick={this.triggerRefresh}
-            data-cy="edit"
+            data-cy='edit'
           >
             <i className='k-icon k-icon-edit' />
             {t('Edit form')}
-            <Icon name='angle-right' size='s'/>
+            <Icon name='angle-right' size='s' />
           </Link>
-        }
+        )}
 
         <button onClick={this.enketoPreviewModal}>
           <i className='k-icon k-icon-view' />
           {t('Preview form')}
-          <Icon name='angle-right' size='s'/>
+          <Icon name='angle-right' size='s' />
         </button>
       </bem.FormView__cell>
     );
@@ -89,7 +89,7 @@ class FormSummary extends React.Component {
         </bem.FormView__cell>
         <bem.FormView__cell m='box'>
           <bem.FormView__cell m='data-tabs'>
-            {sideTabs.map((item, ind) =>
+            {sideTabs.map((item, ind) => (
               <NavLink
                 to={item.path}
                 key={ind}
@@ -98,16 +98,16 @@ class FormSummary extends React.Component {
               >
                 <i className={`k-icon ${item.icon}`} />
                 {item.label}
-                <Icon name='angle-right' size='s'/>
+                <Icon name='angle-right' size='s' />
               </NavLink>
-            )}
+            ))}
           </bem.FormView__cell>
         </bem.FormView__cell>
       </bem.FormView__row>
     );
   }
 
-  sharingModal (evt) {
+  sharingModal(evt) {
     evt.preventDefault();
     pageState.showModal({
       type: MODAL_TYPES.SHARING,
@@ -115,7 +115,7 @@ class FormSummary extends React.Component {
     });
   }
 
-  enketoPreviewModal (evt) {
+  enketoPreviewModal(evt) {
     evt.preventDefault();
     pageState.showModal({
       type: MODAL_TYPES.ENKETO_PREVIEW,
@@ -145,26 +145,21 @@ class FormSummary extends React.Component {
         <bem.FormView__cell m={['label', 'first']}>
           {t('Team members')}
         </bem.FormView__cell>
-        {userCan('change_asset', this.state) &&
+        {userCan('change_asset', this.state) && (
           <a onClick={this.sharingModal} className='team-sharing-button'>
             <i className='k-icon k-icon-user-share' />
           </a>
-        }
+        )}
         <bem.FormView__cell m={['box', 'padding']}>
-          { team.map((username, ind) =>
-            <Avatar
-              key={ind}
-              username={username}
-              size='s'
-              isUsernameVisible
-            />
-          )}
+          {team.map((username, ind) => (
+            <Avatar key={ind} username={username} size='s' isUsernameVisible />
+          ))}
         </bem.FormView__cell>
       </bem.FormView__row>
     );
   }
 
-  render () {
+  render() {
     const docTitle = this.state.name || t('Untitled');
 
     return (
@@ -173,21 +168,19 @@ class FormSummary extends React.Component {
           <bem.FormView__column m='left'>
             {/* We only want to pass an actual asset object, but because this
             component uses `mixins.dmix`, we have to add this little check. */}
-            {this.state.uid &&
-              <FormSummaryProjectInfo asset={this.state}/>
-            }
+            {this.state.uid && <FormSummaryProjectInfo asset={this.state} />}
 
-            {this.state.uid &&
+            {this.state.uid && (
               <bem.FormView__row>
                 <bem.FormView__cell m={['label', 'first']}>
                   {t('Submissions')}
                 </bem.FormView__cell>
 
                 <bem.FormView__cell m='box'>
-                  <SubmissionsCountGraph assetUid={this.state.uid}/>
+                  <SubmissionsCountGraph assetUid={this.state.uid} />
                 </bem.FormView__cell>
               </bem.FormView__row>
-            }
+            )}
           </bem.FormView__column>
 
           <bem.FormView__column m='right'>
@@ -203,13 +196,11 @@ class FormSummary extends React.Component {
             {this.renderDataTabs()}
 
             {this.renderTeam()}
-
           </bem.FormView__column>
         </bem.FormView>
       </DocumentTitle>
-      );
+    );
   }
-
 }
 
 reactMixin(FormSummary.prototype, mixins.dmix);

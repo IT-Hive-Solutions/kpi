@@ -21,9 +21,7 @@ interface TextModalCellProps {
  * Displays given text (with fallback to "not available") and a way to open it
  * in a modal - useful to read a long text in full.
  */
-export default function TextModalCell(
-  props: TextModalCellProps
-) {
+export default function TextModalCell(props: TextModalCellProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // If there is no actual content, we display sweet short "not availabe"
@@ -73,7 +71,9 @@ export default function TextModalCell(
         </KoboModalHeader>
 
         <KoboModalContent>
-          <div className={styles.modalContent} dir='auto'>{props.text}</div>
+          <div className={styles.modalContent} dir='auto'>
+            {props.text}
+          </div>
         </KoboModalContent>
       </KoboModal>
     </>

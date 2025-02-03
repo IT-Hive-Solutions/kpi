@@ -37,14 +37,17 @@ interface BadgeProps {
 export default function Badge(props: BadgeProps) {
   return (
     <div
-      className={cx([
-        styles.root,
-        styles[`color-${props.color}`],
-        styles[`size-${props.size}`],
-      ], {
-        [styles.disableShortening]: props.disableShortening,
-        [styles.hasLabel]: props.label !== undefined,
-      })}
+      className={cx(
+        [
+          styles.root,
+          styles[`color-${props.color}`],
+          styles[`size-${props.size}`],
+        ],
+        {
+          [styles.disableShortening]: props.disableShortening,
+          [styles.hasLabel]: props.label !== undefined,
+        }
+      )}
     >
       {props.icon && (
         <Icon
@@ -53,9 +56,7 @@ export default function Badge(props: BadgeProps) {
           name={props.icon}
         />
       )}
-      {props.label && (
-        <span className={styles.label}>{props.label}</span>
-      )}
+      {props.label && <span className={styles.label}>{props.label}</span>}
     </div>
   );
 }

@@ -25,5 +25,5 @@ Primary.args = {
   max: 10,
   value: 4,
   isTime: false,
-  isDisabled: false
+  isDisabled: false,
 };

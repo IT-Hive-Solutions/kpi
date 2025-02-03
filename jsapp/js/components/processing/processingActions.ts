@@ -489,7 +489,10 @@ processingActions.requestAutoTranscription.listen(
         .done((response: ProcessingDataResponse) => {
           const responseStatus = response[xpath]?.googlets?.status;
 
-          if (responseStatus === 'requested' || responseStatus === 'in_progress') {
+          if (
+            responseStatus === 'requested' ||
+            responseStatus === 'in_progress'
+          ) {
             processingActions.requestAutoTranscription.in_progress({
               response,
               submissionEditId,
@@ -765,7 +768,10 @@ processingActions.requestAutoTranslation.listen(
         .done((response: ProcessingDataResponse) => {
           const responseStatus = response[xpath]?.googletx?.status;
 
-          if (responseStatus === 'requested' || responseStatus === 'in_progress') {
+          if (
+            responseStatus === 'requested' ||
+            responseStatus === 'in_progress'
+          ) {
             processingActions.requestAutoTranslation.in_progress({
               response,
               submissionEditId,

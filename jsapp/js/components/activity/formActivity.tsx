@@ -38,9 +38,7 @@ export default function FormActivity() {
     actionFilter: selectedFilterOption?.value || '',
   };
 
-  const {data: filterOptions} = useActivityLogsFilterOptionsQuery(
-    assetUid
-  );
+  const {data: filterOptions} = useActivityLogsFilterOptionsQuery(assetUid);
 
   const handleFilterChange = (value: string | null) => {
     setSelectedFilterOption(

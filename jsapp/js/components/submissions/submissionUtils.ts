@@ -232,9 +232,7 @@ export function getSubmissionDisplayData(
         continue;
       }
       // let's hide rows that don't carry any submission data
-      if (
-        row.type === QUESTION_TYPES.note.id
-      ) {
+      if (row.type === QUESTION_TYPES.note.id) {
         continue;
       }
       /*
@@ -247,7 +245,11 @@ export function getSubmissionDisplayData(
         continue;
       }
 
-      let rowData = getRowData(rowName, survey, parentData as SubmissionResponse);
+      let rowData = getRowData(
+        rowName,
+        survey,
+        parentData as SubmissionResponse
+      );
 
       if (row.type === GROUP_TYPES_BEGIN.begin_repeat) {
         if (Array.isArray(rowData)) {
@@ -463,7 +465,9 @@ function populateMatrixData(
       ) {
         // Note: If Matrix question is inside a repeat group, the data is stored
         // elsewhere :tableflip:
-        questionData = (parentData as {[key: string]: SubmissionResponseValue})[dataProp];
+        questionData = (parentData as {[key: string]: SubmissionResponseValue})[
+          dataProp
+        ];
       }
 
       const questionObj = new DisplayResponse(
@@ -709,9 +713,14 @@ export function getSupplementalDetailsContent(
     // The last element is some random uuid, but we look for `qual`.
     pathArray.pop();
     pathArray.push('qual');
-    const qualResponses: SubmissionAnalysisResponse[] = get(submission, pathArray, []);
+    const qualResponses: SubmissionAnalysisResponse[] = get(
+      submission,
+      pathArray,
+      []
+    );
     const foundResponse = qualResponses.find(
-      (item: SubmissionAnalysisResponse) => item.uuid === pathParts.analysisQuestionUuid
+      (item: SubmissionAnalysisResponse) =>
+        item.uuid === pathParts.analysisQuestionUuid
     );
     if (foundResponse) {
       // For `qual_select_one` we get object
@@ -725,15 +734,12 @@ export function getSupplementalDetailsContent(
 
       // Here we handle both `qual_select_multiple` and `qual_tags`, as both are
       // arrays of items
-      if (
-        Array.isArray(foundResponse.val) &&
-        foundResponse.val.length > 0
-      ) {
+      if (Array.isArray(foundResponse.val) && foundResponse.val.length > 0) {
         const choiceLabels = foundResponse.val.map((item) => {
           // For `qual_select_multiple` we get an array of objects
           if (typeof item === 'object') {
             return item.labels._default;
-          // For `qual_tags` we get an array of strings
+            // For `qual_tags` we get an array of strings
           } else {
             return item;
           }
@@ -742,10 +748,7 @@ export function getSupplementalDetailsContent(
         return choiceLabels.join(', ');
       }
 
-      if (
-        typeof foundResponse.val === 'string' &&
-        foundResponse.val !== ''
-      ) {
+      if (typeof foundResponse.val === 'string' && foundResponse.val !== '') {
         return foundResponse.val;
       }
 

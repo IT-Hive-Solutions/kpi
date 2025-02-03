@@ -36,11 +36,7 @@ const ProjectBreakdown = () => {
 
   useEffect(() => {
     async function fetchData(orgId: string) {
-      const data = await getOrgAssetUsage(
-        currentPage,
-        orgId,
-        order
-      );
+      const data = await getOrgAssetUsage(currentPage, orgId, order);
       const updatedResults = data.results.map((projectResult) => {
         const assetParts = projectResult.asset.split('/');
         const uid = assetParts[assetParts.length - 2];

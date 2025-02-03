@@ -92,5 +92,5 @@ const Template: ComponentStory<typeof KoboModal> = (args: any) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-    isOpen: true
+  isOpen: true,
 };

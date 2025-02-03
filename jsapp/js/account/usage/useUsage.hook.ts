@@ -51,8 +51,7 @@ const loadUsage = async (
     transcriptionMinutes: convertSecondsToMinutes(
       usage.total_nlp_usage.asr_seconds_current_period
     ),
-    translationChars:
-      usage.total_nlp_usage.mt_characters_current_period,
+    translationChars: usage.total_nlp_usage.mt_characters_current_period,
     currentPeriodStart: usage.current_period_start,
     currentPeriodEnd: usage.current_period_end,
     trackingPeriod,

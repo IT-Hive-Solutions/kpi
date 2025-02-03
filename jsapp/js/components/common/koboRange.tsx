@@ -72,7 +72,7 @@ export default class KoboRange extends React.Component<KoboRangeProps> {
 
     return (
       <bem.KoboRange data-cy={this.props['data-cy']}>
-        {isDataLoaded && !this.props.singleStat &&
+        {isDataLoaded && !this.props.singleStat && (
           <bem.KoboRange__values>
             <bem.KoboRange__currentValue>
               <bem.KoboRange__number>
@@ -91,14 +91,12 @@ export default class KoboRange extends React.Component<KoboRangeProps> {
                 {this.props.isTime && this.convertToClock(this.props.max)}
               </bem.KoboRange__number>
 
-              <bem.KoboRange__unit>
-                {this.props.totalLabel}
-              </bem.KoboRange__unit>
+              <bem.KoboRange__unit>{this.props.totalLabel}</bem.KoboRange__unit>
             </bem.KoboRange__maxValue>
           </bem.KoboRange__values>
-        }
+        )}
 
-        {isDataLoaded && this.props.singleStat &&
+        {isDataLoaded && this.props.singleStat && (
           <bem.KoboRange__values>
             <bem.KoboRange__currentValue>
               <bem.KoboRange__unit>
@@ -112,12 +110,10 @@ export default class KoboRange extends React.Component<KoboRangeProps> {
                 {this.props.isTime && this.convertToClock(this.props.value)}
               </bem.KoboRange__number>
 
-              <bem.KoboRange__unit>
-                {this.props.totalLabel}
-              </bem.KoboRange__unit>
+              <bem.KoboRange__unit>{this.props.totalLabel}</bem.KoboRange__unit>
             </bem.KoboRange__maxValue>
           </bem.KoboRange__values>
-        }
+        )}
 
         <bem.KoboRange__progress>
           <bem.KoboRange__input

@@ -6,7 +6,7 @@ import {escapeHtml, join, log, notify, getExponentialDelayTime} from 'js/utils';
 import {MODAL_TYPES} from './constants';
 import {router, routerIsActive} from 'js/router/legacy';
 import {ROUTES} from './router/routerConstants';
-import envStore from './envStore'
+import envStore from './envStore';
 import pageState from 'js/pageState.store';
 
 const IMPORT_FAILED_GENERIC_MESSAGE = t('Import failed');

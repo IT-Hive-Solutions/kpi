@@ -1,18 +1,12 @@
 import React from 'react';
 import bem from 'js/bem';
-import {
-  isSelfOwned,
-  getAssetDisplayName,
-} from 'js/assetUtils';
+import {isSelfOwned, getAssetDisplayName} from 'js/assetUtils';
 import {isAnyLibraryRoute} from 'js/router/routerUtils';
 import myLibraryStore from './myLibraryStore';
 import publicCollectionsStore from './publicCollectionsStore';
 import {ROOT_BREADCRUMBS} from './libraryConstants';
 import type {AssetResponse} from 'js/dataInterface';
-import {
-  ACCESS_TYPES,
-  ASSET_TYPES,
-} from 'js/constants';
+import {ACCESS_TYPES, ASSET_TYPES} from 'js/constants';
 import './assetBreadcrumbs.scss';
 
 interface AssetBreadcrumbsProps {
@@ -23,10 +17,7 @@ class AssetBreadcrumbs extends React.Component<AssetBreadcrumbsProps> {
   getRootBreadcrumb() {
     const parentAssetData = this.getParentAssetData();
 
-    if (
-      isAnyLibraryRoute() &&
-      isSelfOwned(this.props.asset)
-    ) {
+    if (isAnyLibraryRoute() && isSelfOwned(this.props.asset)) {
       // case for self owned asset
       return ROOT_BREADCRUMBS.MY_LIBRARY;
     } else if (
@@ -114,20 +105,18 @@ class AssetBreadcrumbs extends React.Component<AssetBreadcrumbsProps> {
         <bem.Breadcrumbs__crumb href={rootBreadcrumb.href}>
           {rootBreadcrumb.label}
         </bem.Breadcrumbs__crumb>
-        <i className='k-icon k-icon-angle-right'/>
+        <i className='k-icon k-icon-angle-right' />
 
-        {this.props.asset.parent !== null &&
+        {this.props.asset.parent !== null && (
           <React.Fragment>
-          <bem.Breadcrumbs__crumb href={this.getParentHref()}>
-            {this.getParentName()}
-          </bem.Breadcrumbs__crumb>
-          <i className='k-icon k-icon-angle-right'/>
+            <bem.Breadcrumbs__crumb href={this.getParentHref()}>
+              {this.getParentName()}
+            </bem.Breadcrumbs__crumb>
+            <i className='k-icon k-icon-angle-right' />
           </React.Fragment>
-        }
+        )}
 
-        <bem.Breadcrumbs__crumb>
-          {assetName.final}
-        </bem.Breadcrumbs__crumb>
+        <bem.Breadcrumbs__crumb>{assetName.final}</bem.Breadcrumbs__crumb>
       </bem.Breadcrumbs>
     );
   }

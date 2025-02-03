@@ -1,5 +1,5 @@
 import React from 'react';
-import {EnketoActions} from 'js/constants'
+import {EnketoActions} from 'js/constants';
 import {dataInterface} from 'js/dataInterface';
 import type {EnketoLinkResponse} from 'js/dataInterface';
 import {notify} from 'js/utils';
@@ -31,7 +31,12 @@ class EnketoHandler {
     if (this.winTab !== null && enketoUrl !== undefined) {
       this.winTab.location.href = enketoUrl;
     } else {
-      notify.error(t('Could not open window for "##url##"').replace('##url##', String(enketoUrl)));
+      notify.error(
+        t('Could not open window for "##url##"').replace(
+          '##url##',
+          String(enketoUrl)
+        )
+      );
     }
   }
 
@@ -49,7 +54,11 @@ class EnketoHandler {
    * Opens submission url from cache or after getting it from endpoint.
    * @returns {Promise} Promise that resolves when url is being opened.
    */
-  openSubmission(assetUid: string, submissionUid: string, action: EnketoActions) {
+  openSubmission(
+    assetUid: string,
+    submissionUid: string,
+    action: EnketoActions
+  ) {
     // we create the tab immediately to avoid browser popup blocker killing it
     this.winTab = window.open('', '_blank');
 
@@ -65,8 +74,8 @@ class EnketoHandler {
         this._openEnketoUrl(urlId);
         resolve(false);
       } else {
-        dataIntMethod(assetUid, submissionUid)
-          .always((enketoData: EnketoLinkResponse) => {
+        dataIntMethod(assetUid, submissionUid).always(
+          (enketoData: EnketoLinkResponse) => {
             if (enketoData.url) {
               this._saveEnketoUrl(urlId, enketoData.url);
               this._openEnketoUrl(urlId);
@@ -87,7 +96,8 @@ class EnketoHandler {
               notify.error(errorMsg);
               reject(false);
             }
-          });
+          }
+        );
       }
     }).catch(() => {
       // close the blank tab since it will never load anything 😢
@@ -97,7 +107,7 @@ class EnketoHandler {
 
     return enketoPromise;
   }
-};
+}
 
 const enketoHandler = new EnketoHandler();
 export default enketoHandler;
