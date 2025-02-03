@@ -1,5 +1,5 @@
-import type {Config} from 'jest';
-import {defaults} from 'jest-config';
+import type { Config } from 'jest'
+import { defaults } from 'jest-config'
 
 // Config to run ☕ unit tests using the Jest runner
 //
@@ -52,7 +52,7 @@ const config: Config = {
 
   // Appearance options (for console output)
   verbose: true,
-  displayName: {name: 'UNIT', color: 'black'},
-};
+  displayName: { name: 'UNIT', color: 'black' },
+}
 
-export default config;
+export default config

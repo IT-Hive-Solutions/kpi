@@ -1,5 +1,5 @@
-import React from 'react';
-import classnames from 'classnames';
+import React from 'react'
+import classnames from 'classnames'
 
 /**
  * USAGE:
@@ -10,7 +10,7 @@ import classnames from 'classnames';
  */
 
 interface bemInstances {
-  [bemName: string]: BemInstance;
+  [bemName: string]: BemInstance
 }
 
 /**
@@ -18,13 +18,13 @@ interface bemInstances {
  *
  * @deprecated Use CSS Modules and regular HTML tags.
  */
-const bem: bemInstances = {};
+const bem: bemInstances = {}
 
-export default bem;
+export default bem
 
 type BemModifiersObject = {
-  [modifierName: string]: boolean;
-};
+  [modifierName: string]: boolean
+}
 
 interface BemComponentProps extends React.ComponentProps<any> {
   /**
@@ -35,16 +35,11 @@ interface BemComponentProps extends React.ComponentProps<any> {
    *   'another-modifier': <boolean>,
    * }
    */
-  m?:
-    | null
-    | string
-    | string[]
-    | BemModifiersObject
-    | (string | BemModifiersObject)[];
+  m?: null | string | string[] | BemModifiersObject | (string | BemModifiersObject)[]
 }
 
 interface BemInstance extends React.ComponentClass<BemComponentProps, {}> {
-  blockName: string;
+  blockName: string
 }
 
 /**
@@ -55,54 +50,50 @@ interface BemInstance extends React.ComponentClass<BemComponentProps, {}> {
  *
  * @deprecated Use CSS Modules and regular HTML tags.
  */
-export function makeBem(
-  parent: BemInstance | null,
-  name: string,
-  htmlTagName: string = 'div'
-): BemInstance {
+export function makeBem(parent: BemInstance | null, name: string, htmlTagName: string = 'div'): BemInstance {
   class BemComponent extends React.Component<BemComponentProps, {}> {
-    static blockName: string = parent ? parent.blockName : name;
+    static blockName: string = parent ? parent.blockName : name
 
     constructor(props: BemComponentProps) {
-      super(props);
+      super(props)
     }
 
     render() {
-      let classNames: string[] = [];
+      let classNames: string[] = []
 
       // Keep existing className attribute if given (either string or array)
       if (typeof this.props.className === 'string') {
-        classNames.push(this.props.className);
+        classNames.push(this.props.className)
       } else if (Array.isArray(this.props.className)) {
-        classNames.push(this.props.className.join(' '));
+        classNames.push(this.props.className.join(' '))
       }
 
       // wholeName includes parent, e.g. `parent-block__child-element`
-      const wholeName = parent ? `${parent.blockName}__${name}` : name;
-      classNames.push(wholeName);
+      const wholeName = parent ? `${parent.blockName}__${name}` : name
+      classNames.push(wholeName)
 
-      const modifiersList = classnames(this.props.m);
+      const modifiersList = classnames(this.props.m)
       if (modifiersList !== '') {
         modifiersList.split(' ').forEach((modifier) => {
-          classNames.push(`${wholeName}--${modifier}`);
-        });
+          classNames.push(`${wholeName}--${modifier}`)
+        })
       }
 
-      const newProps: {[propName: string]: any} = {
+      const newProps: { [propName: string]: any } = {
         className: classNames.join(' '),
-      };
+      }
 
       // Keep all the original props expect for modifiers (don't need it) and
       // className (we use our own).
       Object.entries(this.props).forEach((propEntry) => {
         if (propEntry[0] !== 'm' && propEntry[0] !== 'className') {
-          newProps[propEntry[0]] = propEntry[1];
+          newProps[propEntry[0]] = propEntry[1]
         }
-      });
+      })
 
-      return React.createElement(htmlTagName, newProps);
+      return React.createElement(htmlTagName, newProps)
     }
   }
 
-  return BemComponent;
+  return BemComponent
 }

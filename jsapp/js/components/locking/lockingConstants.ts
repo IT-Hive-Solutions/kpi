@@ -1,11 +1,10 @@
 export interface AssetLockingProfileDefinition {
-  name: string;
-  restrictions: LockingRestrictionName[];
+  name: string
+  restrictions: LockingRestrictionName[]
 }
 
-export interface IndexedAssetLockingProfileDefinition
-  extends AssetLockingProfileDefinition {
-  index: number;
+export interface IndexedAssetLockingProfileDefinition extends AssetLockingProfileDefinition {
+  index: number
 }
 
 /**
@@ -44,13 +43,13 @@ export enum LockingRestrictionName {
 }
 
 export interface LockingRestrictionDefinition {
-  name: LockingRestrictionName;
-  label: string;
+  name: LockingRestrictionName
+  label: string
 }
 
 // all restrictions for questions and choices
 export const QUESTION_RESTRICTIONS: LockingRestrictionDefinition[] = [
-  {name: LockingRestrictionName.choice_add, label: t('Add choice to question')},
+  { name: LockingRestrictionName.choice_add, label: t('Add choice to question') },
   {
     name: LockingRestrictionName.choice_delete,
     label: t('Remove choice from question'),
@@ -67,7 +66,7 @@ export const QUESTION_RESTRICTIONS: LockingRestrictionDefinition[] = [
     name: LockingRestrictionName.choice_value_edit,
     label: t('Edit choice values'),
   },
-  {name: LockingRestrictionName.question_delete, label: t('Delete question')},
+  { name: LockingRestrictionName.question_delete, label: t('Delete question') },
   {
     name: LockingRestrictionName.question_label_edit,
     label: t('Edit question labels'),
@@ -84,11 +83,11 @@ export const QUESTION_RESTRICTIONS: LockingRestrictionDefinition[] = [
     name: LockingRestrictionName.question_validation_edit,
     label: t('Edit validation'),
   },
-];
+]
 
 // all restrictions for groups
 export const GROUP_RESTRICTIONS: LockingRestrictionDefinition[] = [
-  {name: LockingRestrictionName.group_delete, label: t('Delete entire group')},
+  { name: LockingRestrictionName.group_delete, label: t('Delete entire group') },
   {
     name: LockingRestrictionName.group_label_edit,
     label: t('Edit group labels'),
@@ -113,8 +112,8 @@ export const GROUP_RESTRICTIONS: LockingRestrictionDefinition[] = [
     name: LockingRestrictionName.group_skip_logic_edit,
     label: t('Edit skip logic'),
   },
-  {name: LockingRestrictionName.group_split, label: t('Split group')},
-];
+  { name: LockingRestrictionName.group_split, label: t('Split group') },
+]
 
 // all restrictions for form
 export const FORM_RESTRICTIONS: LockingRestrictionDefinition[] = [
@@ -126,15 +125,15 @@ export const FORM_RESTRICTIONS: LockingRestrictionDefinition[] = [
     name: LockingRestrictionName.form_meta_edit,
     label: t('Change form meta questions'),
   },
-  {name: LockingRestrictionName.form_replace, label: t('Replace whole form')},
-  {name: LockingRestrictionName.group_add, label: t('Add group')},
-  {name: LockingRestrictionName.question_add, label: t('Add question')},
+  { name: LockingRestrictionName.form_replace, label: t('Replace whole form') },
+  { name: LockingRestrictionName.group_add, label: t('Add group') },
+  { name: LockingRestrictionName.question_add, label: t('Add question') },
   {
     name: LockingRestrictionName.question_order_edit,
     label: t('Change question order'),
   },
-  {name: LockingRestrictionName.language_edit, label: t('Change languages')},
-];
+  { name: LockingRestrictionName.language_edit, label: t('Change languages') },
+]
 
 // currently lock_all has all restrictions,
 // but we want to be flexible, so we use an array
@@ -164,15 +163,15 @@ export const LOCK_ALL_RESTRICTION_NAMES = [
   LockingRestrictionName.question_add,
   LockingRestrictionName.question_order_edit,
   LockingRestrictionName.language_edit,
-];
+]
 
-export const LOCK_ALL_PROP_NAME = 'kobo--lock_all';
+export const LOCK_ALL_PROP_NAME = 'kobo--lock_all'
 
-export const LOCKING_PROFILE_PROP_NAME = 'kobo--locking-profile';
+export const LOCKING_PROFILE_PROP_NAME = 'kobo--locking-profile'
 
-export const LOCKING_PROFILES_PROP_NAME = 'kobo--locking-profiles';
+export const LOCKING_PROFILES_PROP_NAME = 'kobo--locking-profiles'
 
 export const LOCKING_UI_CLASSNAMES = {
   HIDDEN: 'locking__ui-hidden',
   DISABLED: 'locking__ui-disabled',
-};
+}

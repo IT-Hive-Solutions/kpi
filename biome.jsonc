@@ -37,18 +37,18 @@
     // "attributePosition": "auto",       // Default.
     "indentStyle": "space",               // best-fit to Kobo previous code style.
     // "indentWidth": 2,                  // Default.
-    // "lineWidth": 80,                   // Default. TODO: change to non-default 120.
+    "lineWidth": 120,                     // Default. TODO: change to non-default 120.
     // "lineEnding": "lf"                 // Default.
   },
   "javascript": {
     "formatter": {
       // "arrowParentheses":"always",     // Default.
       // "bracketSameLine": false,        // Default.
-      "bracketSpacing": false,            // best-fit to Kobo previous code style. TODO: change to default true.
+      "bracketSpacing": true,             // non-default
       "jsxQuoteStyle": "single",          // best-fit to Kobo previous code style.
-      "quoteProperties": "preserve",      // best-fit to Kobo previous code style. TODO: change to default "asNeeded".
-      // "semicolons": "always",          // Default. TODO: change to non-default "asNeeded".
-      "trailingCommas": "es5",            // best-fit to Kobo previous code style. TODO: change to default "all".
+      "quoteProperties": "asNeeded",      // non-default
+      "semicolons": "asNeeded",           // non-default
+      "trailingCommas": "all",            // Default
       // "attributePosition": "auto",     // Default.
       "quoteStyle": "single",             // best-fit to Kobo previous code style.
       // "trailingComma": "all",          // Default.

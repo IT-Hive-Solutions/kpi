@@ -1,12 +1,12 @@
-import React from 'react';
-import AssetsTable from 'js/components/assetsTable/assetsTable';
-import {AssetsTableContextName} from 'js/components/assetsTable/assetsTableConstants';
-import type {OrderDirection} from 'js/projects/projectViews/constants';
-import singleCollectionStore from './singleCollectionStore';
-import type {AssetResponse} from 'js/dataInterface';
+import React from 'react'
+import AssetsTable from 'js/components/assetsTable/assetsTable'
+import { AssetsTableContextName } from 'js/components/assetsTable/assetsTableConstants'
+import type { OrderDirection } from 'js/projects/projectViews/constants'
+import singleCollectionStore from './singleCollectionStore'
+import type { AssetResponse } from 'js/dataInterface'
 
 interface CollectionAssetsTableProps {
-  asset: AssetResponse;
+  asset: AssetResponse
 }
 
 /**
@@ -15,22 +15,17 @@ interface CollectionAssetsTableProps {
  * instead.
  */
 export default class CollectionAssetsTable extends React.Component<CollectionAssetsTableProps> {
-  private unlisteners: Function[] = [];
+  private unlisteners: Function[] = []
 
   // Listen for changes in store and update state to match
   componentDidMount() {
-    this.unlisteners.push(
-      singleCollectionStore.listen(
-        this.onSingleCollectionStoreChanged.bind(this),
-        this
-      )
-    );
+    this.unlisteners.push(singleCollectionStore.listen(this.onSingleCollectionStoreChanged.bind(this), this))
   }
 
   componentWillUnmount() {
     this.unlisteners.forEach((clb) => {
-      clb();
-    });
+      clb()
+    })
   }
 
   /**
@@ -39,22 +34,19 @@ export default class CollectionAssetsTable extends React.Component<CollectionAss
    * store changes :shrug:.
    */
   onSingleCollectionStoreChanged() {
-    this.forceUpdate();
+    this.forceUpdate()
   }
 
   onAssetsTableOrderChange(columnId: string, columnValue: OrderDirection) {
-    singleCollectionStore.setOrder(columnId, columnValue);
+    singleCollectionStore.setOrder(columnId, columnValue)
   }
 
-  onAssetsTableFilterChange(
-    columnId: string | null,
-    columnValue: string | null
-  ) {
-    singleCollectionStore.setFilter(columnId, columnValue);
+  onAssetsTableFilterChange(columnId: string | null, columnValue: string | null) {
+    singleCollectionStore.setFilter(columnId, columnValue)
   }
 
   onAssetsTableSwitchPage(pageNumber: number) {
-    singleCollectionStore.setCurrentPage(pageNumber);
+    singleCollectionStore.setCurrentPage(pageNumber)
   }
 
   render() {
@@ -75,6 +67,6 @@ export default class CollectionAssetsTable extends React.Component<CollectionAss
         totalPages={singleCollectionStore.data.totalPages}
         onSwitchPage={this.onAssetsTableSwitchPage.bind(this)}
       />
-    );
+    )
   }
 }

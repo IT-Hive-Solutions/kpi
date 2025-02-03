@@ -1,9 +1,9 @@
-import type {ReactElement} from 'react';
-import React from 'react';
-import styles from './centeredMessage.module.scss';
+import type { ReactElement } from 'react'
+import React from 'react'
+import styles from './centeredMessage.module.scss'
 
 interface CenteredMessageProps {
-  message: ReactElement<any, any> | string;
+  message: ReactElement<any, any> | string
 }
 
 /**
@@ -14,5 +14,5 @@ export default function CenteredMessage(props: CenteredMessageProps) {
     <figure className={styles.centeredMessage}>
       <div className={styles.centeredMessageInner}>{props.message}</div>
     </figure>
-  );
+  )
 }

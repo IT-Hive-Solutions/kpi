@@ -1,12 +1,12 @@
-import type {Meta, StoryObj} from '@storybook/react';
-import SimpleTable from './SimpleTable';
+import type { Meta, StoryObj } from '@storybook/react'
+import SimpleTable from './SimpleTable'
 
 const meta: Meta<React.ComponentProps<typeof SimpleTable>> = {
   title: 'common/SimpleTable',
   component: SimpleTable,
   argTypes: {},
   args: {},
-  render: ({...args}) => (
+  render: ({ ...args }) => (
     <SimpleTable
       {...args}
       head={['Element position', 'Atomic mass', 'Symbol', 'Element name']}
@@ -36,10 +36,10 @@ const meta: Meta<React.ComponentProps<typeof SimpleTable>> = {
       ]}
     />
   ),
-};
+}
 
-export default meta;
+export default meta
 
 export const Primary: StoryObj<typeof SimpleTable> = {
   args: {},
-};
+}

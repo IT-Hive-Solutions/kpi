@@ -1,27 +1,25 @@
 // Libraries
-import React from 'react';
+import React from 'react'
 
 // Partial components
-import {NavLink} from 'react-router-dom';
-import Button from 'jsapp/js/components/common/button';
+import { NavLink } from 'react-router-dom'
+import Button from 'jsapp/js/components/common/button'
 
 // Constants
-import {PATHS} from 'js/router/routerConstants';
-import {ACCOUNT_ROUTES} from 'js/account/routes.constants';
+import { PATHS } from 'js/router/routerConstants'
+import { ACCOUNT_ROUTES } from 'js/account/routes.constants'
 
 // Styles
-import styles from './passwordSection.module.scss';
-import securityStyles from 'js/account/security/securityRoute.module.scss';
+import styles from './passwordSection.module.scss'
+import securityStyles from 'js/account/security/securityRoute.module.scss'
 
-const HIDDEN_TOKEN_VALUE = '● '.repeat(10);
+const HIDDEN_TOKEN_VALUE = '● '.repeat(10)
 
 export default function PasswordSection() {
   return (
     <section className={securityStyles.securitySection}>
       <div className={securityStyles.securitySectionTitle}>
-        <h2 className={securityStyles.securitySectionTitleText}>
-          {t('Password')}
-        </h2>
+        <h2 className={securityStyles.securitySectionTitleText}>{t('Password')}</h2>
       </div>
 
       <div className={securityStyles.securitySectionBody}>
@@ -45,5 +43,5 @@ export default function PasswordSection() {
         </NavLink>
       </div>
     </section>
-  );
+  )
 }

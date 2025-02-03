@@ -1,16 +1,16 @@
 // Libraries
-import React from 'react';
+import React from 'react'
 
 // Partial components
-import MfaSection from './mfa/mfaSection.component';
-import PasswordSection from './password/passwordSection.component';
-import EmailSection from './email/emailSection.component';
-import ApiTokenSection from './apiToken/apiTokenSection.component';
-import SsoSection from './sso/ssoSection.component';
-import AccessLogsSection from './accessLogs/accessLogsSection.component';
+import MfaSection from './mfa/mfaSection.component'
+import PasswordSection from './password/passwordSection.component'
+import EmailSection from './email/emailSection.component'
+import ApiTokenSection from './apiToken/apiTokenSection.component'
+import SsoSection from './sso/ssoSection.component'
+import AccessLogsSection from './accessLogs/accessLogsSection.component'
 
 // Styles
-import styles from './securityRoute.module.scss';
+import styles from './securityRoute.module.scss'
 
 export default function securityRoute() {
   return (
@@ -31,5 +31,5 @@ export default function securityRoute() {
 
       <AccessLogsSection />
     </div>
-  );
+  )
 }
